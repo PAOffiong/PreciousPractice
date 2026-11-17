@@ -100,7 +100,7 @@
                         <Label
                             Grid.Row="2"
                             Grid.Column="0"
-                            Text="Total Debit:"
+                            Text="Total Debit:" 
                             TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
                             FontFamily="MartelSansRegular"
                             FontSize="12"/>
