@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.PersonalInformation"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"
+             Title="PersonalInformation">
+    <Grid 
+        RowDefinitions="*,Auto">
+        <Grid 
+            Padding="20">
+            <Image 
+                Grid.Row="0"
+                Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                HorizontalOptions="Start" 
+                VerticalOptions="Start">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+            <ScrollView 
+                Grid.Row="1"
+                Orientation="Vertical"
+                VerticalScrollBarVisibility="Never">
+                <VerticalStackLayout
+                    Padding="0,20"
+                    Spacing="10">
+                    <Label
+                        Text="Personal Information"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Margin="0,10,0,0"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        FontFamily="MartelSansExtraBold"/>
+                    <Label
+                        Text="provide your full name and email address to continue"
+                        FontFamily="MartelSansRegular"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        FontSize="12"
+                        Margin="0,0,0,20"/>
+                    <!--First name and Middle name-->
+                    <Grid 
+                        ColumnDefinitions="*,*"
+                        ColumnSpacing="10">
+                        <!--first name-->
+                        <VerticalStackLayout 
+                            Grid.Column="0" 
+                            Spacing="0">
+                            <Label
+                                Text="First name"     
+                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                FontFamily="MartelSansSemiBold"
+                                FontSize="12"
+                                Margin="0,0,0,3"/>
+                            <Border
+                                HeightRequest="45"
+                                Stroke="#336699"
+                                StrokeThickness="1"
+                                BackgroundColor="#1A009933"
+                                StrokeShape="RoundRectangle 30"
+                                Padding="10,0">
+                            <Entry
+                                FontSize="14"
+                                TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                x:Name="FirstNameEntry"
+                                TextChanged="OnPersonalInformationTextChanged"
+                                FontFamily="MartelSansRegular"/>
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout 
+                            Grid.Column="1" 
+                            Spacing="0">
+                            <Label
+                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                Text="Middle name"                             
+                                FontFamily="MartelSansSemiBold"
+                                FontSize="12"
+                                Margin="0,0,0,3"/>
+                            <Border
+                                HeightRequest="45"
+                                Stroke="#336699"
+                                StrokeThickness="1"
+                                BackgroundColor="#1A009933"
+                                StrokeShape="RoundRectangle 30"
+                                Padding="10,0">
+                                <Entry
+                                    FontSize="14"
+                                    TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                    x:Name="MiddleNameEntry"
+                                    TextChanged="OnPersonalInformationTextChanged"
+                                    FontFamily="MartelSansRegular"/>
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <!--surname-->
+                    <StackLayout>
+                        <Label
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            Text="Surname"
+                            FontSize="12"
+                            FontFamily="MartelSansSemiBold"
+                            Margin="0,0,0,3"/>
+                        <Border
+                            HeightRequest="45"
+                            Stroke="#336699"
+                            StrokeThickness="1"
+                            BackgroundColor="#1A009933"
+                            StrokeShape="RoundRectangle 30"
+                            Margin="0,0,0,0"
+                            Padding="10,0">
+                        <Entry
+                            FontSize="14"
+                            TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                            x:Name="SurnameEntry"
+                            FontFamily="MartelSansRegular"
+                            TextChanged="OnPersonalInformationTextChanged"/>
+                        </Border>
+                    </StackLayout>
+                
+                    <!--Email-->
+                    <StackLayout>
+                        <Label
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            Text="Email"
+                            FontSize="12"
+                            FontFamily="MartelSansSemiBold"
+                            Margin="0,0,0,3"/>
+                        <Border
+                            HeightRequest="45"
+                            Stroke="#336699"
+                            StrokeThickness="1"
+                            BackgroundColor="#1A009933"
+                            StrokeShape="RoundRectangle 30"
+                            Padding="10,0">
+                        <Entry
+                            x:Name="EmailEntry"
+                             TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                            Placeholder="e.g preciousoffiong@gmail.com"
+                            PlaceholderColor="{AppThemeBinding Light=#17233D, Dark=#666666}"
+                            FontSize="12"
+                            Keyboard="Email"
+                            TextChanged="OnEmailTextChanged"/>
+                        </Border>
+                    </StackLayout>
+                 <!--Date of Birth-->
+                    <StackLayout>
+                        <Label
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            Text="Date of birth"
+                            FontSize="12"
+                            FontFamily="MartelSansSemiBold"
+                            Margin="0,0,0,3"/>
+                        <Border
+                            HeightRequest="45"
+                            Stroke="#336699"
+                            StrokeThickness="1"
+                            BackgroundColor="#1A009933"
+                            StrokeShape="RoundRectangle 30"
+                            Padding="10,0">
+                        <Grid 
+                            ColumnDefinitions="*,Auto">
+                            <DatePicker
+                                x:Name="DOBPicker"
+                                Grid.ColumnSpan="2"
+                                Opacity="0.01"
+                                HorizontalOptions="Fill"
+                                VerticalOptions="Fill"
+                                DateSelected="DOBPicker_DateSelected"
+                                Format="dd/MM/yyyy"/>
+                            <Entry 
+                                Grid.Column="0"
+                                x:Name="DateText"
+                                Placeholder="Select Date"
+                                PlaceholderColor="{AppThemeBinding Light=#17233D, Dark=#FFFFFF}"
+                                FontSize="12"
+                                TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                IsReadOnly="True"
+                                InputTransparent="True"/>
+                            <Image 
+                                Grid.Column="1"
+                                Source="calendar_icon.png"
+                                HorizontalOptions="End"
+                                WidthRequest="13"
+                                HeightRequest="15"
+                                VerticalOptions="Center"
+                                Margin="0,0,10,0"
+                                InputTransparent="True">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCalendarTapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                      
+                        </Grid>   
+                    </Border>
+                    </StackLayout>
+                    <!--Gender-->
+
+                    <VerticalStackLayout
+                        Spacing="5">
+                        <Label
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            Text="Gender"
+                            FontFamily="MartelSansRegular"
+                            FontSize="12"/>
+                        <HorizontalStackLayout 
+                            Spacing="0"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center">
+                        <HorizontalStackLayout
+                            VerticalOptions="Center"
+                            Spacing="2">
+                            <RadioButton 
+                                Style="{StaticResource RadioButtonOne}"
+                                VerticalOptions="Center"
+                                x:Name="MaleRadioButton"
+                                GroupName="Gender"
+                                CheckedChanged="OnGenderChanged"/>
+                            <Label
+                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                Text="Male"
+                                FontSize="12"
+                                FontFamily="MartelSansRegular"
+                                VerticalOptions="Center"/>
+                            </HorizontalStackLayout>
+                            <!-- Space between Male and Female -->
+                        <BoxView
+                            WidthRequest="35"
+                            HeightRequest="1"
+                            Opacity="0" />
+                        <HorizontalStackLayout
+                            Spacing="2"
+                            VerticalOptions="Center">
+                             <RadioButton 
+                                 Style="{StaticResource RadioButtonOne}"
+                                 x:Name="FemaleRadioButton"
+                                 CheckedChanged="OnGenderChanged"
+                                 GroupName="Gender"
+                                 VerticalOptions="Center"/>
+                             <Label
+                                 TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                 Text="Female"
+                                 FontSize="12"
+                                 FontFamily="MartelSansRegular"
+                                 VerticalOptions="Center"/>
+                        </HorizontalStackLayout>     
+                      </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                    <!--Account Type-->
+                    <Grid>
+                        <VerticalStackLayout>
+                            <Label
+                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                Text="Account Type"
+                                FontSize="12"
+                                FontFamily="MartelSansSemiBold"
+                                Margin="0,0,0,5"/>
+                            <Border
+                                HeightRequest="45"
+                                Stroke="#336699"
+                                StrokeThickness="1"
+                                BackgroundColor="#1A009933"
+                                StrokeShape="RoundRectangle 30"
+                                Padding="10,0">
+                                <Grid 
+                                    ColumnDefinitions="*,Auto">
+                                    <Entry 
+                                        Grid.Column="0"
+                                        TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                        x:Name="AccountTypeEntry"
+                                        Placeholder="Select Account Type"
+                                        PlaceholderColor="{AppThemeBinding Light=#17233D, Dark=#FFFFFF}"
+                                        FontSize="12"/>
+                                    <Image 
+                                        Grid.Column="1"
+                                        Source="{AppThemeBinding Light=downward_angle.png, Dark=white_downward_angle}"
+                                        HorizontalOptions="End"
+                                        WidthRequest="13"
+                                        HeightRequest="15"
+                                        VerticalOptions="Center"
+                                        Margin="0,0,10,0">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnDownArrowTapped"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </Grid>
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+
+        <!--Static button-->
+        <Grid Grid.Row="1">
+            <VerticalStackLayout>
+                <Label
+                    HorizontalOptions="Center"
+                    FontSize="12"
+                    FontFamily="MartelSansRegular"
+                    Margin="0,0,0,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                                Text="Already have a Pyrowo Account?"/>
+                            <Span
+                                Text="Login"
+                                TextColor="#009933"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Border
+                    Style="{StaticResource ButtonOne}" 
+                    Margin="20,20"
+                    HeightRequest="45" 
+                    IsEnabled="False"
+                    x:Name="ContinueButton">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="NavToVerifyEmail"/>
+                    </Border.GestureRecognizers>
+                    <Grid>
+                        <Label
+                            x:Name="PersonalInformationTxt"
+                            Text="Continue"
+                            TextColor="{AppThemeBinding Light=white, Dark=Black}"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            FontSize="12"
+                            FontFamily="MartelSansBold"
+                            FontAttributes="Bold"/>
+                        <ActivityIndicator
+                            x:Name="PersonalInformationIndicator"
+                            Color="{AppThemeBinding Light=white, Dark=Black}"
+                            WidthRequest="18"
+                            HeightRequest="18"
+                            VerticalOptions="Center"
+                            IsVisible="False"
+                            IsRunning="False" />
+                    </Grid>
+                </Border>
+                <Image
+                    Source="footer_disclaimer.png"
+                    HorizontalOptions="Center"
+                    Margin="0,20,0,0"/>
+            </VerticalStackLayout>
+        </Grid>
+
+
+        <!-- Account Type Popup-->
+        <Grid IsVisible="False" 
+              x:Name="PopupOverlay" 
+              BackgroundColor="{AppThemeBinding Dark=#4D000000, Light=#1A000000}" 
+              Grid.RowSpan="2">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnPopupOverlayTapped"/>
+            </Grid.GestureRecognizers>
+            <Border
+                x:Name="AccountTypePopup"
+                IsVisible="False"
+                BackgroundColor="{AppThemeBinding Light=white, Dark=Black}"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 15,15,0,0"
+                Padding="10,10,20,0"
+                Margin="0,15,0,0"
+                VerticalOptions="End">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAccountTypePopupTapped"/>
+                </Border.GestureRecognizers>
+                <VerticalStackLayout>
+                    <!--Close button-->
+                    <StackLayout HorizontalOptions="End">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer   Tapped="ClosePopup"/>
+                        </StackLayout.GestureRecognizers>
+                        <Label 
+                            Text="X" 
+                            FontFamily="MartelSansBold"/>
+                    </StackLayout>
+                    <!-- Saving -->
+                    <Label
+                        Text="Saving"
+                        TextColor="{AppThemeBinding Light=#141414, Dark=#666666}"
+                        FontFamily="MartelSansRegular"
+                        FontSize="14"
+                        Padding="15">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                      Tapped="OnSavingTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <!-- Current -->
+                    <Label
+                        Text="Current"
+                        TextColor="{AppThemeBinding Light=#141414, Dark=#666666}"
+                        FontFamily="MartelSansRegular"
+                        FontSize="14"
+                        Padding="15">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer  Tapped="OnCurrentTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+    </Grid>
+</ContentPage>

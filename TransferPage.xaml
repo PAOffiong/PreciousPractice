@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PreciousPractice.TransferPage" 
+             xmlns:local="clr-namespace:PreciousPractice"
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{AppThemeBinding Dark=black, Light=white}"
+             Title="TransferPage">
+    
+    <Grid RowDefinitions="*,Auto">
+        <Grid
+            Grid.Row="0"
+            RowDefinitions="auto,auto,auto"
+            Padding="20"
+            RowSpacing="15">
+            <VerticalStackLayout
+                Grid.Row="0">
+                <Image 
+                     Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                     HorizontalOptions="Start" 
+                     VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                    Text="Send Money"
+                    FontSize="20"
+                    FontFamily="MartelSansBold"
+                    HorizontalOptions="Center"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+            </VerticalStackLayout>
+           
+            <Border
+                
+                Grid.Row="1"
+                Margin="0,15,0,0"
+                BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#1A336699}"
+                Stroke="Transparent"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 16"
+                Padding="5"
+                HeightRequest="61">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NavToTransferToPyrowo"/>
+                </Border.GestureRecognizers>
+                <HorizontalStackLayout 
+                    Spacing="8" 
+                    VerticalOptions="Center">
+                    <Border
+                        Stroke="#336699"
+                        StrokeShape="RoundRectangle 24"
+                        WidthRequest="30"
+                        HeightRequest="30"
+                        Padding="0"
+                        Background="White"
+                        Margin="25,0,0,0">
+                        <Image
+                            Source="flower_green.png"
+                            WidthRequest="27"
+                            HeightRequest="27"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"/>
+                        </Border>
+                    <VerticalStackLayout
+                        Spacing="0"
+                        VerticalOptions="Center"
+                        Margin="10,0,0,0">
+                        <Label
+                            Text="To Pyrowo"
+                            TextColor="{AppThemeBinding Dark=White, Light=#141414}"
+                            FontFamily="MartelSansSemiBold"
+                            FontSize="14"/>
+                        <Label
+                            Text="Transfer to any pyrowo bank account."
+                            TextColor="{AppThemeBinding Dark=#A0A6AD, Light=#141414}"
+                            FontFamily="MartelSansRegular"
+                            FontSize="12"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Border>
+            
+            <Border
+                Grid.Row="2"
+                Margin="0,5,0,0"
+                BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#1A336699}"
+                Stroke="Transparent"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 16"
+                Padding="5"
+                HeightRequest="61">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NavToTransferToOtherBanks"/>
+                </Border.GestureRecognizers>
+                <HorizontalStackLayout 
+                    Spacing="8" 
+                    VerticalOptions="Center">
+                    <Image
+                        Margin="25,0,0,0"
+                        Source="bank_transfer_icon.png"
+                        WidthRequest="40"
+                        HeightRequest="40"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"/>
+                    <VerticalStackLayout
+                        Spacing="0"
+                        VerticalOptions="Center"
+                         Margin="5,0,0,0">
+                        <Label
+                            Text="To Bank Account"
+                            TextColor="{AppThemeBinding Dark=White, Light=#141414}"
+                            FontFamily="MartelSansSemiBold"
+                            FontSize="14"/>
+                        <Label
+                            Text="Transfer to other bank accounts."
+                            TextColor="{AppThemeBinding Dark=#A0A6AD, Light=#141414}"
+                            FontFamily="MartelSansRegular"
+                            FontSize="12"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Border>
+        </Grid>
+        <!--Bottom Navigation Bar-->
+    <local:BottomStaticBorder ActiveTab="Transfer"
+    Grid.Row="1"/>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+    </Grid>    
+</ContentPage>

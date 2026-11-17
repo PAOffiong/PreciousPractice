@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.TvBill"
+             xmlns:helpers="clr-namespace:PreciousPractice.Helpers"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+             Title="TvBill">
+    <Grid
+        RowDefinitions="*, auto">
+        <Grid
+            Grid.Row="0"
+            RowDefinitions="auto,auto,auto,auto,auto"
+            Padding="20"
+            RowSpacing="20">
+            <Grid
+                Grid.Row="0"
+                ColumnDefinitions="auto,*">
+                <Image 
+                    Grid.Column="0"
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                    Grid.Column="1"  
+                    Text="TV"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="20"
+                    FontFamily="MartelSansBold"
+                    HorizontalOptions="Center"/>
+            </Grid>
+            <VerticalStackLayout
+                Grid.Row="1">
+                <Label
+                    Text="Select Provider"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="14"
+                    FontFamily="MartelSansRegular"/>
+                <Border
+                    BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EBF0F5}"
+                    Stroke="#336699"
+                    StrokeShape="RoundRectangle 30"
+                    Padding="10,0,0,0">
+                    <Grid
+                        ColumnDefinitions="*,auto">
+                        <Entry
+                            x:Name="SelectTVSubscriptionEntry"
+                            PlaceholderColor="#666666"
+                            Placeholder="Select Provider"
+                            FontSize="12"
+                            FontFamily="MartelSansSemiBold"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            IsReadOnly="True"/>
+                        <Image
+                            Grid.Column="1"
+                            Source="{AppThemeBinding Dark=white_rightward_triangle.png, Light= rightward_triangle.png}"
+                            Margin="0,0,10,0">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnRightwardAngleTapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout
+               Grid.Row="2">
+                <Label
+                    Text="Enter SmartCard Number"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="14"
+                    FontFamily="MartelSansRegular"/>
+                <Border
+                    Stroke="#336699"
+                    StrokeShape="RoundRectangle 30"
+                    Padding="10,0,0,0">
+                    <Entry
+                        x:Name="SmartCardNumber"
+                        PlaceholderColor="#666666"
+                        Placeholder="000-000-000-00"
+                        FontSize="14"
+                        FontFamily="MartelSansSemiBold"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        Keyboard="Numeric"
+                        MaxLength="11"
+                        TextChanged="OnSmartCardNumberTextChanged"/>
+                </Border>
+                <Border
+                    x:Name="SelectedBeneficiaryCard"
+                    IsVisible="False"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 15"
+                    BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EBF0F5}"
+                    Padding="10">
+                    <Grid
+                        ColumnDefinitions="auto,*,auto"
+                        ColumnSpacing="10">
+                        <Image
+                            x:Name="SelectedBeneficiaryLogo"
+                            Grid.Column="0"
+                            WidthRequest="40"
+                            HeightRequest="40"
+                            VerticalOptions="Center"/>
+                        <VerticalStackLayout
+                            Grid.Column="1"
+                            VerticalOptions="Center">
+                            <Label
+                                x:Name="SelectedBeneficiaryName"
+                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                FontFamily="MartelSansSemiBold"
+                                FontSize="14"/>
+                            <Label
+                                x:Name="SelectedBeneficiarySmartCardNumber"
+                                TextColor="#878787"
+                                FontFamily="MartelSansRegular"
+                                FontSize="12"/>
+                        </VerticalStackLayout>
+                        <Image
+                            Grid.Column="2"
+                            Source="x_icon.png"
+                            WidthRequest="18"
+                            HeightRequest="18"
+                            VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnClearSelectedBeneficiaryTapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+            <ScrollView
+                Grid.Row="3">
+                <VerticalStackLayout>
+                    <Label
+                        Text="Amount"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        FontFamily="MartelSansRegular"
+                        FontSize="14"/>
+                    <Border
+                        Stroke="Transparent"
+                        StrokeShape="RoundRectangle 20"
+                        BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EBF0F5}">
+                        <!--grid row 2(Suscription plans)-->
+                        <CollectionView
+                            x:Name="SubscriptionPlanList"
+                            Margin="0,15,0,15"
+                            HeightRequest="220"
+                            VerticalScrollBarVisibility="Never"
+                            SelectionMode="Single"
+                            SelectionChanged="OnSubscriptionPlanSelected">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout
+                                    Orientation="Vertical"
+                                    Span="2"
+                                    HorizontalItemSpacing="10"
+                                    VerticalItemSpacing="10"/>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="helpers:SubscriptionPlan">
+                                    <Border
+                                        Stroke="#009933"
+                                        StrokeShape="RoundRectangle 15"
+                                        StrokeThickness="1"
+                                        Padding="0">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup Name="CommonStates">
+                                                <VisualState Name="Normal">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                                <VisualState Name="Selected">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="BackgroundColor" Value="#CCFFE5"/>
+                                                        <Setter TargetName="PlanLabel" Property="Label.TextColor" Value="#141414"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Grid RowDefinitions="auto,auto">
+
+                                            <!-- Top part: validity -->
+                                            <Grid
+                                                Grid.Row="0"
+                                                ColumnDefinitions="*,auto"
+                                                BackgroundColor="#009933"
+                                                Padding="10,5">
+                                                <Label
+                                                    Grid.Column="0"
+                                                    Text="Validity:"
+                                                    TextColor="#FFFFFF"
+                                                    FontSize="12"
+                                                    FontFamily="MartelSansRegular"
+                                                    VerticalOptions="Center"/>
+                                                <Label
+                                                    Grid.Column="1"
+                                                    Text="{Binding Validity}"
+                                                    TextColor="#FFFFFF"
+                                                    FontSize="12"
+                                                    FontFamily="MartelSansSemiBold"
+                                                    VerticalOptions="Center"/>
+                                            </Grid>
+                                            <Label
+                                                Grid.Row="1"
+                                                x:Name="PlanLabel"
+                                                FontFamily="MartelSansRegular"
+                                                Padding="5"
+                                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding PlanDescription}" FontSize="14"/>
+                                                        <Span Text="&#10;"/>
+                                                            <Span Text="{Binding PlanPrice}" FontSize="14" FontFamily="MartelSansBold"/>
+                                                        </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Border>
+                </VerticalStackLayout>
+            </ScrollView>
+            <Grid
+                Grid.Row="4"
+                ColumnDefinitions="auto,*,auto"
+                RowDefinitions="auto,auto">
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Text="All Beneficiaries"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontFamily="MartelSansRegular"
+                    FontSize="14"/>
+                <VerticalStackLayout
+                    Grid.Column="2"
+                    Grid.Row="0">
+                    <Label
+                        Text="View All"
+                        TextColor="#009933"
+                        HorizontalTextAlignment="End"
+                        FontFamily="MartelSansRegular"
+                        FontSize="14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnViewAllTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <BoxView
+                        HorizontalOptions="Center"
+                        WidthRequest="45"
+                        HeightRequest="1"
+                        Color="#009933"/>
+                </VerticalStackLayout>
+                <ScrollView
+                    Grid.Row="1"
+                    Grid.ColumnSpan="3"
+                    Orientation="Horizontal"
+                    HorizontalScrollBarVisibility="Never">
+                    <HorizontalStackLayout
+                        x:Name="AllBeneficiariesStack"
+                        Spacing="20">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid
+                                    RowDefinitions="auto,auto">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnBeneficiaryTapped"/>
+                                    </Grid.GestureRecognizers>
+                                    <Image
+                                        Grid.Row="0"
+                                        Source="{Binding Logo}"
+                                        WidthRequest="40"
+                                        HeightRequest="40"/>
+                                    <Label
+                                        Grid.Row="1"
+                                        Text="{Binding UserName}"
+                                        LineHeight="0.7"
+                                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                        HorizontalOptions="Center"
+                                        FontFamily="MartelSansSemiBold"
+                                        FontSize="12"/>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </HorizontalStackLayout>
+                </ScrollView>
+            </Grid>
+        </Grid>
+        <Border
+            x:Name="ProceedBorder"
+            Grid.Row="1"
+            Style="{StaticResource ButtonOne}"
+            IsEnabled="False"
+            HeightRequest="45"
+            Margin="20">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnProceedBorderTapped"/>
+            </Border.GestureRecognizers>
+            <Grid>
+                <Label
+                    x:Name="ProceedTxt"
+                    Text="Proceed"
+                    TextColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    FontSize="12"
+                    FontFamily="MartelSansBold"/>
+                <ActivityIndicator
+                    x:Name="ProceedIndicator"
+                    VerticalOptions="Center"
+                    Color="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                    IsRunning="False"
+                    IsVisible="False"
+                    WidthRequest="18"
+                    HeightRequest="18"/>
+            </Grid>
+        </Border>
+        <!--Tv Subscription popup-->
+        <Grid        
+            x:Name="TVPopupOverlay"
+            Grid.RowSpan="2"
+            IsVisible="False"
+            BackgroundColor="{AppThemeBinding Light=#1A000000, Dark=#4D000000}">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnTVPopupOverlayTapped"/>
+            </Grid.GestureRecognizers>
+            <Border
+                Padding="10"
+                x:Name="TVPopupCard"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 20,20,0,0"
+                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                VerticalOptions="End">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer  Tapped="OnTVPopupCardTapped"/>
+                </Border.GestureRecognizers>
+                <Grid 
+                    RowDefinitions="auto,*"
+                    Margin="0,10,0,0">
+                    <Grid
+                        Grid.Row="0"
+                        ColumnDefinitions="auto,*">
+                        <Image 
+                            Grid.Column="0"
+                            Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                            HorizontalOptions="Start" 
+                            VerticalOptions="Start">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnPopupBackIconTapped" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label
+                            Grid.Column="1"  
+                            Text="Select Provider"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontSize="14"
+                            FontFamily="MartelSansBold"
+                            HorizontalOptions="Center"/>
+                    </Grid>
+                    <Border
+                        Grid.Row="1"
+                        Stroke="Transparent"
+                        Margin="0,15,0,0"
+                        StrokeShape="RoundRectangle 15,15,0,0"
+                        Padding="10"
+                        BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EBF0F5}">
+                        <Grid
+                            RowDefinitions="auto,*">
+                            <Border
+                                Grid.Row="0"
+                                Stroke="#336699"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 30"
+                                Padding="12,0"
+                                BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EBF0F5}">
+                                <Grid
+                                    ColumnDefinitions="auto, *"
+                                    ColumnSpacing="8">
+                                    <Image
+                                        Grid.Column="0"
+                                        Source="search_icon.png"
+                                        WidthRequest="16"
+                                        HeightRequest="18"
+                                        VerticalOptions="Center"/>
+                                    <Entry
+                                        x:Name="TVSubscriptionSearch"
+                                        Grid.Column="1"
+                                        Placeholder="Search subscription provider"
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center"
+                                        FontFamily="MartelSansRegular"
+                                        FontSize="12"
+                                        Margin="10,5,0,0"
+                                        PlaceholderColor="#878787"
+                                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                        TextChanged="OnSearchTextChanged"/>
+                                </Grid>
+                            </Border>
+                            <CollectionView
+                                Grid.Row="1"
+                                x:Name="TVSubscriptionList"
+                                Margin="0,10,0,0"
+                                HeightRequest="250"
+                                VerticalScrollBarVisibility="Never"
+                                SelectionMode="Single"
+                                SelectionChanged="OnSelectTVSubscriptionEntry">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid
+                                            ColumnDefinitions="auto,*,auto"
+                                            Margin="0,20,0,0">
+                                            <Image
+                                                 Source="{Binding Logo}"
+                                                 Grid.Column="0"
+                                                 HeightRequest="40"
+                                                 WidthRequest="40"/>
+                                            <VerticalStackLayout
+                                                Grid.Column="1">
+                                                <Label                                                     
+                                                     Text="{Binding TVProviders}"
+                                                     TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                                     FontSize="12"
+                                                     FontFamily="MartelSansRegular"
+                                                     VerticalOptions="Center"
+                                                     Margin="10,0,0,0"/>
+                                                <Label                                                     
+                                                     Text="{Binding TVSubscriptions}"
+                                                     TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                                     FontSize="12"
+                                                     FontFamily="MartelSansRegular"
+                                                     VerticalOptions="Center"
+                                                     Margin="10,0,0,0"/>
+                                            </VerticalStackLayout>
+                                            <Image
+                                                 Source="{AppThemeBinding Dark=right_vector_white, Light=right_vector_black}"
+                                                 Grid.Column="2"
+                                                 HorizontalOptions="End"
+                                                 VerticalOptions="Center"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+        <!--Beneficiary popup-->
+        <Grid
+            x:Name="BeneficiaryPopupOverlay"
+            Grid.RowSpan="2"
+            IsVisible="False"
+            Padding="0,80,0,0"
+            BackgroundColor="{AppThemeBinding Light=#1A000000, Dark=#4D000000}">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnBeneficiaryPopupOverlayTapped"/>
+            </Grid.GestureRecognizers>
+            <Border
+                 Padding="20"
+                 x:Name="BeneficiaryPopupCard"
+                 Stroke="Transparent"
+                 StrokeShape="RoundRectangle 20,20,0,0"
+                 BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                 VerticalOptions="End">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer  Tapped="OnBeneficiaryPopupCardTapped"/>
+                </Border.GestureRecognizers>
+                <Grid
+                    RowDefinitions="auto,*">
+                    <Border
+                        Grid.Row="0"
+                        Stroke="#336699"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 30"
+                        BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                        HeightRequest="36">
+                        <Grid
+                            ColumnDefinitions="auto,*,auto"
+                            VerticalOptions="Center">
+                            <Image
+                                Margin="15,0,0,0"
+                                Grid.Column="0"
+                                Source="gray_search_icon.png"
+                                VerticalOptions="Center"
+                                WidthRequest="15"
+                                HeightRequest="15"/>
+                            <Entry
+                                x:Name="BeneficiarySearchEntry"
+                                Grid.Column="1"
+                                Placeholder="Search Beneficiary"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Start"
+                                VerticalTextAlignment="Center"
+                                FontFamily="MartelSansRegular"
+                                FontSize="12"
+                                Margin="10,5,0,0"
+                                PlaceholderColor="#878787"
+                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                TextChanged="OnBeneficiarySearchTextChanged"/>
+                            <Image
+                                x:Name="ClearSearchEntry"
+                                Margin="15"
+                                VerticalOptions="Center"
+                                HorizontalOptions="End"
+                                Grid.Column="2"
+                                Source="x_icon.png"
+                                WidthRequest="20"
+                                HeightRequest="20">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnClearSearchEntryTapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
+                    </Border>
+                    <CollectionView
+                        x:Name="SubscriptionBeneficiaries"
+                        Grid.Row="1" 
+                        Margin="0,20,0,0"
+                        HeightRequest="380"
+                        VerticalScrollBarVisibility="Never"
+                        SelectionMode="Single"
+                        SelectionChanged="OnSelectBeneficiaryEntry">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout
+                                Orientation="Vertical"
+                                ItemSpacing="15"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid
+                                    ColumnDefinitions="auto,*,auto">
+                                    <Image
+                                        Grid.Column="0"
+                                        Source="{Binding Logo}"
+                                        WidthRequest="40"
+                                        HeightRequest="40"/>
+                                    <VerticalStackLayout
+                                        Grid.Column="1"
+                                        Margin="5,0,0,0">
+                                        <Label
+                                            Text="{Binding UserName}"
+                                            FontFamily="MartelSansSemiBold"
+                                            FontSize="14"
+                                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+                                        <Label
+                                            Text="{Binding SmartCardNumber, StringFormat='SmartCard Number:{0}'}"                                          
+                                            FontSize="12"
+                                            FontFamily="MartelSansRegular"
+                                            Margin="0,-6,0,0"
+                                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+                                    </VerticalStackLayout>
+                                    <Image
+                                        Grid.Column="2"
+                                        Source="{AppThemeBinding Dark=right_vector_white, Light=right_vector_black}"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </Border>
+        </Grid>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.Column="2"/>
+    </Grid>
+</ContentPage>

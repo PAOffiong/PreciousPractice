@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:PreciousPractice"
+    Shell.NavBarIsVisible="False"
+    x:Class="PreciousPractice.MainPage">
+
+    <Grid 
+        RowDefinitions="*,Auto">
+        <!-- BACKGROUND -->
+        <Image
+            Source="new_background.png"
+            Aspect="AspectFill"
+            Grid.RowSpan="2" />
+        <!-- TOP + CAROUSEL + INDICATORS -->
+        <Grid 
+            Padding="20"
+            Grid.Row="0"
+            RowDefinitions="Auto,*,Auto">
+            <!-- HEADER -->
+            <HorizontalStackLayout
+                Grid.Row="0"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Padding="20"
+                Spacing="5">
+                <Image
+                    Source="flower_green.png"
+                    HeightRequest="40" />
+                <Label
+                    Text="Pyrowo"
+                    TextColor="White"
+                    FontFamily="MartelSansExtraBold"
+                    FontSize="24" />
+            </HorizontalStackLayout>
+            <!-- CAROUSEL -->
+            <CarouselView
+                Grid.Row="1"
+                x:Name="carousel"
+                Loop="False"
+                IsSwipeEnabled="True" 
+                HorizontalScrollBarVisibility="Never"
+                PositionChanged="Carousel_PositionChanged"
+                IndicatorView="{x:Reference indicatorView}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout
+                            Padding="0"
+                            Spacing="0">
+                            <Image
+                                Source="{Binding Icon}"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center" />
+                            <Label
+                                Text="{Binding SmallTitle}"
+                                FontFamily="MartelSansExtraBold"
+                                FontSize="16"
+                                TextColor="#B4DAFF"
+                                Margin="20,30,0,0" />
+                            <Label
+                                Text="{Binding Title1}"
+                                FontFamily="MartelSansExtraBold"
+                                FontSize="18"
+                                TextColor="White"
+                                Margin="20,0,0,0" />
+                            <Label
+                                Text="{Binding Title2}"
+                                FontFamily="MartelSansExtraBold"
+                                FontSize="18"
+                                TextColor="White"
+                                Margin="20,0,0,0" />
+                            <Label
+                                Text="{Binding Description}"
+                                TextColor="White"
+                                Margin="20,0,20,0"
+                                LineHeight="1.4" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <!-- INDICATORS -->
+            <IndicatorView
+                Grid.Row="2"
+                x:Name="indicatorView"
+                IndicatorColor="Gray"
+                SelectedIndicatorColor="White"
+                HorizontalOptions="Center"
+                Margin="0,10,0,15" />
+        </Grid>
+        <!-- BOTTOM -->
+        <Grid Grid.Row="1">
+            <!-- SKIP -->
+            <Grid
+                x:Name="skipStack"
+                IsVisible="True"
+                ColumnDefinitions="Auto,*"
+                Padding="20">
+                <Label
+                    Grid.Column="0"
+                    Text="Skip"
+                    TextColor="White"
+                    HorizontalOptions="Start"
+                    VerticalOptions="End"
+                    Margin="20" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSkipTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Image
+                    Grid.Column="1"
+                    Source="bubble_and_arrow.png"
+                    HorizontalOptions="End"
+                    WidthRequest="30">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnArrowTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+            <!-- CREATE ACCOUNT -->
+            <VerticalStackLayout
+                IsVisible="False"
+                x:Name="createStack"
+                Margin="10">
+                <Border
+                    BackgroundColor="{StaticResource Secondary}"
+                    HeightRequest="45"
+                    WidthRequest="330"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 30"
+                    StrokeThickness="1"
+                    VerticalOptions="Center">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer   Tapped="NavToLegalandCompliance"/>
+                    </Border.GestureRecognizers>
+                    <Grid>
+                        <Label
+                            Text="Create Account" x:Name="createTxt"
+                            Style="{StaticResource labelButton}"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                        <ActivityIndicator 
+                            Color="White"
+                            WidthRequest="15"
+                            x:Name="indicator"
+                            IsRunning="false"
+                            IsVisible="False"/>
+                    </Grid>
+                </Border>
+                <Border
+                    HeightRequest="45"
+                    WidthRequest="330"
+                    StrokeShape="RoundRectangle 30"
+                    StrokeThickness="1"
+                    VerticalOptions="Center"
+                    Margin="10"
+                    Stroke="White">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="NavToRegisterDeviceLogin"/>
+                    </Border.GestureRecognizers>
+                    <Grid>
+                        <Label
+                            Text="Login" 
+                            x:Name="loginTxt"
+                            TextColor="White"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                        <ActivityIndicator 
+                            Color="White"
+                            WidthRequest="15"
+                            x:Name="LoginIndicator"
+                            IsRunning="false"
+                            IsVisible="False"/>
+                    </Grid>
+                </Border>
+                <Label
+                    TextColor="White"
+                    HorizontalOptions="Center"
+                    FontSize="12"
+                    FontFamily="MartelSansRegular">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Not registered your Account?"/>
+                            <Span Text ="Register">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="NavToRegistrationPage"/>
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
+        </Grid>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+    </Grid>
+</ContentPage>

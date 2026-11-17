@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PreciousPractice.LoadingOverlay"
+             HorizontalOptions="Fill"
+             VerticalOptions="Fill"
+             IsVisible="False"
+             Opacity="0">
+    <Grid
+        BackgroundColor="#99000000"
+        HorizontalOptions="Fill"
+        VerticalOptions="Fill">
+        <Grid.GestureRecognizers>
+            <!--does'nt allow any tap behind-->
+            <TapGestureRecognizer/>
+        </Grid.GestureRecognizers>
+        <VerticalStackLayout
+            Spacing="15"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+            <Image
+                x:Name="LoaderGif"
+                Source="loading_overlay.gif"
+                WidthRequest="120"
+                HeightRequest="120"
+                Aspect="AspectFit"
+                HorizontalOptions="Center"/>
+            <Label
+                x:Name="MessageLabel"
+                Text="Please wait..."
+                TextColor="#FFFFFF"
+                FontFamily="MartelSansRegular"
+                FontSize="16"
+                HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </Grid> 
+</ContentView>

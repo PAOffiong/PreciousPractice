@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.AirtimeSummary"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Dark=Black, Light= White}"
+             Title="AirtimeSummary">
+    <Grid
+        RowDefinitions="*,auto">
+        <Grid
+            Grid.Row="0"
+            Padding="20"
+            RowDefinitions="auto,auto,auto,auto,auto">
+            <Grid 
+                ColumnDefinitions="auto,*"
+                Grid.Row="0">
+                <Image 
+                    Grid.Column="0"
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                    Grid.Column="1"
+                    Text="Summary"
+                    FontSize="20"
+                    FontFamily="MartelSansBold"
+                    HorizontalOptions="Center"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+            </Grid>
+            <VerticalStackLayout
+                Grid.Row="1">
+                <Label
+                    Margin="0,20,0,0"
+                    Text="Airtime"
+                    FontFamily="MartelSansRegular"
+                    FontSize="12"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+                <Label
+                    Margin="0,0,0,10"
+                    x:Name="AirtimeAmount"
+                    Text=""
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontFamily="MartelSansExtraBold"
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout
+                Grid.Row="2">
+                <Label
+                    Text="Transfer Details"
+                    FontSize="12"
+                    FontFamily="MartelSansRegular"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+                <Border
+                    BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#1A336699}"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 15"
+                    Padding="10">
+                    <Grid
+                        RowDefinitions="auto,auto,auto"
+                        ColumnDefinitions="auto,*,auto"
+                        RowSpacing="10">
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Text="Amount:"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontFamily="MartelSansRegular"
+                            FontSize="12"/>
+                        <Label
+                            x:Name="AmountTransfered"
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Text=""
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontSize="12"
+                            FontFamily="MartelSansRegular"/>
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Text="Discount:"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontFamily="MartelSansRegular"
+                            FontSize="12"/>
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Text="-N0.00"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontSize="12"
+                            FontFamily="MartelSansRegular"/>
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Text="Total Debit:"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontFamily="MartelSansRegular"
+                            FontSize="12"/>
+                        <Label
+                            x:Name="TotalDebit"
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            Text=""
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontSize="12"
+                            FontFamily="MartelSansRegular"/>
+                    </Grid>
+                </Border>
+
+            </VerticalStackLayout>
+            <VerticalStackLayout
+                Grid.Row="3"
+                Margin="0,15,0,0">
+                <Label
+                    Text="Beneficiary Details"
+                    FontFamily="MartelSansRegular"
+                    FontSize="12"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+                <Border
+                     BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#1A336699}"
+                     Stroke="Transparent"
+                     StrokeThickness="1"
+                     StrokeShape="RoundRectangle 16"
+                     Padding="5">
+                    <Grid 
+                        ColumnDefinitions="auto,*,auto">
+                        <Image
+                            x:Name="ServiceIcon"
+                            Grid.Column="0"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start"
+                            WidthRequest="30"
+                            HeightRequest="30"
+                            Margin="15,0,0,0"/>
+                        <VerticalStackLayout
+                             Grid.Column="1"
+                             Margin="10,0,0,0"
+                             VerticalOptions="Center">
+                            <Label
+                                x:Name="ServiceNameLabel"
+                                Text=""
+                                FontFamily="MartelSansBold"
+                                FontSize="12"
+                                TextColor="{AppThemeBinding Dark=#FFFFFF,Light=#141414}"/>
+                            <Label
+                                x:Name="PhoneNumberLabel"
+                                Text=""
+                                FontFamily="MartelSansBold"
+                                FontSize="12"
+                                TextColor="{AppThemeBinding Dark=#FFFFFF,Light=#141414}"/>
+                        </VerticalStackLayout>
+                        <Label
+                            Grid.Column="2"
+                            Text="Change"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF,Light=#141414}"
+                            FontFamily="MartelSansBold"
+                            FontSize="12"
+                            VerticalOptions="Center"
+                            Margin="0,0,10,0">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnChangeTapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+            <Grid
+                x:Name="AddBeneficiaryRow"
+                Grid.Row="4"
+                ColumnDefinitions="auto,*,auto"
+                Margin="0,30,0,0">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAddBeneficiaryToggleTapped"/>
+                </Grid.GestureRecognizers>
+                <Image
+                    Grid.Column="0"
+                    Source="add_beneficiaries.png"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"/>
+                <Label
+                    Grid.Column="1"
+                    Text="Add to beneficiaries?"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="14"
+                    FontFamily="MartelSansRegular"
+                    VerticalOptions="Center"
+                    Margin="10,0,0,0"/>
+                <Image
+                    x:Name="AddBeneficiaryToggle"
+                    Grid.Column="2"
+                    Source="light_add_beneficiaries"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"/>
+            </Grid>
+        </Grid>
+        <Border
+            x:Name="ProceedBorder"
+            Grid.Row="1"  IsEnabled="True"
+            Style="{StaticResource ButtonOne}"
+            HeightRequest="50"
+            Margin="20,40">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="NavToTransactionPin"/>
+            </Border.GestureRecognizers>
+            <Grid>
+                <Label
+                    x:Name="ProceedTxt"
+                    Text="Proceed"
+                    FontSize="14"
+                    FontFamily="MartelSansBold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"/>
+                <ActivityIndicator
+                    x:Name="ProceedIndicator"
+                    VerticalOptions="Center"
+                    HeightRequest="18"
+                    WidthRequest="18"
+                    Color="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                    IsRunning="False"
+                    IsVisible="False"/>
+            </Grid>
+        </Border>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+    </Grid>
+</ContentPage>

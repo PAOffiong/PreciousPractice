@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             Shell.NavBarIsVisible="False"
+             x:Class="PreciousPractice.AddMoneySummaryPage"
+             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}"
+             Title="AddMoneySummaryPage">
+    <Grid RowDefinitions="auto,*">
+        <Grid 
+            Padding="20"
+            Grid.Row="0"
+            RowDefinitions="auto,auto,auto">
+            <VerticalStackLayout
+                Grid.Row="0">
+                <Image
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                     Text="Summary"
+                     HorizontalOptions="Center"
+                     FontFamily="MartelSansSemiBold"
+                     FontSize="16"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout
+                Grid.Row="1">
+                <Label
+                    Text="TransferDetails"
+                    FontSize="12"
+                    FontFamily="MartelSansRegular"
+                    HorizontalOptions="Start"
+                    Margin="0,20,0,0"/>
+                <Border
+                    HeightRequest="110"
+                    BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EBF0F5}"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 15"
+                    Padding="15">
+                    <Grid
+                        RowDefinitions="auto,auto,auto"
+                        ColumnDefinitions="auto,*,auto">
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Text="From:"
+                            FontSize="12"
+                            TextColor="{AppThemeBinding Light=#21211F, Dark=#FFFFFF}"
+                            FontFamily="MartelSansRegular"/>
+                        <Label
+                            x:Name="BankLabel"
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            TextColor="{AppThemeBinding Light=#21211F, Dark=#FFFFFF}"
+                            Text=""
+                            FontSize="12"
+                            FontFamily="MartelSansRegular"/>
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            TextColor="{AppThemeBinding Light=#21211F, Dark=#FFFFFF}"
+                            Text="To:"
+                            FontSize="12"
+                            FontFamily="MartelSansRegular"/>
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Text="Pyrowo Account"
+                            TextColor="{AppThemeBinding Light=#21211F, Dark=#FFFFFF}"
+                            FontSize="12"
+                            FontFamily="MartelSansRegular"/>
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            TextColor="{AppThemeBinding Light=#21211F, Dark=#FFFFFF}"
+                            Text="Amount:"
+                            FontSize="12"
+                            FontFamily="MartelSansRegular"/>
+                        <Label
+                            x:Name="AmountEntered"
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            TextColor="{AppThemeBinding Light=#21211F, Dark=#FFFFFF}"
+                            Text=""
+                            FontSize="12"
+                            FontFamily="MartelSansRegular"/>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+            <Border 
+                Grid.Row="2"
+                Margin="0,40,0,0"
+                HeightRequest="68"
+                BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EBF0F5}"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 15">
+                <Grid
+                    RowDefinitions="auto,auto"
+                    ColumnDefinitions="4,*">
+                    <!--green left side-->
+                    <BoxView
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="0"
+                        Color="Green"/>
+                    <HorizontalStackLayout
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="10,10,0,0">
+                        <Image
+                            Source="{AppThemeBinding Light=check_small.png, Dark=black_check}"
+                            HorizontalOptions="Start"/>
+                        <Label
+                            Text="Secure Transfer"
+                            TextColor="{AppThemeBinding Light=#21211F, Dark=#FFFFFF}"
+                            Margin="10,0,0,0"
+                            FontFamily="MartelSansSemiBold"
+                            FontSize="14"/>
+                    </HorizontalStackLayout>
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        TextColor="{AppThemeBinding Light=#21211F, Dark=#FFFFFF}"
+                        Text="Your transfer is protected and encrypted"
+                        Margin="10,5,0,0"
+                        FontSize="12"
+                        FontFamily="MartelSansRegular"/>
+                </Grid>
+            </Border>
+        </Grid>
+        <Border
+             x:Name="AuthorizedBorder"
+             Grid.Row="1"  
+             Style="{StaticResource ButtonOne}"
+             HeightRequest="50"
+             Margin="20">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnAuthorizedBorderTapped"/>
+            </Border.GestureRecognizers>
+            <Grid>
+                <Label
+                     x:Name="AuthorizedTxt"
+                     Text="Authorized Transfer"
+                     FontSize="14"
+                     FontFamily="MartelSansBold"
+                     VerticalOptions="Center"
+                     HorizontalOptions="Center"
+                     TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"/>
+                <ActivityIndicator
+                     x:Name="AuthorizedIndicator"
+                     VerticalOptions="Center"
+                     HeightRequest="18"
+                     WidthRequest="18"
+                     Color="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                     IsRunning="False"
+                     IsVisible="False"/>
+            </Grid>
+        </Border>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+    </Grid>
+</ContentPage>

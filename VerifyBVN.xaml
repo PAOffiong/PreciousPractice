@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.VerifyBVN"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+             Title="VerifyBVN">
+    <Grid
+        RowDefinitions="*,auto">
+        <Grid
+            Padding="20"
+            Grid.Row="0"
+            RowDefinitions="auto,auto,auto,auto,auto,auto"
+            RowSpacing="10">
+            <VerticalStackLayout
+                Grid.Row="0">
+                <Image 
+                    Grid.Row="0"
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                    Margin="0,20,0,0"
+                    Text="Verify Your BVN"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="20"
+                    FontFamily="MartelSansSemiBold"/>
+                <Label
+                    Margin="10,0,0,0"
+                    Text="Enter your BVN and upload your utility bill. We'll securely verify your identity before proceeding."
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontFamily="MartelSansRegular"
+                    FontSize="12"
+                    LineHeight="0.8"
+                    HorizontalTextAlignment="Start"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout
+                Grid.Row="1">
+                <Label
+                    Text="BVN"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="16"
+                    FontFamily="MartelSansRegular"/>
+                <Border
+                    Stroke="#009933"
+                    StrokeShape="RoundRectangle 30"
+                    StrokeThickness="1"
+                    BackgroundColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                    Padding="15,5">
+                    <Entry
+                        x:Name="BVNEntry"
+                        Placeholder="Enter your BVN"
+                        PlaceholderColor="#878787"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        FontFamily="MartelSansRegular"
+                        FontSize="14"
+                        Keyboard="Numeric"
+                        MaxLength="11"
+                        VerticalOptions="Center"
+                        TextChanged="OnBVNTextChanged"/>
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout
+                Grid.Row="2">
+                <Label
+                    Margin="5,0,0,0"
+                    Text="Address"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="16"
+                    FontFamily="MartelSansRegular"/>
+                <BoxView
+                    HeightRequest="1"
+                    Color="#009933"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout
+                Grid.Row="3">
+                <Label
+                    Margin="5,0,0,0"
+                    Text="Residential Address"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="16"
+                    FontFamily="MartelSansRegular"/>
+                <Border
+                    Stroke="#009933"
+                    StrokeShape="RoundRectangle 30"
+                    StrokeThickness="1"
+                    BackgroundColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                    Padding="10,3">
+                    <Entry
+                        x:Name="AddressEntry"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        Keyboard="Text"
+                        FontSize="14"
+                        FontFamily="MartelSansRegular"
+                        VerticalOptions="Center"
+                        TextChanged="OnAddressTextChanged"/>
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout
+                Grid.Row="4">
+                <Label
+                    Margin="5,0,0,0"
+                    Text="City"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="16"
+                    FontFamily="MartelSansRegular"/>
+                <Border
+                    Stroke="#009933"
+                    StrokeShape="RoundRectangle 30"
+                    StrokeThickness="1"
+                    BackgroundColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                    Padding="15,3">
+                    <Entry
+                        x:Name="CityEntry"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        Keyboard="Text"
+                        FontSize="14"
+                        FontFamily="MartelSansRegular"
+                        VerticalOptions="Center"
+                        TextChanged="OnCityTextChanged"/>
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout
+                Grid.Row="5">
+                <Label
+                    Margin="5,0,0,0"
+                    Text="Utility Bill"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="16"
+                    FontFamily="MartelSansRegular"/>
+                <Border
+                    Stroke="#009933"
+                    StrokeShape="RoundRectangle 30"
+                    StrokeThickness="1"
+                    BackgroundColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                    Padding="15,5">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer  Tapped="OnUploadTapped"/>
+                    </Border.GestureRecognizers>
+                    <HorizontalStackLayout
+                         HorizontalOptions="Center">
+                        <Label
+                            Text="Upload"
+                            FontFamily="MartelSansSemiBold"
+                            FontSize="16"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            VerticalOptions="Center"/>
+                        <Image
+                            Source="upload_icon.png"
+                            WidthRequest="24"
+                            HeightRequest="24"/>
+                    </HorizontalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+        <Border
+            x:Name="ContinueBorder"
+            Grid.Row="1"
+            IsEnabled="False"
+            Style="{StaticResource ButtonOne}"
+            HeightRequest="45"
+            Margin="20,20">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnContinueBorderTapped"/>
+            </Border.GestureRecognizers>
+            <Grid>
+                <Label
+                    x:Name="ContinueTxt"
+                    TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                    Text="Continue"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    FontFamily="MartelSansBold"
+                    FontSize="12"/>
+                <ActivityIndicator
+                    x:Name="ContinueIndicator"
+                    IsVisible="False"
+                    IsRunning="False"
+                    WidthRequest="18"
+                    HeightRequest="18"
+                    HorizontalOptions="Center"
+                    Color="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"/>
+            </Grid>
+        </Border>
+        <!--upload-->
+        <Grid
+            Grid.RowSpan="2"
+            x:Name="UploadPopupOverlay"
+            BackgroundColor="Transparent"
+            IsVisible="False">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnUploadPopupOverlayTapped"/>
+            </Grid.GestureRecognizers>
+            <Border
+                x:Name="UploadPopupCard"
+                Stroke="Transparent"
+                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}">
+                <Border.Shadow>
+                    <Shadow
+                    Brush="{AppThemeBinding Dark=#666666, Light=#80000000}"
+                    Offset="0,4"
+                    Radius="10"
+                    Opacity="0.3"/>
+                </Border.Shadow>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnUploadPopupCardTapped"/>
+                </Border.GestureRecognizers>
+                <Grid
+                    RowDefinitions="auto,auto"
+                    RowSpacing="15">
+                    <Label
+                        Grid.Row="0"
+                        Text="Step 2A: Utility Bill Instructions"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        FontSize="16"
+                        FontFamily="MartelSansSemiBold"/>
+                    <ScrollView
+                        Grid.Row="1"
+                        VerticalScrollBarVisibility="Never">
+                        <VerticalStackLayout>
+                            <Border
+                                Padding="0"
+                                BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EBF0F5}"
+                                Stroke="Transparent"
+                                StrokeShape="RoundRectangle 15">
+                                <Grid 
+                                    ColumnDefinitions="4,*">
+                                    <BoxView
+                                        Grid.Column="0"
+                                        Color="#009933"/>
+                                    <VerticalStackLayout
+                                        Grid.Column="1"
+                                        Padding="5,15"
+                                        Spacing="10">
+                                        <Label
+                                            Text="Please follow these instructions:"
+                                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                            FontSize="14"
+                                            FontFamily="MartelSansSemiBold"/>
+                                        <Grid 
+                                            ColumnDefinitions="auto,*" 
+                                            ColumnSpacing="8">
+                                            <Ellipse
+                                                Grid.Column="0"
+                                                WidthRequest="6"
+                                                HeightRequest="6"
+                                                Margin="0,6,0,0"
+                                                VerticalOptions="Start"
+                                                Fill="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+                                            <Label
+                                                Grid.Column="1"
+                                                Text="Ensure the document is clear and readable, not blurry."
+                                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                                FontFamily="MartelSansSemiBold"
+                                                FontSize="10"/>
+                                        </Grid>
+                                        <Grid 
+                                            ColumnDefinitions="auto,*" 
+                                            ColumnSpacing="8">
+                                            <Ellipse
+                                                Grid.Column="0"
+                                                WidthRequest="6"
+                                                HeightRequest="6"
+                                                Margin="0,6,0,0"
+                                                VerticalOptions="Start"
+                                                Fill="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+                                            <Label
+                                                Grid.Column="1"
+                                                Text="Avoid reflections, shadows, or glare when capturing."
+                                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                                FontFamily="MartelSansSemiBold"
+                                                FontSize="10"/>
+                                        </Grid>
+                                        <Grid 
+                                            ColumnDefinitions="auto,*" 
+                                            ColumnSpacing="8">
+                                            <Ellipse
+                                                Grid.Column="0"
+                                                WidthRequest="6"
+                                                HeightRequest="6"
+                                                Margin="0,6,0,0"
+                                                VerticalOptions="Start"
+                                                Fill="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+                                            <Label
+                                                Grid.Column="1"
+                                                Text="Scan the document fully and flat, with all edges visible."
+                                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                                FontFamily="MartelSansSemiBold"
+                                                FontSize="10"/>
+                                        </Grid>
+                                        <Grid 
+                                            ColumnDefinitions="auto,*" 
+                                            ColumnSpacing="8">
+                                            <Ellipse
+                                                Grid.Column="0"
+                                                WidthRequest="6"
+                                                HeightRequest="6"
+                                                Margin="0,6,0,0"
+                                                VerticalOptions="Start"
+                                                Fill="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+                                            <Label
+                                                Grid.Column="1"
+                                                Text="Use a plain background with no other objects in view."
+                                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                                FontFamily="MartelSansSemiBold"
+                                                FontSize="10"/>
+                                        </Grid>
+                                        <Grid 
+                                            ColumnDefinitions="auto,*" 
+                                            ColumnSpacing="8">
+                                            <Ellipse
+                                                Grid.Column="0"
+                                                WidthRequest="6"
+                                                HeightRequest="6"
+                                                Margin="0,6,0,0"
+                                                VerticalOptions="Start"
+                                                Fill="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+                                            <Label
+                                                Grid.Column="1"
+                                                Text="Upload the document in its original form (not cropped, folded, or edited)."
+                                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                                FontFamily="MartelSansSemiBold"
+                                                FontSize="10"/>
+                                        </Grid>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
+                            <Label
+                                Text="Examples:"
+                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                FontFamily="MartelSansRegular"
+                                FontSize="14"/>
+                            <Grid
+                                ColumnDefinitions="auto,auto,auto"
+                                RowDefinitions="auto,auto"
+                                ColumnSpacing="10"
+                                Margin="10,0,0,0">
+                                <Border
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    Stroke="#009933"
+                                    StrokeShape="RoundRectangle 10"
+                                    Padding="8">
+                                    <Image                                   
+                                        Source="bill_icon.png"
+                                        WidthRequest="80"
+                                        HeightRequest="80"/>
+                                </Border>
+                                <Label
+                                    Grid.Column="0"
+                                    Grid.Row="1"
+                                    Text="Plain Background"
+                                    TextColor="#009933"
+                                    FontSize="8"
+                                    FontFamily="MartelSansRegular"
+                                    HorizontalOptions="Center"/>
+                               
+                                <Border
+                                    Grid.Column="1"
+                                    Grid.Row="0"
+                                    Stroke="#9E0404"
+                                    StrokeShape="RoundRectangle 10"
+                                    Padding="8">
+                                    <Image                                   
+                                        Source="blurry_utility_bill.png"
+                                        WidthRequest="80"
+                                        HeightRequest="80"/>
+                                </Border>
+                                <Label
+                                    Grid.Column="1"
+                                    Grid.Row="1"
+                                    Text="No blurry image"
+                                    TextColor="#9E0404"
+                                    FontSize="8"
+                                    FontFamily="MartelSansRegular"
+                                    HorizontalOptions="Center"/>
+                                
+                                <Border
+                                    Grid.Column="2"
+                                    Grid.Row="0"
+                                    Stroke="#9E0404"
+                                    StrokeShape="RoundRectangle 10"
+                                    Padding="8">
+                                    <Image                                   
+                                        Source="cropped_utilty_bill.png"
+                                        WidthRequest="80"
+                                        HeightRequest="80"/>
+                                </Border>
+                                <Label
+                                    Grid.Column="2"
+                                    Grid.Row="1"
+                                    Text="No cropped or &#10; edited document"
+                                    TextColor="#9E0404"
+                                    FontSize="8"
+                                    FontFamily="MartelSansRegular"
+                                    HorizontalTextAlignment="Center"/>
+                            </Grid>
+                            <Label
+                                Margin="0,10,0,0"
+                                Text="Choose how to upload:"
+                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                FontSize="14"
+                                FontFamily="MartelSansSemiBold"/>
+                            <Border
+                                Stroke="Transparent"
+                                StrokeShape="RoundRectangle 15"
+                                Background="{AppThemeBinding Dark=#171C21, Light=#EBF0F5}"
+                                Padding="10">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnScanDocumentTapped"/>
+                                </Border.GestureRecognizers>
+                                <Border.Shadow>
+                                    <Shadow
+                                        Brush="{AppThemeBinding Dark=#666666, Light=#80000000}"
+                                        Offset="0,4"
+                                        Opacity="0.3"
+                                        Radius="10"/>
+                                </Border.Shadow>
+                                <Grid
+                                    RowDefinitions="*,*"
+                                    RowSpacing="7">
+                                    <Grid
+                                        Grid.Row="0"
+                                        ColumnSpacing="10"
+                                        ColumnDefinitions="auto,*">
+                                        <Image
+                                            Grid.Column="0"
+                                            Source="camera_icon.png"
+                                            WidthRequest="24"
+                                            HeightRequest="24"/>
+                                        <Label
+                                            Grid.Column="1"
+                                            Text="Scan Document"
+                                            TextColor="{AppThemeBinding Dark=#FFFFFF,Light=#141414}"
+                                            FontFamily="MartelSansSemiBold"
+                                            FontSize="14"/>
+                                    </Grid>
+                                    <Label
+                                        Grid.Row="1"
+                                        Text="Scan document now using your device camera"
+                                        FontFamily="MartelSansRegular"
+                                        FontSize="12"
+                                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+                                </Grid>
+                            </Border>
+                            <Border
+                                Stroke="Transparent"
+                                StrokeShape="RoundRectangle 15"
+                                Background="{AppThemeBinding Dark=#171C21, Light=#EBF0F5}"
+                                Padding="10"
+                                Margin="0,10,0,0">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnImageUploadTapped"/>
+                                </Border.GestureRecognizers>
+                                <Border.Shadow>
+                                    <Shadow
+                                        Brush="{AppThemeBinding Dark=#666666, Light=#80000000}"
+                                        Offset="0,4"
+                                        Opacity="0.3"
+                                        Radius="10"/>
+                                </Border.Shadow>
+                                <Grid
+                                    RowDefinitions="*,*"
+                                    RowSpacing="7">
+                                    <Grid
+                                        Grid.Row="0"
+                                        ColumnSpacing="10"
+                                        ColumnDefinitions="auto,*">
+                                        <Image
+                                            Grid.Column="0"
+                                            Source="upload_icon.png"
+                                            WidthRequest="24"
+                                            HeightRequest="24"/>
+                                        <Label
+                                            Grid.Column="1"
+                                            Text="Upload Image"
+                                            TextColor="{AppThemeBinding Dark=#FFFFFF,Light=#141414}"
+                                            FontFamily="MartelSansSemiBold"
+                                            FontSize="14"/>
+                                    </Grid>
+                                    <Label
+                                        Grid.Row="1"
+                                        Text="Choose an existing photo from gallery"
+                                        FontFamily="MartelSansRegular"
+                                        FontSize="12"
+                                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+                                </Grid>
+                            </Border>
+                        </VerticalStackLayout>
+                    </ScrollView>
+                </Grid>
+            </Border>
+        </Grid>
+       <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+    </Grid>
+</ContentPage>

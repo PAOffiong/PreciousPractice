@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.RegistrationPage"
+             BackgroundColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+             Shell.NavBarIsVisible="False">
+    <Grid>
+        <Grid Grid.Row="0"
+              RowDefinitions="Auto,*">
+            <Image Source="{AppThemeBinding Light=create_background.png, Dark=dark_background.png}"
+               Grid.RowSpan="2" 
+               Aspect="AspectFill"/>
+            <VerticalStackLayout 
+            Grid.Row="0"
+            Padding="20,20,20,20"
+            Spacing="0">
+                <Image 
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Start">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image 
+                Source="flower_green.png"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                HeightRequest="79"
+                WidthRequest="79"
+                Margin="0,40,0,0"/>
+            </VerticalStackLayout>
+
+            <ScrollView 
+                Grid.Row="1">
+                <VerticalStackLayout 
+                    Padding="20, 60, 20, 20">
+                    <Label
+                        Text="Register"
+                        FontSize="20"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        FontFamily="MartelSansExtraBold"/>
+                    <Border
+                        Margin="20,20,20,0"
+                        StrokeShape="RoundRectangle 30"
+                        Stroke="#336699"
+                        WidthRequest="350"
+                        HeightRequest="45"
+                        StrokeThickness="1"
+                        BackgroundColor="#1A009933"
+                        Padding="15,0">
+                        <Entry
+                            Placeholder="Enter Account Number"
+                            PlaceholderColor="#777777"
+                            FontSize="12"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            Keyboard="Telephone"
+                            x:Name="AccountNumberEntry"
+                            TextChanged="OnRegistrationTextChanged"
+                            FontFamily="MartelSansRegular"/>
+                    </Border>
+                    <Border
+                        Margin="20,20,20,0"
+                        Stroke="#336699"
+                        HeightRequest="45"
+                        WidthRequest="350"
+                        StrokeShape="RoundRectangle 30"
+                        StrokeThickness="1"
+                        BackgroundColor="#1A009933">
+                        <Grid 
+                            ColumnDefinitions="Auto, Auto,auto, *"
+                            Padding="15,0"
+                            ColumnSpacing="0"
+                            VerticalOptions="Center">
+                            <Image 
+                                Grid.Column="0"
+                                Source="flag_icon.png"
+                                HeightRequest="22"
+                                WidthRequest="22"
+                                VerticalOptions="Center" />
+                            <Label 
+                                Grid.Column="1"
+                                Text="+234"
+                                Margin="5"
+                                TextColor="#336699"
+                                FontAttributes="Bold"
+                                FontFamily="MartelSansSemiBold"
+                                VerticalOptions="Center" />
+                            <Image
+                                Grid.Column="2"
+                                Source="line_image.png"
+                                WidthRequest="20"
+                                HeightRequest="30"/>
+                            <Entry 
+                                Grid.Column="3"
+                                x:Name="PhoneNumberEntry"
+                                Placeholder="Enter Phone Number"
+                                PlaceholderColor="#777777"
+                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                Keyboard="Telephone"
+                                TextChanged="OnRegistrationTextChanged"
+                                BackgroundColor="Transparent"
+                                FontSize="12" 
+                                FontFamily="MartelSansRegular"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Fill"
+                                Margin="0,0,0,0"/>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+        <!--Static button-->
+        <Grid 
+            VerticalOptions="End"
+            HeightRequest="230"
+            Padding="20,0,20,15"
+            RowDefinitions="Auto,Auto,Auto">
+            <Border 
+                Grid.Row="0"
+                Style="{StaticResource ButtonOne}"
+                Margin="0,5,0,20"
+                WidthRequest="330"
+                HeightRequest="50"
+                IsEnabled="False"
+                x:Name="RegisterButton">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer   Tapped="NavToVerifyPhoneNumber"/>
+                </Border.GestureRecognizers>
+                <Grid>
+                    <Label
+                        x:Name="RegisterTxt"
+                        Text="Register"
+                        TextColor="{AppThemeBinding Light=White, Dark=Black}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        FontSize="12"
+                        FontFamily="MartelSansBold"
+                        FontAttributes="Bold"/>
+                    <ActivityIndicator
+                        x:Name="RegisterIndicator"
+                        Color="{AppThemeBinding Light=White, Dark=Black}"
+                        WidthRequest="18"
+                        HeightRequest="18"
+                        VerticalOptions="Center"
+                        IsVisible="False"
+                        IsRunning="False" />
+                </Grid>
+            </Border>
+
+            <Label
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                FontFamily="MartelSansRegular"
+                FontSize="12">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span 
+                            Text=" Already registered your Pyrowo Account "  
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+                        <Span 
+                            Text="Login"  
+                            TextColor="#009933" 
+                            FontAttributes="Bold">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="NavToRegisterDeviceLogin"/>
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Image
+                Grid.Row="2"
+                Margin="0,70,0,0"
+                Source="footer_disclaimer.png"
+                HorizontalOptions="Center"
+                VerticalOptions="End"/>
+        </Grid>
+        <local:LoadingOverlay
+            x:Name="Loading"/>
+    </Grid>
+</ContentPage>

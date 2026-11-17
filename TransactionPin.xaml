@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.TransactionPin"
+             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}"
+             Shell.NavBarIsVisible="False"
+             Title="TransactionPin">
+    <Grid
+        RowDefinitions="auto,*">
+        <Grid
+            Grid.Row="0"
+            Padding="20">
+            <VerticalStackLayout>
+                <Image 
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                    Margin="0,20,0,0"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Text="Enter Transaction Pin"
+                    FontSize="20"
+                    FontFamily="MartelSansSemiBold"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+                <Label
+                    HorizontalTextAlignment="Center"
+                    Text="To complete the transaction, please enter your 4-Digits transaction Pin"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontFamily="MartelSansRegular"
+                    FontSize="12"/>
+                <Grid
+                    ColumnDefinitions="auto,auto,auto,auto"
+                    ColumnSpacing="15"
+                    HorizontalOptions="Center"
+                    Margin="0,30,0,0">
+                    <Grid 
+                        Grid.Column="0" 
+                        WidthRequest="50" 
+                        HeightRequest="50">
+                        <Image 
+                            Source="blue_ellipse.png"/>
+                        <Label 
+                            x:Name="Pin1" 
+                            Style="{StaticResource PinDot}"/>
+                    </Grid>
+                    
+                    <Grid 
+                        Grid.Column="1" 
+                        WidthRequest="50" 
+                        HeightRequest="50">
+                        <Image 
+                            Source="blue_ellipse.png"/>
+                        <Label 
+                            x:Name="Pin2" 
+                            Style="{StaticResource PinDot}"/>
+                    </Grid>
+                    <Grid 
+                        Grid.Column="2" 
+                        WidthRequest="50" 
+                        HeightRequest="50">
+                        <Image 
+                            Source="blue_ellipse.png"/>
+                        <Label 
+                            x:Name="Pin3" 
+                            Style="{StaticResource PinDot}"/>
+                    </Grid>
+                    <Grid 
+                        Grid.Column="3" 
+                        WidthRequest="50" 
+                        HeightRequest="50">
+                        <Image 
+                            Source="blue_ellipse.png"/>
+                        <Label 
+                            x:Name="Pin4" 
+                            Style="{StaticResource PinDot}"/>
+                    </Grid>
+                </Grid>
+            </VerticalStackLayout>
+        </Grid>
+        <Grid
+            Grid.Row="1"
+            RowDefinitions="auto,auto,auto,auto"
+            ColumnDefinitions="auto,auto,auto"
+            RowSpacing="18"
+            ColumnSpacing="30"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+
+            <!-- Row 0: 1,2,3 -->
+            <Border 
+                Grid.Row="0" 
+                Grid.Column="0" 
+                Style="{StaticResource KeypadKey}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnKeyTapped" 
+                                          CommandParameter="1"/>
+                </Border.GestureRecognizers>
+                <Label 
+                    Text="1" 
+                    Style="{StaticResource KeypadText}"/>
+            </Border>
+            <Border 
+                Grid.Row="0" 
+                Grid.Column="1" 
+                Style="{StaticResource KeypadKey}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnKeyTapped" 
+                                          CommandParameter="2"/>
+                </Border.GestureRecognizers>
+                <Label 
+                    Text="2" 
+                    Style="{StaticResource KeypadText}"/>
+            </Border>
+            <Border 
+                Grid.Row="0" 
+                Grid.Column="2" 
+                Style="{StaticResource KeypadKey}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnKeyTapped" 
+                                          CommandParameter="3"/>
+                </Border.GestureRecognizers>
+                <Label 
+                    Text="3" 
+                    Style="{StaticResource KeypadText}"/>
+            </Border>
+
+            <!-- Row 1: 4, 5, 6 -->
+            <Border 
+                Grid.Row="1" 
+                Grid.Column="0" 
+                Style="{StaticResource KeypadKey}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnKeyTapped" 
+                                          CommandParameter="4"/>
+                </Border.GestureRecognizers>
+                <Label 
+                    Text="4" 
+                    Style="{StaticResource KeypadText}"/>
+            </Border>
+            <Border 
+                Grid.Row="1" 
+                Grid.Column="1" 
+                Style="{StaticResource KeypadKey}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnKeyTapped" 
+                                          CommandParameter="5"/>
+                </Border.GestureRecognizers>
+                <Label 
+                    Text="5" 
+                    Style="{StaticResource KeypadText}"/>
+            </Border>
+            <Border 
+                Grid.Row="1" 
+                Grid.Column="2" 
+                Style="{StaticResource KeypadKey}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnKeyTapped" 
+                                          CommandParameter="6"/>
+                </Border.GestureRecognizers>
+                <Label 
+                    Text="6" 
+                    Style="{StaticResource KeypadText}"/>
+            </Border>
+
+            <!-- Row 2: 7, 8, 9 -->
+            <Border 
+                Grid.Row="2" 
+                Grid.Column="0" 
+                Style="{StaticResource KeypadKey}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnKeyTapped" 
+                                          CommandParameter="7"/>
+                </Border.GestureRecognizers>
+                <Label 
+                    Text="7" 
+                    Style="{StaticResource KeypadText}"/>
+            </Border>
+            <Border 
+                Grid.Row="2" 
+                Grid.Column="1" 
+                Style="{StaticResource KeypadKey}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnKeyTapped" 
+                                          CommandParameter="8"/>
+                </Border.GestureRecognizers>
+                <Label 
+                    Text="8" 
+                    Style="{StaticResource KeypadText}"/>
+            </Border>
+            <Border 
+                Grid.Row="2" 
+                Grid.Column="2" 
+                Style="{StaticResource KeypadKey}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnKeyTapped" 
+                                          CommandParameter="9"/>
+                </Border.GestureRecognizers>
+                <Label 
+                    Text="9" 
+                    Style="{StaticResource KeypadText}"/>
+            </Border>
+             
+            <!--Row 3: backspace,0, arrow-->
+            <Border 
+                Grid.Row="3"
+                Grid.Column="0"
+                Style="{StaticResource KeypadKey}">
+                <Image
+                    x:Name="BackSpace"
+                    Source="{AppThemeBinding Light=backspace.png, Dark=backspace_white}"
+                    WidthRequest="25"
+                    HeightRequest="25"/>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackSpaceTapped"/>
+                </Border.GestureRecognizers>
+            </Border>
+            <Border 
+                Grid.Row="3" 
+                Grid.Column="1" 
+                Style="{StaticResource KeypadKey}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnKeyTapped" CommandParameter="0"/>
+                </Border.GestureRecognizers>
+                <Label Text="0" Style="{StaticResource KeypadText}"/>
+            </Border>
+            <Border 
+                Grid.Row="3"
+                Grid.Column="2"
+                Style="{StaticResource KeypadKey}">
+                <Image
+                    x:Name="ArrowVector"
+                    Source="{AppThemeBinding Light=arrow_black.png,Dark=arrow_white}"
+                    WidthRequest="25"
+                    HeightRequest="25"/>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnArrowVectorTapped"/>
+                </Border.GestureRecognizers>
+            </Border>
+        </Grid>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.EmailVerificationPage"
+             Shell.NavBarIsVisible="False"
+             Title="EmailVerificationPage">
+    <Grid 
+        RowDefinitions="*, Auto">
+        <Grid 
+            Grid.Row="0">
+            <VerticalStackLayout   
+                Padding="20">
+                <Image
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}" 
+                    HorizontalOptions="Start"/>
+                <Image 
+                    Source="{AppThemeBinding Light=email_verified_icon.png, Dark=email_verified_icon.png}"
+                    Margin="0, 30, 0, 20"/>
+                <Label 
+                    Text="Email Verified Successfully" 
+                    FontFamily="MartelSansSemiBold"
+                    FontSize="32"
+                    HorizontalOptions="Center"
+                    LineHeight="0.8"
+                    HorizontalTextAlignment="Center"/>
+                <Label
+                    Text="Click next to setup password" 
+                    FontFamily="MartelSansRegular"
+                    FontSize="12"
+                    Margin="0, 25, 0, 0"
+                    HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+        </Grid>
+        <Border 
+            Grid.Row="1"
+            Style="{StaticResource ButtonOne}"
+            VerticalOptions="End"
+            Margin="0,0,0,20"
+            HeightRequest="45"
+            WidthRequest="350">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer   Tapped="NavToRegisterForgotPassword"/>
+            </Border.GestureRecognizers>
+            <Label
+                Text="Next"
+                FontSize="14"
+                FontFamily="MartelSansRegular"
+                HorizontalOptions="Center"
+                TextColor="White"/>
+        </Border>
+    </Grid>
+</ContentPage>

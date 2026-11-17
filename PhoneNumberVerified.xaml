@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#141414}"
+             x:Class="PreciousPractice.PhoneNumberVerified">
+   
+    <Grid 
+        RowDefinitions="*,Auto">
+        <VerticalStackLayout
+            Padding="10"
+            Grid.Row="0"
+            Spacing="0"
+            VerticalOptions="Start"
+            HorizontalOptions="Fill" >
+            <Image
+                x:Name="ResultImage"
+                Source="phone_verified.png"
+                WidthRequest="180"
+                HeightRequest="240"
+                HorizontalOptions="Center"
+                Margin="0,30,0,0"/>
+            <Label
+                x:Name="TitleLabel"
+                FontAttributes="Bold"  
+                FontSize="29"                     
+                FontFamily="MartelSansBold"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                WidthRequest="350"
+                LineHeight="0.8">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Phone Number Verified"/>
+                        <Span Text="&#10;"/>
+                        <Span Text="Successfully" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label
+                x:Name="SubtitleLabel"
+                Text="Click next to continue account setup"
+                FontSize="12"
+                Margin="0,30,0,0"
+                FontFamily="MartelSansRegular"
+                HorizontalTextAlignment="Center"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout
+            Grid.Row="1">
+            <Border
+                x:Name="continueBorder"
+                Style="{StaticResource ButtonOne}"
+                Margin="0,0,0,50"
+                WidthRequest="320"
+                HeightRequest="45">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer  Tapped="OnContinueTapped"/>
+                </Border.GestureRecognizers>
+                <Grid>
+                    <Label
+                        x:Name="PhoneNumberVerifiedTxt"
+                        Text="Next"
+                        FontAttributes="Bold"
+                        FontFamily="MartelSansSemiBold"
+                        FontSize="14"
+                        TextColor="{AppThemeBinding Light=White, Dark=Black}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"/>
+                    <ActivityIndicator
+                        x:Name="PhoneNumberVerifiedIndicator"
+                        Color="{AppThemeBinding Light=White, Dark=Black}"
+                        WidthRequest="18"
+                        HeightRequest="18"
+                        VerticalOptions="Center"
+                        IsVisible="False"
+                        IsRunning="False"/>
+                </Grid>
+            </Border>
+            <Image
+                Source="footer_disclaimer.png"
+                HorizontalOptions="Center"
+                Margin="0,20,0,0"/>
+        </VerticalStackLayout>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+    </Grid>
+</ContentView>

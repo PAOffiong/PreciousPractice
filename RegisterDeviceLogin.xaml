@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.RegisterDeviceLogin"
+             Shell.NavBarIsVisible="False"
+             Title="RegisterDeviceLogin">
+    <Grid>
+        <Grid Grid.Row="0"
+              RowDefinitions="Auto,*" >
+            <Image Grid.RowSpan="2" Aspect="AspectFill"
+                   Source="{AppThemeBinding Light=create_background.png, Dark=dark_background.png}"/>
+            <VerticalStackLayout
+                Grid.Row="0"
+                Padding="20,20,20,20"
+                Spacing="0">
+                <Image Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Source="flower_green.png"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Start"
+                       HeightRequest="79"
+                       WidthRequest="79"
+                       Margin="0,40,0,0"/>
+            </VerticalStackLayout>
+            <ScrollView Grid.Row="1">
+                <VerticalStackLayout Padding="10,80,10,0">
+                    <Border 
+                        Margin="0,0,0,15"
+                        StrokeShape="RoundRectangle 30"
+                        Stroke="#336699"
+                        HeightRequest="45"
+                        StrokeThickness="1"
+                        BackgroundColor="#1A009933"
+                        Padding="15,0">
+                        <Entry
+                            Placeholder="Enter Your Mobile No./Email"
+                            PlaceholderColor="#777777"
+                            FontSize="12"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            Keyboard="Default"
+                            x:Name="RegisterLogin"
+                            TextChanged="OnPhoneOrEmailTextChanged"
+                            FontFamily="MartelSansRegular"/>
+
+                    </Border>
+                    <Border 
+                        Margin="0"
+                        StrokeShape="RoundRectangle 30"
+                        Stroke="#336699"
+                        HeightRequest="45"
+                        StrokeThickness="1"
+                        BackgroundColor="#1A009933"
+                        Padding="15,0">
+                        <Entry
+                            Placeholder="Enter 6 digits Password"
+                            PlaceholderColor="#777777"
+                            FontSize="12"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            Keyboard="Numeric"
+                            x:Name="PasswordEntry"
+                            TextChanged="OnPasswordTextChanged"
+                            FontFamily="MartelSansRegular"/>
+
+                    </Border>
+                    <Label
+                        Text="Forgot Password?"
+                        TextColor="#009933"
+                        FontSize="12"
+                        FontFamily="MartelSansRegular"
+                        HorizontalTextAlignment="End"
+                        Margin="0,20,0,0">
+                         <Label.GestureRecognizers>
+                            <TapGestureRecognizer  Tapped="NavToRegisterForgotPassword"/>
+                         </Label.GestureRecognizers>
+                    </Label>    
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+        <!--Static button-->
+        <Grid 
+            VerticalOptions="End"
+            HeightRequest="230"
+            Padding="20,0,20,15"
+            RowDefinitions="Auto,Auto,Auto">
+            <Border 
+                Grid.Row="0"
+                Style="{StaticResource ButtonOne}"
+                Margin="0,5,0,20"
+                HeightRequest="50"
+                IsEnabled="False"
+                x:Name="LoginButton">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NavToHomePage"/>
+                </Border.GestureRecognizers>
+                <Grid>
+                    <Label
+                        x:Name="LoginTxt"
+                        Text="Login"
+                        TextColor="{AppThemeBinding Dark=Black, Light=White}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        FontSize="12"
+                        FontFamily="MartelSansBold"
+                        FontAttributes="Bold"/>
+                    <ActivityIndicator
+                        x:Name="LoginIndicator"
+                        Color="{AppThemeBinding Dark=Black, Light=White}"
+                        WidthRequest="18"
+                        HeightRequest="18"
+                        VerticalOptions="Center"
+                        IsVisible="False"
+                        IsRunning="False" />
+                </Grid>
+            </Border>
+            <Label
+                Grid.Row="1"
+                   HorizontalOptions="Center"
+                   FontFamily="MartelSansRegular"
+                   FontSize="12">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span 
+                            Text=" Don't have an Pyrowo Account "  
+                            TextColor="{AppThemeBinding Dark=White, Light=Black}" />
+                        <Span 
+                            Text="Create Account"  
+                            TextColor="#009933" 
+                            FontAttributes="Bold">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="NavToCreateNewAccount"/>
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Image
+                 Grid.Row="2"
+                 Margin="0,70,0,0"
+                 Source="footer_disclaimer.png"
+                 HorizontalOptions="Center"
+                 VerticalOptions="End"/>
+        </Grid>
+        <local:LoadingOverlay
+            x:Name="Loading"/>
+    </Grid>
+</ContentPage>

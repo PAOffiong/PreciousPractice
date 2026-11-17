@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.VerifyPhoneNumber"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"
+             Shell.NavBarIsVisible="False">
+    
+    <Grid 
+        RowDefinitions="*,Auto">
+        <Grid
+            Padding="20"
+            x:Name="VerifyPhoneNumberPage"            
+            RowDefinitions="Auto,*"
+            RowSpacing="0">
+            <Grid
+                Grid.Row="0" 
+                ColumnDefinitions="Auto,*">
+                <Image 
+                    Grid.Column="0"
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+            <Grid 
+                Grid.Row="1"
+                RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                RowSpacing="0">
+                <Label
+                    x:Name="TitleLabel"
+                    Grid.Row="0"
+                    Text="Verify Phone Number"
+                    FontAttributes="Bold"
+                    FontFamily="MartelSansExtraBold"
+                    FontSize="20"
+                    Margin="0,20,0,0"/>
+                <Label
+                    Grid.Row="1"
+                    Margin="0,10,0,10"
+                    Text="Check the Code You Received"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    FontFamily="MartelSansExtraBold"/>
+                <Label 
+                    Grid.Row="2"
+                    Margin="0,0,0,10">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span 
+                            Text="A verification code been sent to your phone number"
+                            FontSize="12"
+                            FontFamily="MartelSansRegular"/>
+                        <Span Text="&#10;" />
+                        <Span 
+                            x:Name="PhoneNumber"
+                            Text=","
+                            LineHeight="1.0"
+                            FontSize="12"
+                            TextColor="#009933"
+                            FontFamily="MartelSansSemiBold"
+                            FontAttributes="Bold"/>
+                        <Span Text="&#160;"/>
+                        <Span 
+                            Text="please take a look."
+                            FontSize="12"
+                            FontFamily="MartelSansRegular"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Image 
+                Grid.Row="3"
+                Source="verify_number_pic.png"
+                WidthRequest="142"
+                HeightRequest="128"
+                Margin="0,20,0,20"/>
+            <Label 
+                Grid.Row="4"
+                Text="Verification Code"
+                FontFamily="MartelSansExtraBold"
+                FontAttributes="Bold"
+                FontSize="17"/>
+            <Grid 
+                Grid.Row="5"
+                ColumnDefinitions="*, *,*, *, *, *"
+                ColumnSpacing="6"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Margin="0,20,0,10">
+                <Grid 
+                    Grid.Column="0"
+                    HeightRequest="50"
+                    WidthRequest="50"
+                    Padding="0">
+                    <Image
+                          Source="blue_ellipse.png"/>
+                    <Entry 
+                        x:Name="Code1"
+                        Keyboard="Numeric"
+                        MaxLength="1"
+                        TextChanged="OnCodeTextChanged"
+                        Focused="OnCodeFocused"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"                           
+                        BackgroundColor="Transparent"
+                        Margin="0"/>
+                </Grid>
+                <Grid
+                   Grid.Column="1"
+                   WidthRequest="50"
+                   HeightRequest="50"
+                   Padding="0">
+                   <Image 
+                       Source="blue_ellipse.png"/>
+                   <Entry 
+                        x:Name="Code2"
+                        Keyboard="Numeric"
+                        MaxLength="1"
+                        TextChanged="OnCodeTextChanged"
+                        Focused="OnCodeFocused"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"                          
+                        BackgroundColor="Transparent"/>
+                </Grid>
+                <Grid 
+                    Grid.Column="2"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    Padding="0">
+                    <Image 
+                        Source="blue_ellipse.png"/>
+                    <Entry 
+                        x:Name="Code3"
+                        Keyboard="Numeric"
+                        MaxLength="1"
+                        TextChanged="OnCodeTextChanged"
+                        Focused="OnCodeFocused"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"                         
+                        BackgroundColor="Transparent"/>
+               </Grid>
+               <Grid 
+                   Grid.Column="3"
+                   WidthRequest="50"
+                   HeightRequest="50"
+                   Padding="0">
+                   <Image 
+                         Source="blue_ellipse.png"/>
+                   <Entry 
+                        x:Name="Code4"
+                        Keyboard="Numeric"
+                        MaxLength="1"
+                        TextChanged="OnCodeTextChanged"
+                        Focused="OnCodeFocused"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"                          
+                        BackgroundColor="Transparent"/>
+               </Grid>
+               <Grid 
+                   Grid.Column="4"
+                   WidthRequest="50"
+                   HeightRequest="50"
+                   Padding="0">
+                   <Image 
+                       Source="blue_ellipse.png"/>
+                   <Entry 
+                       x:Name="Code5"
+                        Keyboard="Numeric"
+                        MaxLength="1"
+                        TextChanged="OnCodeTextChanged"
+                        Focused="OnCodeFocused"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"                         
+                        BackgroundColor="Transparent"/>
+               </Grid>
+               <Grid 
+                   Grid.Column="5"
+                   WidthRequest="50"
+                   HeightRequest="50"
+                   Padding="0">
+                   <Image 
+                        Source="blue_ellipse.png"/>
+                   <Entry 
+                       x:Name="Code6"
+                        Keyboard="Numeric"
+                        MaxLength="1"
+                        TextChanged="OnCodeTextChanged"
+                        Focused="OnCodeFocused"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"                          
+                        BackgroundColor="Transparent"/>
+                    </Grid>
+            </Grid>
+            
+            <Label 
+                Grid.Row="6"
+                FontFamily="MartelSansSemiBold"
+                FontSize="12"
+                Margin="0,10,0,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span 
+                            Text="Didn't receive the OTP "
+                            TextColor="#666666"/>
+                        <Span 
+                            Text="Resend"
+                            x:Name="ResendOtp">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnResendOtpTapped"/>
+                            </Span.GestureRecognizers>
+                            </Span>
+                        <Span Text="&#160;"/>
+                        <Span
+                            x:Name="CountdownSpan"
+                            Text="(30s)"
+                            TextColor="#336699"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Grid 
+                Grid.Row="7"
+                Margin="0,10,0,0"
+                ColumnDefinitions="*, Auto"
+                ColumnSpacing="8">
+                <Label 
+                    Grid.Column="0"
+                    TextColor="#878787">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span 
+                                Text="Or Get Code using USSD"
+                                FontFamily="MartelSansSemiBold"
+                                FontSize="12"/>
+                            <Span 
+                                Text="DAIL(*7006*5#)"
+                                FontFamily="MartelSansSemiBold"
+                                FontSize="12"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Image 
+                    Grid.Column="1"
+                    x:Name="CallIcon"
+                    Source="call_icon.png"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCallIconTapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+           </Grid>
+       </Grid>
+    </Grid>
+        
+        <local:PhoneNumberVerified
+            x:Name="PhoneNumberVerifiedPopup"
+            IsVisible="false"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"/>
+        
+         <!--StaticButtons-->
+        
+        <VerticalStackLayout 
+            x:Name="StaticButtons"
+            IsVisible="False"
+            Grid.Row="1"
+            Spacing="10"
+            Padding="20"
+            Margin="20,10,20,20">
+            <Border
+                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#171C21}"
+                StrokeShape="RoundRectangle 5"
+                WidthRequest="350"
+                Stroke="Transparent"
+                HeightRequest="55">
+                <Grid 
+                    ColumnDefinitions="Auto,*"
+                    Padding="25,0">
+                    <Image 
+                        Grid.Column="0"
+                        Source="dial_icon.png"
+                        WidthRequest="25"
+                        HeightRequest="25"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"/>
+                    <Label 
+                        Grid.Column="1"
+                        Text="Call*7006*12*3456#"
+                        TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                        FontFamily="MartelSansSemiBold"
+                        VerticalOptions="Center"
+                        Margin="20,0,0,0"/>
+                </Grid>
+            </Border>
+            <Border
+                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#171C21}"
+                StrokeShape="RoundRectangle 5"
+                Stroke="Transparent"
+                WidthRequest="350"
+                HeightRequest="55">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCancelTapped"/>
+                </Border.GestureRecognizers>
+                <Label 
+                    Text="Cancel"
+                    TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                    FontFamily="MartelSansSemiBold"
+                    FontSize="16"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"/>
+            </Border>
+        </VerticalStackLayout>
+                     
+        <!--PopUp-->
+        <Grid>
+
+            <Border
+                 x:Name="VerificationPopup"
+                 IsVisible="false"
+                 ZIndex="100"
+                 VerticalOptions="Center"
+                 HorizontalOptions="Center"
+                 BackgroundColor="{AppThemeBinding Light=#336699, Dark=Black}"
+                 StrokeShape="RoundRectangle 10"
+                 WidthRequest="319"
+                 Stroke="Transparent"
+                 HeightRequest="98"
+                 Margin="0,100,0,0">
+                <VerticalStackLayout
+                    Spacing="5"
+                    Padding="20,15"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                    <Image 
+                        Source="check_mark.png"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        HeightRequest="30"
+                        WidthRequest="30"/>
+                    <Label
+                        TextColor="#FFFCFC"
+                        FontFamily="MartelSansSemiBold"
+                        FontSize="13"
+                        HorizontalTextAlignment="Center"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Text="A Verification Code has been sent to your mobile phone"/>
+                </VerticalStackLayout>
+                
+            </Border>
+        </Grid>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+    </Grid>      
+</ContentPage>

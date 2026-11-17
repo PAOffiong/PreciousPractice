@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.NavBarIsVisible="False"
+             x:Class="PreciousPractice.AddNewAccount"
+             BackgroundColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+             Title="AddNewAccount">
+    <Grid RowDefinitions="*,auto" >
+        <Grid
+            Grid.Row="0"
+            Padding="20">
+            <VerticalStackLayout>
+                <Image
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Label
+                    Margin="0,10,0,10"
+                    Text="Add New Account"
+                    FontSize="20"
+                    FontFamily="MartelSansExtraBold"/>
+                <Label
+                    Text="Please select the type of account you want  to create."
+                    FontSize="14"
+                    FontFamily="MartelSansRegular"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+
+                <Label
+                    Margin="0,30,0,10"
+                    Text="Account Type"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="13"
+                    FontFamily="MartelSansSemiBold"/>
+                <Border
+                    BackgroundColor="#F1F3F8"
+                    HeightRequest="45"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 30">
+                    <Grid ColumnDefinitions="*,auto"
+                          VerticalOptions="Center">
+                        <Entry
+                            x:Name="AccountTypeEntry"
+                            Grid.Column="0"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            Placeholder="Select Account Type"
+                            PlaceholderColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            Margin="15,0,0,0"
+                            FontSize="13"
+                            FontFamily="MartelSansRegular"
+                            TextChanged="OnEntriesTextChanged"/>
+                        <Image
+                            x:Name="DownwardVector"
+                            Grid.Column="1"
+                            Source="black_downward_angle.png"
+                            Margin="0,0,15,0">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDownwardVectorTapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </Border>
+                <Label
+                    x:Name="AccountSuffixEntry"
+                    Text="Account Name Suffix"
+                    FontSize="13"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontFamily="MartelSansSemiBold"
+                    Margin="0,40,0,10"/>
+                <Border
+                    BackgroundColor="#F1F3F8"
+                    HeightRequest="45"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 30">
+                    <Entry
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        Placeholder="Enter Account Name Suffix"
+                        PlaceholderColor="#666666"
+                        Margin="15,0,0,0"
+                        FontSize="13"
+                        Keyboard="Text"
+                        FontFamily="MartelSansRegular"
+                        TextChanged="OnEntriesTextChanged"/>
+
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+        <Border
+            x:Name="ContinueBorder"
+            IsEnabled="False"
+            Grid.Row="1"
+            Style="{StaticResource ButtonOne}"
+            HeightRequest="45"
+            WidthRequest="300"
+            Margin="0,0,0,30">
+            <Grid
+                VerticalOptions="Center">
+                <Label
+                    x:Name="ContinueTxt"
+                    Text="Continue"
+                    FontFamily="MartelSansBold"
+                    FontSize="12"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    HorizontalOptions="Center"/>
+                <ActivityIndicator
+                    x:Name="ContinueIndicator"
+                    Color="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="18"
+                    HeightRequest="18"
+                    IsRunning="False"
+                    IsVisible="False"/>
+            </Grid>
+        </Border>
+        <!--Account Type Popup-->
+        <Grid
+            x:Name="PopupOverlay"
+            IsVisible="False"
+            Grid.RowSpan="2"
+            BackgroundColor="{AppThemeBinding Light=#1A000000, Dark=#4D000000}">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnPopupOverlayTapped"/>
+            </Grid.GestureRecognizers>
+            <Border
+                x:Name="AccountPopupBorder"
+                Stroke="LightGray"
+                IsVisible="False"
+                BackgroundColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                StrokeShape="RoundRectangle 20,20,0,0"
+                VerticalOptions="End"
+                Padding="20,20,20,20">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAccountPopupTapped"/>
+                </Border.GestureRecognizers>
+                <Grid
+                    RowDefinitions="auto,auto,auto">
+                    <Label
+                        Grid.Row="0"
+                        Text="Select Account Type"
+                        FontFamily="MartelSansBold"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        FontSize="20"
+                        Margin="0,0,0,10"/>
+                    <Border
+                        x:Name="SavingsAccountBorder"
+                        Grid.Row="1"
+                        HeightRequest="57"
+                        Stroke="#336699"
+                        StrokeShape="RoundRectangle 25">
+                        <Label
+                            x:Name="SavingsAccountTxt"
+                            Text="Savings"
+                            FontSize="20"
+                            FontFamily="MartelSansSemiBold"
+                            TextColor="#336699"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"/>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAccountBorderTapped"/>
+                        </Border.GestureRecognizers>
+                    </Border>
+                    <Border
+                        x:Name="CurrentAccountBorder"
+                        Margin="0,10,0,0"
+                        Grid.Row="2"
+                        HeightRequest="57"
+                        Stroke="#336699"
+                        StrokeShape="RoundRectangle 25">
+                        <Label
+                            x:Name="CurrentAccountTxt"
+                            Text="Current"
+                            FontSize="20"
+                            FontFamily="MartelSansSemiBold"
+                            TextColor="#336699"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"/>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAccountBorderTapped"/>
+                        </Border.GestureRecognizers>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+        <!--<local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>-->
+    </Grid>
+</ContentPage>

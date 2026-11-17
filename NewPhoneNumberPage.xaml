@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.NewPhoneNumberPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+             Title="NewPhoneNumberPage">
+    <Grid 
+        RowDefinitions="auto, *">
+        <Grid
+            Grid.Row="0"
+            Padding="20"
+            RowDefinitions="auto,auto,auto">
+            <VerticalStackLayout
+                Grid.Row="0">
+                <Image
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                    Grid.Row="1"
+                    Text=" Enter New Phone Number "
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontFamily="MartelSansExtraBold"
+                    FontSize="20"
+                    Margin="0,20,0,0"/>
+                <Border
+                    Grid.Row="2"
+                    Margin="20,20,20,0"
+                    Stroke="#336699"
+                    HeightRequest="45"
+                    WidthRequest="350"
+                    StrokeShape="RoundRectangle 30"
+                    StrokeThickness="1"
+                    BackgroundColor="#1A009933">
+                    <Grid 
+                        ColumnDefinitions="Auto, Auto,auto, *"
+                        Padding="15,0"
+                        ColumnSpacing="0"
+                        VerticalOptions="Center">
+                        <Image 
+                            Grid.Column="0"
+                            Source="flag_icon.png"
+                            HeightRequest="22"
+                            WidthRequest="22"
+                            VerticalOptions="Center" />
+                        <Label 
+                            Grid.Column="1"
+                            Text="+234"
+                            Margin="5"
+                            TextColor="#336699"
+                            FontAttributes="Bold"
+                            FontFamily="MartelSansSemiBold"
+                            VerticalOptions="Center" />
+                        <Image
+                            Grid.Column="2"
+                            Source="line_image.png"
+                            WidthRequest="20"
+                            HeightRequest="30"/>
+                        <Entry 
+                            Grid.Column="3"
+                            x:Name="PhoneNumberEntry"
+                            Placeholder="Enter Phone Number"
+                            PlaceholderColor="#777777"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            Keyboard="Telephone"
+                            TextChanged="OnPhoneNumberTextChanged"
+                            BackgroundColor="Transparent"
+                            FontSize="12" 
+                            FontFamily="MartelSansRegular"
+                            MaxLength="10"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Fill"
+                            Margin="0,0,0,0"/>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+        <Border
+            Grid.Row="1"
+            x:Name="ContinueBorder"
+            Style="{StaticResource ButtonOne}"
+            HeightRequest="45"
+            Margin="20,40"
+            IsEnabled="False">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnContinueBorderTapped"/>
+            </Border.GestureRecognizers>
+            <Grid>
+                <Label
+                    x:Name="ContinueTxt"
+                    Text="Continue"
+                    TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                    FontFamily="MartelSansBold"
+                    FontSize="12"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+                <ActivityIndicator
+                    x:Name="ContinueIndicator"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Color="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                    WidthRequest="18"
+                    HeightRequest="18"
+                    IsVisible="False"
+                    IsRunning="False"/>
+            </Grid>
+        </Border>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.EmailVerified"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"
+             Title="EmailVerified">
+
+    <Grid 
+        RowDefinitions="*,Auto">
+        <Grid 
+            Grid.Row="0"
+            Padding="20">
+            <VerticalStackLayout
+                  Spacing="0">
+                  <Image 
+                      Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                      HorizontalOptions="Start" >
+                      <Image.GestureRecognizers>
+                          <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                      </Image.GestureRecognizers>
+                 </Image>
+                <Image 
+                    Source="{AppThemeBinding Light=verified_icon.png, Dark=verified_icon.png}"
+                    Margin="0, 30, 0, 20"/>
+                <Label
+                    Text="A new password has been sent to your email" 
+                    Margin="0,0,0,40"
+                    HorizontalOptions="Center"
+                    FontSize="12"
+                    FontFamily="MartelSansRegular"/>
+                <Label
+                    Text="Please check your inbox or spam folder and remember to change the password after logging in"
+                    FontSize="12"
+                    FontFamily="MartelSansRegular"
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+        </Grid>
+        <Border Grid.Row="1"
+            Style="{StaticResource ButtonOne}"
+            VerticalOptions="End"
+            HeightRequest="45"
+            Margin="20,50">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer   Tapped="NavToCreateNewAccount"/>
+            </Border.GestureRecognizers>
+            <Grid>
+                <Label x:Name="ContinueTxt"
+                    Text="Continue"
+                    TextColor="{AppThemeBinding Dark=Black, Light=White}"
+                    FontSize="12"
+                    FontFamily="MartelSansBold"
+                    HorizontalOptions="Center"/>
+                <ActivityIndicator
+                    x:Name="ContinueIndicator"
+                    Color="{AppThemeBinding Dark=Black, Light=White}"
+                    WidthRequest="18"
+                    HeightRequest="18"
+                    VerticalOptions="Center"
+                    IsVisible="False"
+                    IsRunning="False" />
+                
+                </Grid>
+        </Border>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+    </Grid>      
+</ContentPage>

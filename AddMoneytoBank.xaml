@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             Shell.NavBarIsVisible="False"
+             x:Class="PreciousPractice.AddMoneytoBank"
+             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}"
+             Title="AddMoneytoBank">
+    <Grid RowDefinitions="auto,*">
+        <Grid 
+            Grid.Row="0"
+            RowDefinitions="auto,auto,auto"
+            Padding="20">
+            <VerticalStackLayout
+                Grid.Row="0">
+                <Image
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                     Text="Enter Amount"
+                     HorizontalOptions="Center"
+                     FontFamily="MartelSansSemiBold"
+                     FontSize="16"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout
+                Grid.Row="1">
+                <Label
+                    Text="Transfer from"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    Margin="0,20,0,5"
+                    FontSize="12"
+                    FontFamily="MartelSansRegular"/>
+                <Border
+                    HeightRequest="90"
+                     BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EBF0F5}"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 15">
+                    <VerticalStackLayout>
+                        <Label
+                            x:Name="BankLabel"
+                            Margin="0,5,0,0"
+                            Text=""
+                            FontSize="20"
+                            TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                            HorizontalOptions="Center"
+                            FontFamily="MartelSansExtraBold"/>
+                        <Grid
+                            ColumnDefinitions="auto,*,auto"
+                            Margin="20,0,20,0">
+                            <HorizontalStackLayout
+                                Grid.Column="0">
+                                <Image
+                                    Source="bank_transfer_icon.png"
+                                    WidthRequest="13"
+                                    HeightRequest="13"/>
+                                <Label
+                                    TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                    x:Name="AccountNumberLabel"
+                                    Margin="5,0,0,0"
+                                    Text=""
+                                    FontSize="14"
+                                    FontFamily="MartelSansRegular"/>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout
+                                Grid.Column="2">
+                                <Image
+                                    
+                                    Source="person_icon.png"
+                                    WidthRequest="13"
+                                    HeightRequest="13"/>
+                                <Label
+                                    TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                    Margin="5,0,0,0"
+                                    Text="Janet Doe Kehinde"
+                                    FontSize="14"
+                                    FontFamily="MartelSansRegular"/>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout
+                Grid.Row="2">
+                <Label
+                    Margin="0,20,0,0"
+                    Text="Amount to send"
+                    FontFamily="MartelSansRegular"
+                    FontSize="12"/>
+                <Border
+                    Stroke="#336699"
+                    StrokeShape="RoundRectangle 30"
+                    HeightRequest="40">
+                    <HorizontalStackLayout>
+                        <Image Source="gray_banktransfer.png"
+                               HeightRequest="18"
+                               WidthRequest="16"
+                               Margin="25,0,10,0"/>
+                        <Entry
+                            TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                            Keyboard="Numeric"
+                            Placeholder="0.0"
+                            PlaceholderColor="#FFFFFF"
+                            x:Name="AmountEntry"
+                            TextChanged="OnAmountEntryTextChanged"/>
+                    </HorizontalStackLayout>
+                </Border>
+                <ScrollView 
+                    Orientation="Horizontal"
+                    Margin="0,15,0,0"
+                    HorizontalScrollBarVisibility="Never">
+                    <Grid 
+                        ColumnDefinitions="auto,auto,auto,auto,auto"
+                        ColumnSpacing="5">
+                        <Border
+                             x:Name="FiveThousand"
+                            Grid.Column="0"
+                            HeightRequest="22"
+                            WidthRequest="77"
+                            StrokeShape="RoundRectangle 30"
+                            Stroke="Transparent"
+                            Background="#009933">
+                            <Label        
+                                Margin="7,0,0,0"
+                                TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                                Text="N5,000.00"
+                                FontSize="12"
+                                FontFamily="MartelSansRegular"/>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnAmountTapped"/>
+                            </Border.GestureRecognizers>
+                        </Border>
+                        <Border
+                            x:Name="TenThousand"
+                            Grid.Column="1"
+                            HeightRequest="22"
+                            WidthRequest="77"
+                            StrokeShape="RoundRectangle 30"
+                            Stroke="Transparent"
+                            Background="#009933">
+                            <Label                              
+                                Margin="7,0,0,0"
+                                TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                                Text="N10,000.00"
+                                FontSize="12"
+                                FontFamily="MartelSansRegular"/>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnAmountTapped"/>
+                            </Border.GestureRecognizers>
+                        </Border>
+                        <Border
+                            x:Name="FifteenThousand"
+                            Grid.Column="2"
+                            HeightRequest="22"
+                            WidthRequest="77"
+                            StrokeShape="RoundRectangle 30"
+                            Stroke="Transparent"
+                            Background="#009933">
+                            <Label                               
+                                Margin="7,0,0,0"
+                                TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                                Text="N15,000.00"
+                                FontSize="12"
+                                FontFamily="MartelSansRegular"/>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnAmountTapped"/>
+                            </Border.GestureRecognizers>
+                        </Border>
+                        <Border
+                             x:Name="TwentyThousand"
+                            Grid.Column="3"
+                            HeightRequest="22"
+                            WidthRequest="77"
+                            StrokeShape="RoundRectangle 30"
+                            Stroke="Transparent"
+                            Background="#009933">
+                            <Label                             
+                                Margin="7,0,0,0"
+                               TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                                Text="N20,000.00"
+                                FontSize="12"
+                                FontFamily="MartelSansRegular"/>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnAmountTapped"/>
+                            </Border.GestureRecognizers>
+                        </Border>
+                        <Border
+                            x:Name="TwentyfiveThousand"
+                            Grid.Column="4"
+                            HeightRequest="22"
+                            WidthRequest="77"
+                            StrokeShape="RoundRectangle 30"
+                            Stroke="Transparent"
+                            Background="#009933">
+                            <Label                             
+                                Margin="7,0,0,0"
+                                TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                                Text="N25,000.00"
+                                FontSize="12"
+                                FontFamily="MartelSansRegular"/>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnAmountTapped"/>
+                            </Border.GestureRecognizers>
+                        </Border>
+                    </Grid>    
+                </ScrollView>
+            </VerticalStackLayout>
+        </Grid>
+        <Border
+            x:Name="ConfirmBorder"
+            Grid.Row="1"  IsEnabled="False"
+            Style="{StaticResource ButtonOne}"
+            HeightRequest="50"
+            WidthRequest="330">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="NavToAddMoneySummary"/>
+            </Border.GestureRecognizers>
+            <Grid>
+                <Label
+                    x:Name="ConfirmTxt"
+                    Text="Confirm"
+                    FontSize="14"
+                    FontFamily="MartelSansBold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"/>
+                <ActivityIndicator
+                    x:Name="ConfirmIndicator"
+                    VerticalOptions="Center"
+                    HeightRequest="18"
+                    WidthRequest="18"
+                    Color="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                    IsRunning="False"
+                    IsVisible="False"/>
+            </Grid>
+        </Border>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+    </Grid>
+</ContentPage>

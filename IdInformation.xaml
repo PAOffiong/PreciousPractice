@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#121212}"
+             x:Class="PreciousPractice.IdInformation">
+    <Grid 
+        RowDefinitions="*,auto">
+        <Grid>
+            <VerticalStackLayout
+                Padding="20"
+                Spacing="10">
+                <Image 
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                    HeightRequest="18"
+                    WidthRequest="18"
+                    HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                    Text="Enter your ID information"
+                    FontFamily="MartelSansExtraBold"
+                    FontSize="20"
+                    Margin="0,10,0,0"
+                    FontAttributes="Bold"/>
+                <Label
+                    Text="Please provide your NIN to verify identity before joining."
+                    FontSize="14"
+                    FontFamily="MartelSansRegular"
+                    LineHeight="1.3"/>
+                <Label
+                    Text="NIN"
+                    FontFamily="MartelSansSemiBold"
+                    FontSize="13"
+                    FontAttributes="Bold"
+                     Margin="5,20,0,5"/>
+                <Border
+                    BackgroundColor="#1A009933"
+                    StrokeShape="RoundRectangle 30"
+                    StrokeThickness="1"
+                    Stroke="#336699">
+                    <Entry
+                        x:Name="NinEntry"
+                        Placeholder="Enter your National Identification Number"
+                        PlaceholderColor="#999999"
+                        FontFamily="MartelSansRegular"
+                        FontSize="12"
+                        Margin="12,0"
+                        Keyboard="Numeric"
+                        MaxLength="11"
+                        TextChanged="OnNinTextChanged"/>
+                </Border>
+                <Grid 
+                    ColumnDefinitions="Auto,*, Auto"
+                    Padding="10"
+                    ColumnSpacing="0">
+                    <!--Circle + excalmation-->
+                    <Grid 
+                        Grid.Column="0"
+                        WidthRequest="30"
+                        HeightRequest="30"
+                        VerticalOptions="Start">
+                        <Image 
+                            Source="circle_ellipse_two.png"
+                            WidthRequest="15"
+                            HeightRequest="15"/>
+                        <Image 
+                            Source="exclamation.png"
+                            WidthRequest="8"
+                            HeightRequest="8"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"/>
+                    </Grid>
+                    <Label 
+                        x:Name="ForgetNIN"
+                        Grid.Column="1"
+                        Text="Forget NIN"
+                        FontFamily="MartelSansSemiBold"
+                        FontSize="13"
+                        Margin="5"
+                        FontAttributes="Bold">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnForgetNINTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Border
+                        Grid.Column="2"
+                        BackgroundColor="#1A009933"
+                        StrokeShape="RoundRectangle 30"
+                        StrokeThickness="1"
+                        Stroke="Transparent"
+                        WidthRequest="108"
+                        HeightRequest="37">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer   Tapped="clickHere"/>
+                        </Border.GestureRecognizers>
+                        <Label
+                            Text="Click here"
+                            TextColor="#009933"
+                            FontFamily="MartelSansBold"
+                            FontSize="14"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"/>
+                    </Border>
+                </Grid>
+
+                <Border
+                    x:Name="NextButton"
+                    Style="{StaticResource ButtonOne}"
+                    Margin="0,50,0,0"
+                    WidthRequest="320"
+                    Opacity="0.5">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer   Tapped="NavToPhoneNumberVerified"/>
+                    </Border.GestureRecognizers>
+                    <Label
+                        Text="Next"
+                        TextColor="{AppThemeBinding Light=White, Dark=Black}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"/>
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+        <!--POPUP-->
+        <Grid 
+            BackgroundColor="#80000000" 
+            IsVisible="False"  
+            Grid.RowSpan="2"
+            x:Name="PopupOverlay">
+            <Border
+                BackgroundColor="White" x:Name="PopupCard"
+                Padding="20"
+                StrokeThickness="0"
+                WidthRequest="300"
+                StrokeShape="RoundRectangle 20"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                <VerticalStackLayout
+                    Spacing="15"
+                    HorizontalOptions="Fill">
+                    <Label
+                        Text="Proceed without NIN"
+                        FontSize="16"
+                        FontFamily="MartelSansBold"
+                        HorizontalTextAlignment="Center"
+                        TextColor="#333333"/>
+                    <Label
+                        Text="Skipping NIN will limit your account.&#10;(no debit transactions).&#10; You can proceed, but you'll need to&#10; provide your NIN late in your profile to&#10; activate full service"
+                        FontFamily="MartelSansRegular"
+                        FontSize="13"
+                        HorizontalTextAlignment="Center"
+                        LineHeight="1.2"
+                        TextColor="#333333"/>
+                    <Border
+                        Stroke="Transparent"
+                        BackgroundColor="#16B95A"
+                        StrokeShape="RoundRectangle 25"
+                        HeightRequest="52">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnEnterNINNowTapped" />
+                        </Border.GestureRecognizers>
+                        <Grid>
+                            <Label
+                                Text="Enter NIN now" 
+                                x:Name="EnterNINTxt"
+                                Style="{StaticResource labelButton}"
+                                TextColor="White"
+                                FontFamily="MartelSansBold"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                FontSize="14"/>
+                            <ActivityIndicator Color="White"
+                                WidthRequest="15"
+                                x:Name="Indicator"
+                                HeightRequest="25"
+                                IsRunning="false"
+                                IsVisible="False"/>
+                        </Grid>
+                    </Border>
+                    <Border
+                        BackgroundColor="White"
+                        StrokeShape="RoundRectangle 25"
+                        StrokeThickness="1"
+                        HeightRequest="52">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSkipForNowTapped" />
+                        </Border.GestureRecognizers>
+                        <Grid>
+                            <Label
+                                Text="Skip for now" IsVisible="True" x:Name="SkipTxt"
+                                Style="{StaticResource labelButton}"
+                                FontFamily="MartelSansRegular"
+                                FontSize="14"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                TextColor="#333333"/>
+                            <ActivityIndicator 
+                                Color="#141414"
+                                WidthRequest="15"
+                                x:Name="SkipIndicator"
+                                IsRunning="false"
+                                IsVisible="False"/>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+        <!--StaticButtons-->
+        <VerticalStackLayout 
+            x:Name="StaticButtons"
+            IsVisible="False"
+            Grid.Row="1"
+            Spacing="10"
+            Padding="20"
+            Margin="20,10,20,20">
+            <Border
+                BackgroundColor="{AppThemeBinding Light=#EFEEF5, Dark=#171C21}"
+                StrokeShape="RoundRectangle 5"
+                WidthRequest="350"
+                Stroke="Transparent"
+                HeightRequest="55">
+                <Grid
+                    ColumnDefinitions="Auto,*"
+                    Padding="25,0">
+                    <Image 
+                        Grid.Column="0"
+                        Source="orange_call_icon.png"
+                        WidthRequest="25"
+                        HeightRequest="25"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"/>
+                    <Label 
+                        Grid.Column="1"
+                        Text="Call*996#"
+                        TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF }"
+                        FontFamily="MartelSansSemiBold"
+                        VerticalOptions="Center"
+                        Margin="20,0,0,0"/>
+
+                </Grid>
+            </Border>
+            <Border
+                BackgroundColor="{AppThemeBinding Light=#EFEEF5, Dark=#171C21}"
+                StrokeShape="RoundRectangle 5"
+                Stroke="Transparent"
+                WidthRequest="350"
+                HeightRequest="55">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCancelTapped"/>
+                </Border.GestureRecognizers>
+                <Label 
+                    Text="Cancel"
+                    TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF }"
+                    FontFamily="MartelSansSemiBold"
+                    FontSize="16"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"/>
+            </Border>
+        </VerticalStackLayout>
+        <local:LoadingOverlay
+                x:Name="Loading"
+                Grid.RowSpan="2"/>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PreciousPractice.AboutPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+             Title="AboutPage">
+    <Grid
+        Padding="20"
+        RowDefinitions="auto,*">
+        <Grid
+            ColumnDefinitions="auto,*">
+            <Image 
+                Grid.Column="0"
+                Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                HorizontalOptions="Start" 
+                VerticalOptions="Start">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+            <VerticalStackLayout
+                Grid.Column="1">
+                <Label
+                    Text="About"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    HorizontalOptions="Center"
+                    FontSize="16"
+                    FontFamily="MartelSansBold"/>
+                <Label
+                    Text="Version 1.0"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="10"
+                    HorizontalOptions="Center"
+                    FontFamily="MartelSansRegular"/>
+            </VerticalStackLayout>
+        </Grid>
+        <Border
+            Grid.Row="1"
+            Stroke="Transparent"
+            StrokeShape="RoundRectangle 15"
+            BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EAEFF5}"
+            Padding="20"
+            VerticalOptions="Start"
+            Margin="0,20,0,0">
+            <VerticalStackLayout
+                Spacing="10">
+                <Label
+                    Text="Terms and Conditions"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="14"
+                    FontFamily="MartelSansRegular"/>
+                <Label
+                    Text="Privacy Policy"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="14"
+                    FontFamily="MartelSansRegular"/>
+                
+            </VerticalStackLayout>
+         
+        </Border>
+    </Grid>
+</ContentPage>

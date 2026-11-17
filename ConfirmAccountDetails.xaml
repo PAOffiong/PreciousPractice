@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.ConfirmAccountDetails"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"
+             Title="ConfirmAccountDetails">
+    <Grid RowDefinitions="*,Auto">
+        <Grid 
+            Grid.Row="0"
+            RowDefinitions="Auto,Auto,Auto,Auto"
+            Padding="20"
+            RowSpacing="25">
+            <Image 
+                Grid.Row="0"
+                Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                HorizontalOptions="Start" 
+                VerticalOptions="Start">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label 
+                Grid.Row="1"
+                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                Text="Confirm Account Details"
+                FontFamily="MartelSansExtraBold"
+                FontSize="20"/>
+            <Border 
+                Grid.Row="2"
+                Stroke="Transparent"
+                StrokeThickness="1"
+                BackgroundColor="{AppThemeBinding Light=#F1F3F8,Dark=#171C21}"
+                StrokeShape="RoundRectangle 10"
+                Padding="10"
+                Margin="0,15,0,0">
+                <VerticalStackLayout>
+                    <Image 
+                        Source="contact_icon.png"
+                        VerticalOptions="Center"
+                        WidthRequest="70"
+                        HeightRequest="70"
+                        HorizontalOptions="Center"/>
+                    <Label 
+                        Text="JANET"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        FontFamily="MartelSanRegular"
+                        FontSize="14.46"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Margin="0,5,0,0"/>
+                    <Grid 
+                        ColumnDefinitions="Auto,*,Auto"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Center"
+                        Padding="5,0,5,0"
+                        ColumnSpacing="5"
+                        Margin="0,10,0,0">
+                        <Label 
+                            Grid.Column="0"
+                            Text="Full Name"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontFamily="MartelSansExraLight"
+                            FontSize="14"
+                            VerticalOptions="Start"/>
+                        <Label 
+                            Grid.Column="2"
+                            Text="JANE DOE KEKINDE"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontSize="14"
+                            FontFamily="MartelSansRegular"/>
+                    </Grid>
+                    <Grid 
+                        ColumnDefinitions="Auto,*,Auto"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Center"
+                        Padding="5,0,5,0"
+                        ColumnSpacing="5"
+                        Margin="0,10,0,0">
+                        <Label 
+                            Grid.Column="0" 
+                            Text="Pyrowo Account Number"  
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontFamily="MartelSansExraLight"
+                            FontSize="14"
+                            VerticalOptions="Start"/>
+                        <HorizontalStackLayout 
+                            Grid.Column="2">
+                            <Label 
+                                x:Name="AccountNumberLabel"
+                                Text=""
+                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                FontSize="14"
+                                FontFamily="MartelSansRegular" />
+                            <Image                              
+                                Source="{AppThemeBinding Light=black_copy_icon.png, Dark=white_copy_icon.png}"
+                                WidthRequest="12"
+                                HeightRequest="15"
+                                Margin="8,0,0,0"
+                                VerticalOptions="Center">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCopyAccountNumberTapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </HorizontalStackLayout>
+                    </Grid>
+                    <Grid 
+                        ColumnDefinitions="Auto,*,Auto"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Center"
+                        Padding="5,0,5,0"
+                        ColumnSpacing="5"
+                        Margin="0,10,0,0">
+                        <Label 
+                           Grid.Column="0"
+                            Text="Email"      
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontFamily="MartelSansExraLight"
+                            FontSize="14"
+                            VerticalOptions="Start"/>
+                        <Label 
+                            Grid.Column="2"
+                            Text="janetdoe@gmail.com"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontSize="14"
+                            FontFamily="MartelSansRegular"/>
+                    </Grid>
+                    <Grid 
+                        ColumnDefinitions="Auto,*,Auto"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Center"
+                        Padding="5,0,5,0"
+                        ColumnSpacing="5"
+                        Margin="0,10,0,0">
+                        <Label 
+                            Grid.Column="0"
+                            Text="Account Type"    
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontFamily="MartelSansExraLight"
+                            FontSize="14"
+                            VerticalOptions="Start"/>
+                        <Image 
+                            Grid.Column="2"
+                            Source="one_tier.png"
+                            WidthRequest="60"
+                            HeightRequest="20"
+                            VerticalOptions="Center"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+            <Label 
+                Grid.Row="3"
+                Text="Click continue to setup password."
+                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                FontFamily="MartelSansRegular"
+                FontSize="14"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="0,50,0,0"/>
+        </Grid>
+        <!--staticbutton-->
+        <Grid Grid.Row="1">
+            <Border
+                x:Name="StartBankingNowButton"
+                Style="{StaticResource ButtonOne}"
+                Margin="20,30"
+                IsEnabled="True">
+                  <Border.GestureRecognizers>
+                       <TapGestureRecognizer Tapped="NavToSetPassword"/>
+                  </Border.GestureRecognizers>
+                <Grid>
+                    <Label 
+                        x:Name="continueTxt"
+                        Text="Continue"
+                        FontFamily="MartelSansBold"
+                        TextColor="{AppThemeBinding Dark=Black, Light=White}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"/>
+                    <ActivityIndicator
+                         x:Name="ContinueIndicator"
+                         Color="{AppThemeBinding Dark=Black, Light=White}"
+                         WidthRequest="18"
+                         HeightRequest="18"
+                         VerticalOptions="Center"
+                         IsVisible="False"
+                         IsRunning="False" />
+                </Grid>
+            </Border>
+        </Grid>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+    </Grid>
+</ContentPage>

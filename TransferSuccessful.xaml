@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PreciousPractice.TransferSuccessful"
+             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}"
+             Shell.NavBarIsVisible="False"
+             Title="TransferSuccessful">
+    <Grid RowDefinitions="*,auto"
+          Padding="20">
+        <Grid
+            Grid.Row="0">
+            <VerticalStackLayout
+                Spacing="-20">
+                <Image
+                    Margin="0,70,0,30"
+                    Source="successful.png"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="132"
+                    HeightRequest="132"/>
+                <Label
+                    Text="Transfer"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="32"
+                    FontFamily="MartelSansBold"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Margin="0"
+                    Padding="0"/>
+                <Label
+                    Text="Successful"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="32"
+                    FontFamily="MartelSansBold"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Margin="0"
+                    Padding="0"/>
+                <Label
+                    Text="Congratulations your transfer of N2,000 to JOHN DOE KEHINDE was sucessful"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    Margin="0,20,0,0"
+                    HorizontalTextAlignment="Center"
+                    FontFamily="MartelSansRegular"
+                    FontSize="12"/>
+                <Grid
+                    ColumnDefinitions="*,*"
+                    Margin="0,40,0,0">
+                    <Border
+                        Grid.Column="0"
+                        Stroke="{AppThemeBinding Light=#336699, Dark=#009933}"
+                        StrokeShape="RoundRectangle 30"
+                        HeightRequest="44"
+                        WidthRequest="150"
+                        HorizontalOptions="Start">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnShareTapped"/>
+                        </Border.GestureRecognizers>
+                        <HorizontalStackLayout
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center">
+                            <Image
+                                Source="{AppThemeBinding Light=share.png, Dark=share_dark.png}"
+                                VerticalOptions="Center"
+                                WidthRequest="24"
+                                HeightRequest="24"/>
+                            <Label
+                                Margin="10,0,0,0"
+                                Text="Share"
+                                TextColor="{AppThemeBinding Light=#336699, Dark=#009933}"
+                                VerticalOptions="Center"
+                                FontSize="13"
+                                FontFamily="MartelSansRegular"/>
+                        </HorizontalStackLayout>
+                    </Border>
+                    <Border
+                        x:Name="ViewReceipt"
+                        Grid.Column="1"
+                        Style="{StaticResource ButtonOne}"
+                        WidthRequest="160">
+                        <HorizontalStackLayout
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center">
+                            <Image
+                                Source="{AppThemeBinding Light=light_share_receipt, Dark=dark_share_receipt}"
+                                VerticalOptions="Center"
+                                WidthRequest="24"
+                                HeightRequest="24"/>
+                            <Label
+                                Margin="10,0,0,0"
+                                Text="View Receipt"
+                                TextColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                                VerticalOptions="Center"
+                                FontSize="13"
+                                FontFamily="MartelSansRegular"/>
+                        </HorizontalStackLayout>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnViewReceiptTapped"/>
+                        </Border.GestureRecognizers>
+                    </Border>
+                </Grid>
+            </VerticalStackLayout>
+            
+        </Grid>
+        <Border
+            x:Name="DismissBorder"
+            Grid.Row="1"  IsEnabled="True"
+            Style="{StaticResource ButtonOne}"
+            HeightRequest="50"
+            WidthRequest="330">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnDismissBorderTapped"/>
+            </Border.GestureRecognizers>
+            <Grid>
+                <Label
+                    x:Name="DismissTxt"
+                    Text="Dismiss"
+                    FontSize="14"
+                    FontFamily="MartelSansBold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"/>
+                <ActivityIndicator
+                    x:Name="DismissIndicator"
+                    VerticalOptions="Center"
+                    HeightRequest="18"
+                    WidthRequest="18"
+                    Color="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                    IsRunning="False"
+                    IsVisible="False"/>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>

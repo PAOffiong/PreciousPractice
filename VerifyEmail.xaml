@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.VerifyEmail"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"
+             Title="VerifyEmail">
+    <Grid>
+        <Grid
+            RowDefinitions="Auto,*"
+            Padding="20"
+            RowSpacing="20">
+            <Grid Grid.Row="0"
+                  ColumnDefinitions="Auto,*">
+                <Image 
+                    Grid.Column="0"
+                    Source= "{AppThemeBinding Light=vector_left_black.png,
+                                Dark=vector_left_white.png}"
+                    HeightRequest="18"
+                    WidthRequest="18"
+                    HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                         <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+            <Grid 
+                Grid.Row="1"
+                RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto,Auto">
+                <Label 
+                    Grid.Row="0"
+                    Text="Verify Email"
+                    FontFamily="MartelSansExtraBold"
+                    FontAttributes="Bold"
+                    FontSize="20"/>
+                <Label 
+                    Grid.Row="1"
+                    Text="Check the Code You Received"
+                    FontAttributes="Bold"
+                    FontFamily="MartelSansExtraBold"
+                    FontSize="16"
+                    Margin="0,15"/>
+                <Label 
+                    Grid.Row="2"                            
+                    Text="A verification code has been sent to your Email, please take a look."
+                    FontFamily="MartelSansSemiBold"
+                    FontSize="12"
+                    LineHeight="1.3"/>
+                <Image 
+                    Grid.Row="3"
+                    Source="email_verify_icon.png"
+                    WidthRequest="212"
+                    HeightRequest="143"
+                    HorizontalOptions="Center"
+                    Aspect="AspectFill"
+                    Margin="0,20,0,0"/>
+                <Label 
+                    Grid.Row="4"
+                    Text="Verification Code"
+                    FontFamily="MartelSansExtraBold"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    Margin="0,20,0,0"/>
+                <Grid 
+                    Grid.Row="5"
+                    ColumnDefinitions="*,*,*,*,*,*"        
+                    ColumnSpacing="6"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start"
+                    Margin="0,10,0,0">
+                    <Grid 
+                        Grid.Column="0"
+                        HeightRequest="50"
+                        WidthRequest="50"
+                        Padding="0">
+                        <Image
+                              Source="blue_ellipse.png"/>
+                        <Entry 
+                            x:Name="Code1"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            TextChanged="OnCodeTextChanged"
+                            Focused="OnCodeFocused"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            BackgroundColor="Transparent"
+                            Margin="0"/>
+                    </Grid>
+                    <Grid 
+                        Grid.Column="1"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        Padding="0">
+                        <Image 
+                             Source="blue_ellipse.png"/>
+                        <Entry 
+                            x:Name="Code2"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            TextChanged="OnCodeTextChanged"
+                            Focused="OnCodeFocused"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            BackgroundColor="Transparent"/>
+                    </Grid>
+
+                    <Grid
+                        Grid.Column="2"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        Padding="0">
+                        <Image 
+                             Source="blue_ellipse.png"/>
+                        <Entry
+                            x:Name="Code3"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            TextChanged="OnCodeTextChanged"
+                            Focused="OnCodeFocused"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            BackgroundColor="Transparent"/>
+                    </Grid>
+                    <Grid 
+                        Grid.Column="3"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        Padding="0">
+                        <Image 
+                              Source="blue_ellipse.png"/>
+                        <Entry 
+                            x:Name="Code4"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            TextChanged="OnCodeTextChanged"
+                            Focused="OnCodeFocused"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            BackgroundColor="Transparent"/>
+                    </Grid>
+
+                    <Grid 
+                        Grid.Column="4"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        Padding="0">
+                        <Image 
+                              Source="blue_ellipse.png"/>
+                        <Entry
+                            x:Name="Code5"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            TextChanged="OnCodeTextChanged"
+                            Focused="OnCodeFocused"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            BackgroundColor="Transparent"/>
+                    </Grid>
+
+                    <Grid 
+                        Grid.Column="5"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        Padding="0">
+                        <Image 
+                              Source="blue_ellipse.png"/>
+                        <Entry 
+                            x:Name="Code6"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            TextChanged="OnCodeTextChanged"
+                            Focused="OnCodeFocused"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            BackgroundColor="Transparent"/>
+                    </Grid>
+                </Grid>
+                <Label 
+                    Grid.Row="6"
+                    Margin="0,10,0,0"
+                    FontFamily="MartelSansSemiBold"
+                    FontSize="12"
+                    TextColor="#666666">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Didn't receive the OTP?"/>
+                            <Span 
+                                Text="Resend"
+                                x:Name="EmailResend">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnEmailResendTapped"/>
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <Span Text="&#160;"/>
+                            <Span
+                                x:Name="CountdownSpan"
+                                Text="(30s)"
+                                TextColor="#336699"
+                                FontSize="12"
+                                FontFamily="MartelSansSemiBold"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+        </Grid>
+        <local:LoadingOverlay
+            x:Name="Loading"/>
+    </Grid>
+</ContentPage>

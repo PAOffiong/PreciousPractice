@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.TopUpAccount"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Light=white, Dark=black}"
+             Title="TopUpAccount">
+    <Grid RowDefinitions="auto,*,*">
+        <VerticalStackLayout
+            Grid.Row="0"
+             Padding="20">
+            <Image
+                Grid.Row="0"
+                Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                HorizontalOptions="Start" 
+                VerticalOptions="Start">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label
+                Text="Top Up With Bank Account"
+                HorizontalOptions="Center"
+                FontFamily="MartelSansSemiBold"
+                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                FontSize="16"/>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout 
+            Grid.Row="1"
+            Padding="20,0">
+            <Border
+                Margin="0,20,0,0"
+                BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EBF0F5}"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 10"
+                HeightRequest="58">
+                <Label
+                    FontSize="12"
+                    Margin="10">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                                FontFamily="MartelSansRegular"
+                                Text="To ensure the security of your funds, you can only add a bank account linked to your "
+                                TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"/>
+                            <Span
+                                Text="BVN(22199......)"
+                                TextColor="#009933"
+                                FontFamily="MartelSansSemiBold"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Border>
+            <VerticalStackLayout>
+                <Label              
+                    Text="Select Bank"
+                    Margin="0,40,0,10"
+                    FontFamily="MartelSansRegular"
+                    FontSize="12"/>
+                <Border
+                    BackgroundColor="#1A009933"
+                    HeightRequest="40"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 25">
+                    <Grid ColumnDefinitions="*,auto">
+                        <Entry
+                            x:Name="SelectBankEntry"
+                            IsReadOnly="True"
+                            Grid.Column="0"
+                            Margin="15,0,0,0"
+                            Placeholder="Select Bank"
+                            PlaceholderColor="#666666"
+                            TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                            TextChanged="OnEntriesTextChanged"/>
+                        <Image
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            Source="{AppThemeBinding Light=rightward_triangle.png, Dark=white_rightward_angle}"
+                            Margin="0,0,15,0">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnRightAngleTriangleTapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+            
+            <VerticalStackLayout>
+                <Label              
+                    Text="Bank Account"
+                    Margin="0,40,0,10"
+                    FontFamily="MartelSansRegular"
+                    FontSize="12"/>
+                <Border
+                    BackgroundColor="{AppThemeBinding Light=#F1F3F8, Dark=Black}"
+                    HeightRequest="40"
+                    Stroke="{AppThemeBinding Light=Transparent, Dark=#336699}"
+                    StrokeShape="RoundRectangle 25">
+                    <Grid ColumnDefinitions="auto,auto">
+                        <Image
+                            Grid.Column="0"
+                            Source="gray_banktransfer.png"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            Margin="15,0,0,0"/>
+
+                        <Entry
+                            MaxLength="10"
+                            x:Name="AccountNumberEntry"
+                            Keyboard="Numeric"
+                            Grid.Column="1"
+                            TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                            Placeholder="Enter Account Number"
+                            PlaceholderColor="#666666"
+                            FontFamily="MartelSansRegular"
+                            FontSize="12"
+                            VerticalOptions="Center"
+                            Margin="10,0,0,0"
+                            TextChanged="OnEntriesTextChanged"/>
+
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+        <Grid
+            Grid.Row="2"
+            Padding="20">
+            <Border
+                x:Name="ContinueBorder"
+                Style="{StaticResource ButtonOne}"
+                HeightRequest="50"
+                Margin="0,0,0,70"
+                VerticalOptions="Center"
+                IsEnabled="False">
+                <Grid>
+                    <Label
+                         x:Name="ContinueTxt"
+                        Text="Continue" 
+                        TextColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                        FontFamily="MartelSansBold"
+                        FontSize="14"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"/>
+                    <ActivityIndicator
+                        x:Name="ContinueIndicator"
+                        Color="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                        WidthRequest="18"
+                        HeightRequest="18"
+                        VerticalOptions="Center"
+                        IsVisible="False"
+                        IsRunning="False"/>
+                </Grid>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NavToAddMoneytoBank"/>
+                </Border.GestureRecognizers>
+            </Border>
+        </Grid>
+        
+        <!--popup-->
+        <Grid        
+            x:Name="PopUpOverlay"
+            Grid.RowSpan="3"
+            IsVisible="False"
+            Padding="0,80,0,0"
+            BackgroundColor="#4D000000">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnPopUpOverlayTapped"/>
+            </Grid.GestureRecognizers>
+            <Border
+            Padding="20"
+            x:Name="BankNamePopUp"
+            Stroke="Transparent"
+            StrokeShape="RoundRectangle 20,20,0,0"
+            BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+            VerticalOptions="End">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer  Tapped="OnBankNamePopUpTapped"/>
+                </Border.GestureRecognizers>
+                <Grid RowDefinitions="auto,*">
+                    <Border
+                        Grid.Row="0"
+                        Stroke="#336699"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 30"
+                        BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                        HeightRequest="36">
+                        <Grid
+                            ColumnDefinitions="auto,*,auto"
+                            VerticalOptions="Center">
+                            <Image
+                                Margin="15,0,0,0"
+                                Grid.Column="0"
+                                Source="gray_search_icon.png"
+                                VerticalOptions="Center"
+                                WidthRequest="15"
+                                HeightRequest="15"/>
+                            <Entry
+                                x:Name="BankSearchEntry"
+                                Grid.Column="1"
+                                Placeholder="Search Bank Account or Name"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Start"
+                                VerticalTextAlignment="Center"
+                                FontFamily="MartelSansRegular"
+                                FontSize="12"
+                                Margin="10,5,0,0"
+                                PlaceholderColor="#878787"
+                                TextChanged="OnBankSearchEntryTextChanged"/>
+                            <Image
+                                x:Name="ClearSearchEntry"
+                                Margin="15"
+                                VerticalOptions="Center"
+                                HorizontalOptions="End"
+                                Grid.Column="2"
+                                Source="x_icon.png"
+                                WidthRequest="20"
+                                HeightRequest="20">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnClearSearchEntryTapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
+                    </Border>
+                    <CollectionView 
+                        VerticalScrollBarVisibility="Never"
+                        x:Name="BankList"
+                        Grid.Row="1"
+                        Margin="0,30,0,0"
+                        SelectionMode="Single"
+                        SelectionChanged="OnSelectBankEntry">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="local:Bank">
+                                <Grid  ColumnDefinitions="auto,auto"
+                                       Padding="0,10">
+                                    <Image
+                                        Grid.Column="0"
+                                        Source="{Binding IconSource}"
+                                        WidthRequest="40"
+                                        HeightRequest="40"/>
+                                    <Label
+                                        Grid.Column="1"
+                                        FontSize="14"
+                                        Margin="10,5,0,0"
+                                        FontFamily="MartelSansSemiBold"
+                                        Text="{Binding BankName}"
+                                        VerticalOptions="Center"
+                                        TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </Border>
+        </Grid>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="3"/>
+    </Grid>
+</ContentPage>

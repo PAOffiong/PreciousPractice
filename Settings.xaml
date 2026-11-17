@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.Settings"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+             Title="Settings">
+    <Grid
+        RowDefinitions="auto,*">
+        <Grid
+            Grid.Row="0"
+            RowDefinitions="auto,auto,auto,auto,auto,auto"
+            RowSpacing="25"
+            Padding="10">
+            <Grid
+                ColumnDefinitions="auto,*"
+                Grid.Row="0">
+                <Image 
+                    Grid.Column="0"
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                    Grid.Column="1"
+                    Text="Settings"
+                    FontSize="20"
+                    FontFamily="MartelSansBold"
+                    HorizontalOptions="Center"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+           </Grid>
+           <Border
+               Grid.Row="1"
+               Stroke="Transparent"
+               StrokeShape="RoundRectangle 15"
+               BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EAEFF5}"
+               Padding="10,5">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnChangePasswordTapped"/>
+                </Border.GestureRecognizers>
+                <Border.Shadow>
+                    <Shadow 
+                        Brush="{AppThemeBinding Dark=#666666, Light=#80000000}"
+                        Offset="0,4"
+                        Radius="6"
+                        Opacity="0.20"/>
+                </Border.Shadow>
+                <VerticalStackLayout>
+                    <Label
+                        Text="Change Password"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        FontSize="14"
+                        FontFamily="MartelSansRegular"/>
+                    <Label
+                        Text="Change your login password"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        FontSize="14"
+                        FontFamily="MartelSansRegular"/>
+                </VerticalStackLayout>
+            </Border>
+           <Border
+               Grid.Row="2"
+               Stroke="Transparent"
+               StrokeShape="RoundRectangle 15"
+               BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EAEFF5}"
+               Padding="10,5">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnPINManagementTapped"/>
+                </Border.GestureRecognizers>
+                <Border.Shadow>
+                    <Shadow 
+                        Brush="{AppThemeBinding Dark=#666666, Light=#80000000}"
+                        Offset="0,4"
+                        Radius="6"
+                        Opacity="0.20"/>
+                </Border.Shadow>
+                <VerticalStackLayout>
+                    <Label
+                        Text="PIN Management"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        FontSize="14"
+                        FontFamily="MartelSansRegular"/>
+                    <Label
+                        Text="Transaction PIN Management"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        FontSize="14"
+                        FontFamily="MartelSansRegular"/>
+                </VerticalStackLayout>
+            </Border>
+            <Border
+                Grid.Row="3"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 15"
+                BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EAEFF5}"
+                Padding="10,5">
+                <Border.Shadow>
+                    <Shadow 
+                         Brush="{AppThemeBinding Dark=#666666, Light=#80000000}"
+                         Offset="0,4"
+                         Radius="6"
+                         Opacity="0.20"/>
+                </Border.Shadow>
+                <Grid
+                    ColumnDefinitions="*,auto">
+                    <VerticalStackLayout
+                        Grid.Column="0">
+                        <Label
+                            Text="Biometric Login"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontSize="14"
+                            FontFamily="MartelSansRegular"/>
+                        <Label
+                            Text="(Activate TouchID/FaceID/Fingerprint)for &#10; login"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontSize="12"
+                            FontFamily="MartelSansRegular"
+                            LineHeight="0.9"/>
+                    </VerticalStackLayout>
+                    <Image
+                         x:Name="BiometricLoginToggle"
+                        Grid.Column="1"
+                        Source="light_add_beneficiaries.png"
+                        VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBiometricLoginTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Border>
+            <Border
+                Grid.Row="4"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 15"
+                BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EAEFF5}"
+                Padding="10,5">
+                <Border.Shadow>
+                    <Shadow 
+                         Brush="{AppThemeBinding Dark=#666666, Light=#80000000}"
+                         Offset="0,4"
+                         Radius="6"
+                         Opacity="0.20"/>
+                </Border.Shadow>
+                <Grid
+                    ColumnDefinitions="*, auto">
+                    <VerticalStackLayout
+                        Grid.Column="0">
+                        <Label                            
+                            Text="Biometric Trans.Auth."
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontSize="14"
+                            FontFamily="MartelSansRegular"/>
+                        <Label
+                            Text="(Activate TouchID/FaceID/Fingerprint)for &#10; transactions"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontSize="12"
+                            FontFamily="MartelSansRegular"
+                            LineHeight="0.9"/>
+                    </VerticalStackLayout>
+                    <Image
+                        x:Name="BiometricAuthToggle"
+                        Grid.Column="1"
+                        Source="light_add_beneficiaries.png"
+                        VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBiometricAuthenticationTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Border>
+            <Border
+                Grid.Row="5"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 15"
+                BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EAEFF5}"
+                Padding="10,5">
+                <Border.Shadow>
+                    <Shadow 
+                         Brush="{AppThemeBinding Dark=#666666, Light=#80000000}"
+                         Offset="0,4"
+                         Radius="6"
+                         Opacity="0.20"/>
+                </Border.Shadow>
+                <Grid
+                    ColumnDefinitions="*, auto">
+                    <VerticalStackLayout
+                        Grid.Column="0"
+                        x:Name="TwoFactorText">
+                        <Label
+                            Text="Two-Factor Authentication"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontSize="14"
+                            FontFamily="MartelSansRegular"/>
+                        <Label
+                            Text="Require a one-time code in addition to &#10; your  PIN for added security"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontSize="12"
+                            FontFamily="MartelSansRegular"
+                            LineHeight="0.9"/>
+                    </VerticalStackLayout>
+                    <Image
+                        x:Name="FactorAuthenticationToggle"
+                        Grid.Column="1"
+                        Source="light_add_beneficiaries.png"
+                        VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFactorAuthenticationTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Border>
+        </Grid>
+        <HorizontalStackLayout
+            Grid.Row="1"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+            <HorizontalStackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnLogOutTapped"/>
+            </HorizontalStackLayout.GestureRecognizers>
+            <Image
+                Source="log_out.png"
+                WidthRequest="21"
+                HeightRequest="18"/>
+            <Label
+                Text="Logout"
+                TextColor="#9E0404"  
+                FontFamily="MartelSansBold"
+                FontSize="16"/>
+        </HorizontalStackLayout>
+        <!--deactivate messagepopup-->
+        <Grid
+            Grid.RowSpan="2"
+            x:Name="BiometricLoginPopupOverlay"
+            BackgroundColor="{AppThemeBinding Light=#1A000000, Dark=#4D000000}"
+            IsVisible="False">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnLaterTapped"/>
+            </Grid.GestureRecognizers>
+            <Border
+                Padding="20,30"
+                Margin="0,90,0,0"
+                x:Name="BiometricLoginPopupCard"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 20"
+                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                VerticalOptions="Center">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBiometricLoginPopupCardTapped"/>
+                </Border.GestureRecognizers>
+                <VerticalStackLayout
+                    Spacing="5">
+                    <Label
+                        x:Name="DeactivateMessageLabel"
+                        Text="Are you sure you want to deactivate &#10; biometric for transactions? &#10; (Face ID/Touch ID/Fingerprint)"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        HorizontalTextAlignment="Center"
+                        FontSize="14"
+                        FontFamily="MartelSansRegular"/>
+                    <Border
+                        Margin="20,0"
+                        Style="{StaticResource ButtonOne}"
+                        Padding="20,10">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnDeactivateTapped"/>
+                        </Border.GestureRecognizers>
+                        <Label
+                            x:Name="DeactivateTxt"
+                            Text="Deactivate"
+                            TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            FontSize="14"
+                            FontFamily="MartelSansSemiBold"/>
+                    </Border>
+                    <Border
+                        Margin="20,0"
+                        Style="{StaticResource ButtonOne}"
+                        Padding="20,10">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLaterTapped"/>
+                        </Border.GestureRecognizers>
+                        <Label
+                            x:Name="LaterTxt"
+                            Text="later"
+                            TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            FontSize="14"
+                            FontFamily="MartelSansSemiBold"/>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+        <!-- BiometricAuthenticationpopup-->
+        <Grid
+            Grid.RowSpan="2"
+            x:Name="BiometricAuthenticationPopupOverlay"
+            BackgroundColor="{AppThemeBinding Light=#1A000000, Dark=#4D000000}"
+            IsVisible="False">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnBiometricAuthenticationPopupOverlayTapped"/>
+            </Grid.GestureRecognizers>
+            <Border
+                Padding="20,30"
+                Margin="0,100,0,0"
+                x:Name="BiometricAuthenticationPopupCard"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 20"
+                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                VerticalOptions="Center">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBiometricAuthenticationPopupCardTapped"/>
+                </Border.GestureRecognizers>
+                <VerticalStackLayout
+                    Spacing="5">
+                    <Image
+                        Source="red_warning.png"
+                        WidthRequest="30"
+                        HeightRequest="30"
+                        HorizontalOptions="Center"/>
+                    <Label
+                        Text="Notice"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        HorizontalOptions="Center"
+                        FontFamily="MartelSansSemiBold"
+                        FontSize="16"/>
+                    <Label
+                        Text="You have not added any Biometric &#10; authentication to this device"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        HorizontalTextAlignment="Center"
+                        FontSize="12"
+                        FontFamily="MartelSansRegular"/>
+                    <Border
+                        Margin="20,0"
+                        Style="{StaticResource ButtonOne}">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnGotItTapped"/>
+                        </Border.GestureRecognizers>
+                        <Label
+                            x:Name="GotItTxt"
+                            Text="Got it"
+                            TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            FontSize="14"
+                            FontFamily="MartelSansSemiBold"/>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+        <!-- Authenticationpopup-->
+        <Grid
+            Grid.RowSpan="2"
+            x:Name="AuthenticationPopupOverlay"
+            BackgroundColor="{AppThemeBinding Light=#1A000000, Dark=#4D000000}"
+            IsVisible="False">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnAuthenticationPopupOverlayTapped"/>
+            </Grid.GestureRecognizers>
+            <Border
+                Padding="20,30"
+                Margin="0,100,0,0"
+                x:Name="AuthenticationPopupCard"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 20"
+                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                VerticalOptions="Center">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAuthenticationPopupCardTapped"/>
+                </Border.GestureRecognizers>
+                <VerticalStackLayout
+                    Spacing="5">
+                    <Label
+                        Text="Biometric Trans Auth enabled"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        HorizontalOptions="Center"
+                        FontFamily="MartelSansSemiBold"
+                        FontSize="12"/>
+                    <Border
+                        Margin="20,0"
+                        Style="{StaticResource ButtonOne}">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnOkayTapped"/>
+                        </Border.GestureRecognizers>
+                        <Label
+                            x:Name="OkayTxt"
+                            Text="Okay"
+                            TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            FontSize="14"
+                            FontFamily="MartelSansSemiBold"/>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+        <!-- Two-Factor Authenticationpopup-->
+        <Grid
+            Grid.RowSpan="2"
+            x:Name="FactorAuthenticationPopupOverlay"
+            BackgroundColor="{AppThemeBinding Light=#1A000000, Dark=#4D000000}"
+            IsVisible="False">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnFactorAuthenticationPopupOverlayTapped"/>
+            </Grid.GestureRecognizers>
+            <Border
+                Padding="5"
+                x:Name="FactorAuthenticationPopupCard"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 15"
+                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                VerticalOptions="End">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnFactorAuthenticationPopupCardTapped"/>
+                </Border.GestureRecognizers>
+                <ScrollView
+                    VerticalScrollBarVisibility="Never"
+                    MaximumHeightRequest="600">
+                    <Grid
+                        RowDefinitions="auto,auto,auto,auto"
+                        RowSpacing="5">
+                        <VerticalStackLayout
+                            Grid.Row="0">
+                            <Label
+                                Text="Set Up Two-Factor Authentication"
+                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                FontSize="14"
+                                FontFamily="MartelSansSemiBold"
+                                HorizontalOptions="Center"
+                                Margin="0,10,0,0"/>
+                            <Label
+                                Text="Secure your Account with an extra layer of protection."
+                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                FontSize="12"
+                                FontFamily="MartelSansRegular"
+                                Margin="0,0,5,0"/>
+                            <Label
+                                Text="Scan the QR code or copy the secret key to add this account to your authenticator app."
+                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                FontSize="12"
+                                FontFamily="MartelSansRegular"
+                                HorizontalTextAlignment="Justify"
+                                Margin="0,0,5,0"
+                                LineHeight="0.7"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout
+                            Grid.Row="1">
+                            <Label
+                                Text="Step 1: Scan QR Code"
+                                TextColor="#009933"
+                                FontSize="14"
+                                FontFamily="MartelSansBold"
+                                HorizontalOptions="Start"
+                                Margin="0,0,5,0"/>
+                            <Label
+                                Text="Open Google Authenticator,Microsoft Authenticator,Authy,or any TOTP app and scan the QR code below."
+                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                FontSize="12"
+                                FontFamily="MartelSansRegular"
+                                HorizontalTextAlignment="Start"
+                                LineHeight="0.9"/>
+                            <Image
+                                Source="qr_code.png"
+                                HorizontalOptions="Center"
+                                WidthRequest="180"
+                                HeightRequest="180"/>
+                            <Label
+                                Text="Recommendation:Use a different phone to scan the QR code"
+                                TextColor="#9E0404"
+                                FontSize="8"
+                                FontFamily="MartelSansRegular"
+                                Margin="0,0,10,0"
+                                HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout
+                            Grid.Row="2">
+                            <Label
+                                Text="Step 2: Or enter secret key manually"
+                                TextColor="#009933"
+                                FontSize="14"
+                                FontFamily="MartelSansBold"
+                                HorizontalOptions="Start"/>
+                            <Label
+                                Text="If you can't scan the QR code, copy this secret code and paste it into your authenticator app."
+                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                LineHeight="0.8"
+                                FontFamily="MartelSansRegular"
+                                FontSize="12"/>
+                            <Grid
+                                ColumnDefinitions="*,auto"
+                                ColumnSpacing="8"
+                                Margin="0,0,0,10">
+                                <Border
+                                    Grid.Column="0"
+                                    Stroke="#336699"
+                                    StrokeShape="RoundRectangle 30"
+                                    StrokeThickness="1"
+                                    Padding="5,3">
+                                    <Label
+                                        x:Name="SecretCode"
+                                        Text=""
+                                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                        FontFamily="MartelSansRegular"
+                                        FontSize="14"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"/>
+                                </Border>
+                                <Border
+                                    x:Name="CopyBorder"
+                                    Grid.Column="1"
+                                    Style="{StaticResource ButtonOne}"
+                                    Padding="10">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnCopyBorderTapped"/>
+                                    </Border.GestureRecognizers>
+                                    <Label
+                                        Text="Copy"
+                                        TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                                        VerticalOptions="Center"
+                                        FontFamily="MartelSansRegular"
+                                        FontSize="14"/>
+                                </Border>
+                            </Grid>
+                            <Border
+                                Stroke="#9E0404"
+                                StrokeShape="RoundRectangle 30"
+                                BackgroundColor="#300010"
+                                Padding="5,3">
+                                <Grid
+                                    ColumnDefinitions="auto,*"
+                                    ColumnSpacing="7">
+                                    <Image
+                                        Grid.Column="0"
+                                        Source="red_warning.png"
+                                        WidthRequest="18"
+                                        HeightRequest="18"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center"/>
+                                    <Label
+                                        Grid.Column="1"
+                                        Text="Keep this key private. Anyone with it can generate authentication codes for your account."
+                                        TextColor="#FFFFFF"
+                                        FontSize="8"
+                                        FontFamily="MartelSansRegular"
+                                        LineHeight="0.7"/>
+                                </Grid>
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout
+                            Grid.Row="3"
+                            Margin="0,10,0,0">
+                            <Label
+                                Text="Supported authenticator apps"
+                                FontFamily="MartelSansRegular"
+                                FontSize="14"
+                                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+                            <Grid
+                                ColumnDefinitions="auto,*"
+                                ColumnSpacing="6">
+                                <Ellipse
+                                    Grid.Column="0"
+                                    WidthRequest="6"
+                                    HeightRequest="6"
+                                    Margin="0,10,0,0"
+                                    VerticalOptions="Start"
+                                    Fill="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+                                <Label
+                                    Grid.Column="1"
+                                    Text="Google Authenticator"
+                                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                                    FontSize="14"
+                                    FontFamily="MartelSansRegular"/>
+                            </Grid>
+                            <Border
+                                Style="{StaticResource ButtonOne}"
+                                Margin="20,0">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnTextAuthenticationBorderTapped"/>
+                                </Border.GestureRecognizers>
+                                <Grid>
+                                    <Label
+                                        x:Name="AuthenticationTxt"
+                                        VerticalOptions="Center"
+                                        Text="Text Authentication Code"
+                                        TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                                        FontFamily="MartelSansSemiBold"
+                                        FontSize="14"
+                                        HorizontalOptions="Center"/>
+                                    <ActivityIndicator
+                                        x:Name="AuthenticationIndicator"
+                                        WidthRequest="18"
+                                        HeightRequest="18"
+                                        HorizontalOptions="Center"
+                                        Color="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                                        IsRunning="False"
+                                        IsVisible="False"/>
+                                </Grid>
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+                 </ScrollView>
+            </Border>
+        </Grid>
+        <!--Authenticator code Popup-->
+        <Grid
+            Grid.RowSpan="2"
+            x:Name="AuthenticationCodePopupOverlay"
+            BackgroundColor="{AppThemeBinding Light=#1A000000, Dark=#4D000000}"
+            IsVisible="False">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnAuthenticationCodePopupOverlay"/>
+            </Grid.GestureRecognizers>
+            <Border
+                Padding="20,30"
+                Margin="0,90,0,0"
+                x:Name="AuthenticationCodePopupCard"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 20"
+                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                VerticalOptions="Center">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAuthenticationCodePopupCard"/>
+                </Border.GestureRecognizers>
+                <VerticalStackLayout
+                    Spacing="20">
+                    <Label
+                        Text="Enter code from your authenticator app"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        FontFamily="MartelSansRegular"
+                        FontSize="14"/>
+                    <Border
+                        Stroke="#009933"
+                        StrokeShape="RoundRectangle 30"
+                        Padding="15,5"
+                        StrokeThickness="2"
+                        BackgroundColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}">
+                        <Entry
+                            x:Name="AuthenticatorCodeEntry"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontFamily="MartelSansRegular"
+                            FontSize="14"
+                            Keyboard="Numeric"
+                            MaxLength="6"
+                            HorizontalTextAlignment="Center"
+                            TextChanged="OnAuthenticatorCodeTextChanged"/>
+                    </Border>
+                    <Border
+                        x:Name="AuthenticateBorder"
+                        Margin="20,0"
+                        Style="{StaticResource ButtonOne}">
+                        <Grid>
+                            <Label
+                                x:Name="AuthenticateTxt"
+                                Text="Authenticate"
+                                TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                                FontSize="14"
+                                FontFamily="MartelSansRegular"
+                                HorizontalOptions="Center"/>
+                            <ActivityIndicator
+                                x:Name="AuthenticateIndicator"
+                                WidthRequest="18"
+                                HeightRequest="18"
+                                HorizontalOptions="Center"
+                                Color="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                                IsRunning="False"
+                                IsVisible="False"/>
+                        </Grid>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAuthenticateBorderTapped"/>
+                        </Border.GestureRecognizers>
+                    </Border>
+                </VerticalStackLayout>
+                </Border>
+            </Grid>
+        <!--logoutpopup-->
+        <Grid
+            Grid.RowSpan="2"
+            x:Name="LogOutPopupOverlay"
+            BackgroundColor="{AppThemeBinding Light=#1A000000, Dark=#4D000000}"
+            IsVisible="False">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnLogOutPopupOverlayTapped"/>
+            </Grid.GestureRecognizers>
+            <Border
+                Padding="20,30"
+                Margin="0,90,0,0"
+                x:Name="LogOutPopupCard"
+                Stroke="#009933"
+                StrokeShape="RoundRectangle 20"
+                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                VerticalOptions="Center">
+                <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLogOutPopupCardTapped"/>
+                </Border.GestureRecognizers>
+                <VerticalStackLayout>
+                    <Label
+                        Text="Are you sure you want to Log Out of Ours MFB"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        FontSize="12"
+                        FontFamily="MartelSansRegular"/>
+                    <Grid
+                        ColumnDefinitions="*,*"
+                        ColumnSpacing="0">
+                        <Border
+                            Grid.Column="0"
+                            Stroke="#009933"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 30"
+                            HorizontalOptions="Center"
+                            HeightRequest="45"
+                            WidthRequest="100">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnNoBorderTapped"/>
+                            </Border.GestureRecognizers>
+                            <Label
+                                Text="No"
+                                TextColor="#009933"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                FontFamily="MartelSansBold"
+                                FontSize="12"/>
+                        </Border>
+                        <Border
+                            IsEnabled="True"
+                            Grid.Column="1"
+                            Style="{StaticResource ButtonOne}"
+                            HeightRequest="45"
+                            WidthRequest="100"
+                            Margin="20">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnYesBorderTapped"/>
+                        </Border.GestureRecognizers>
+                            <Grid>
+                                <Label
+                                    x:Name="YesTxt"
+                                    Text="Yes"
+                                    TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    FontFamily="MartelSansBold"
+                                    FontSize="12"/>
+                                <ActivityIndicator
+                                    x:Name="YesIndicator"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    Color="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                                    WidthRequest="18"
+                                    HeightRequest="18"
+                                    IsVisible="False"
+                                    IsRunning="False"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+    </Grid>
+</ContentPage>

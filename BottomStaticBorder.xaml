@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.NavBarIsVisible="False" HeightRequest="100" BackgroundColor="Transparent"
+             x:Class="PreciousPractice.BottomStaticBorder">
+    <Grid 
+        BackgroundColor="Transparent">
+        <Border
+            BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EBF0F5}"
+            StrokeShape="RoundRectangle 55"
+            Stroke="Transparent" Margin="5"
+            StrokeThickness="0"
+            Padding="5"
+            VerticalOptions="End"
+            HeightRequest="100">
+            <Grid
+                ColumnDefinitions="*,*,*,*,*"
+                HeightRequest="100">
+                <!--transfer-->               
+                <VerticalStackLayout
+                    BackgroundColor="Transparent"
+                    Grid.Column="0"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Spacing="5">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBottomNavigationTapped"
+                                              CommandParameter="Transfer"/>
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Image 
+                        x:Name="TransferImage"
+                        Source="transfer_arrows.png"
+                        WidthRequest="25"
+                        HeightRequest="20"
+                        HorizontalOptions="Center"/>
+                    <Label 
+                        x:Name="TransferTxt"
+                        Text="Transfers"
+                        TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                        FontFamily="MartelSansSemiBold"
+                        FontSize="12"
+                        HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+                    
+                <!--payment-->
+                <VerticalStackLayout
+                     BackgroundColor="Transparent"
+                   Grid.Column="1"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Spacing="5">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBottomNavigationTapped"
+                                              CommandParameter="Payments"/>
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Image 
+                        x:Name="PaymentsImage"
+                        Source="payments.png"
+                        WidthRequest="20"
+                        HeightRequest="20"
+                        HorizontalOptions="Center"/>
+                    <Label 
+                        x:Name="PaymentsTxt"
+                        Text="Payments"
+                        TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                        FontFamily="MartelSansSemiBold"
+                        FontSize="12"
+                        HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+               
+               
+                <VerticalStackLayout
+                     BackgroundColor="Transparent"
+                    Grid.Column="2"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Spacing="0">
+                   
+                    <Border
+                        BackgroundColor="Transparent"
+                        Stroke="Transparent"
+                        StrokeThickness="0"
+                        WidthRequest="100"
+                        HeightRequest="50"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Start"
+                        TranslationY="-35">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="50,50,0,0"/>
+                        </Border.StrokeShape>
+                    </Border> 
+
+                </VerticalStackLayout>
+             
+                <!--Profile-->
+                <VerticalStackLayout
+                     BackgroundColor="Transparent"
+                    Grid.Column="3"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     Spacing="5">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBottomNavigationTapped"
+                                              CommandParameter="Profile"/>
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Image
+                        x:Name="ProfileImage"
+                        Source="profile.png"
+                        WidthRequest="20"
+                        HeightRequest="20"
+                        HorizontalOptions="Center"/>
+                    <Label
+                        x:Name="ProfileTxt"
+                        Text="Profile"
+                        TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                        FontFamily="MartelSansSemiBold"
+                        FontSize="12"
+                        HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+                <!--more-->
+                <VerticalStackLayout
+                     BackgroundColor="Transparent"
+                    Grid.Column="4"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     Spacing="5">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBottomNavigationTapped"
+                                              CommandParameter="More"/>
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Image
+                        x:Name="MoreImage"
+                        Source="more.png"
+                        WidthRequest="20"
+                        HeightRequest="20"
+                        HorizontalOptions="Center"/>
+                    <Label
+                        x:Name="MoreTxt"
+                        Text="More"
+                        TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                        FontFamily="MartelSansSemiBold"
+                        FontSize="12"
+                        HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Grid>
+        </Border>
+        <!--home icon-->
+        
+        <Image 
+            x:Name="HomeImage"
+            Source="{AppThemeBinding Light=home.png, Dark=white_home.png}"
+            WidthRequest="90"
+            HeightRequest="90"
+            TranslationY="-48"
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            ZIndex="1">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnBottomNavigationTapped" CommandParameter="Home"/>
+            </Image.GestureRecognizers>
+        </Image>
+        <Label 
+            x:Name="HomeTxt"
+            Text="Home"
+            TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+            FontFamily="MartelSansSemiBold"
+            FontSize="12"
+            HorizontalOptions="Center"
+            TranslationY="42"
+            ZIndex="2">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnBottomNavigationTapped"
+                                      CommandParameter="Home"/>
+            </Label.GestureRecognizers>
+        </Label>
+    </Grid>   
+</ContentView>

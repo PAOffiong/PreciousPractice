@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.CreateNewAccount"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+             Title="CreateNewAccount">
+    <Grid>
+        <Grid Grid.Row="0"
+              RowDefinitions="Auto,*" >
+            <Image Source="{AppThemeBinding Light=create_background.png, Dark=dark_background}" 
+                   Grid.RowSpan="2" Aspect="AspectFill"/>
+            <VerticalStackLayout Grid.Row="0"
+                Padding="20"
+                Spacing="0">
+                <Image 
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image 
+                    Source="flower_green.png"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start"
+                    HeightRequest="79"
+                    WidthRequest="79"
+                    Margin="0,40,0,0"/>
+            </VerticalStackLayout>
+            <ScrollView Grid.Row="1" >
+                <VerticalStackLayout 
+                    Margin="20, 50, 20, 20">
+                    <Label
+                        Text="Let's Get Started"
+                        TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                        FontFamily="MartelSansExtraBold"
+                        FontAttributes="Bold"
+                        FontSize="20"/>
+                    <Border
+                        Margin="20"
+                        Stroke="#336699"
+                        HeightRequest="45"
+                        WidthRequest="320"
+                        StrokeShape="RoundRectangle 25"
+                        StrokeThickness="1"
+                        BackgroundColor="#1A009933">
+                        <Grid 
+                          ColumnDefinitions="Auto, Auto,auto, *"
+                          Padding="15,0"
+                          ColumnSpacing="0"
+                          VerticalOptions="Center">
+                            <Image 
+                              Grid.Column="0"
+                              Source="flag_icon.png"
+                              HeightRequest="22"
+                              WidthRequest="22"
+                              VerticalOptions="Center" />
+                            <Label 
+                              Grid.Column="1"
+                              Text="+234"
+                              Margin="5"
+                              TextColor="{AppThemeBinding Light=#336699, Dark=White}"
+                              FontAttributes="Bold"
+                              FontFamily="MartelSansSemiBold"
+                              VerticalOptions="Center" />
+                            <Image
+                                Grid.Column="2"
+                                Source="line_image.png"
+                                WidthRequest="20"
+                                HeightRequest="30"/>
+                            <Entry
+                                Grid.Column="3"
+                                x:Name="PhoneNumberEntry"
+                                Placeholder="Enter Phone Number"
+                                PlaceholderColor="#777777"
+                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                Keyboard="Telephone"
+                                TextChanged="OnPhoneNumberTextChanged"
+                                BackgroundColor="Transparent"
+                                FontSize="14" 
+                                FontFamily="MartelSansRegular"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Fill"
+                                Margin="0,0,0,0"/>
+                        </Grid>
+                    </Border>
+
+                    <Border
+                         Margin="0" 
+                         WidthRequest="320"
+                         StrokeShape="RoundRectangle 25"
+                         Stroke="#336699"
+                         StrokeThickness="1"
+                         BackgroundColor="#1A009933">
+                        <Grid RowDefinitions="Auto,Auto"
+                            ColumnDefinitions="Auto,*,Auto"
+                            Margin="20,3"
+                             ColumnSpacing="0">
+                            <Image 
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Source="{AppThemeBinding Light=invite_code.png, Dark=black_invite_code.png}"
+                                WidthRequest="30"
+                                HeightRequest="30"/>
+                            <Entry 
+                                Grid.Column="1"
+                                Margin="10,0,0,0"
+                                Placeholder="Do you have an Invitation Code?"
+                                VerticalOptions="Center"
+                                FontSize="12"
+                                FontFamily="MartelSansRegular"
+                                PlaceholderColor="{AppThemeBinding Light=#336699, Dark=White}"
+                                TextColor="{AppThemeBinding Light=Black, Dark=White}"/>
+                            <Image 
+                                Grid.Column="2"
+                                Source="{AppThemeBinding Light=downward_angle.png, Dark=white_downward_angle}"
+                                WidthRequest="15"
+                                HeightRequest="10"
+                                Margin="0,0,10,0">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnInvitationCodeArrowTapped" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <!--hidden entry-->
+                            <Border
+                                x:Name="InvitationCodeField"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                IsVisible="False"
+                                BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 20"
+                                HeightRequest="45"
+                                Margin="0,8,0,0" >
+                                <Entry
+                                    x:Name="InvitationCodeEntry"
+                                    TextChanged="OnPhoneNumberTextChanged"
+                                    TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                    BackgroundColor="Transparent"
+                                    Keyboard="Telephone"
+                                    FontSize="12"
+                                    FontFamily="MartelSansRegular"
+                                    VerticalOptions="Center" />
+                            </Border>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+            </ScrollView>
+       </Grid>
+        <!-- Static bottom area -->
+        <Grid
+            VerticalOptions="End"
+            Margin="0,0,0,70"
+            RowDefinitions="Auto,Auto,Auto">
+            <Grid 
+                Grid.Row="0"
+                ColumnDefinitions="Auto,auto"
+                HorizontalOptions="Start">
+                <RadioButton 
+                    Grid.Column="0"
+                    Style="{StaticResource RadioButtonOne}" 
+                    VerticalOptions="Center"
+                    IsEnabled="False"
+                    x:Name="AgreementRadioButton"
+                    CheckedChanged="OnAgreementCheckedChanged"/>
+                <Label 
+                    Grid.Column="1"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span 
+                            FontSize="12"
+                            FontFamily="MartelSansRegular"
+                            Text="I agree to the "  
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+                        <Span
+                            FontSize="12"
+                            FontFamily="MartelSansSemiBold"
+                            Text="Terms &amp; Conditions "  
+                            TextColor="#009933"
+                            TextDecorations="Underline"/>
+                        <Span
+                            FontSize="12"
+                            FontFamily="MartelSansRegular"
+                            Text="and"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"/>
+                        <Span
+                            FontSize="12"
+                            FontFamily="MartelSansSemiBold"
+                            Text=" Privacy Policy" 
+                            TextColor="#009933"
+                            TextDecorations="Underline"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+
+        <Border 
+            Grid.Row="1"
+            Style="{StaticResource ButtonOne}"
+            Margin="20,5,20,20"
+            HeightRequest="45"
+            Opacity="0.5"
+            InputTransparent="True"
+            x:Name="CreateNewAccountButton">
+             <Border.GestureRecognizers>
+                    <TapGestureRecognizer   Tapped="NavToVerifyPhoneNumber"/>
+             </Border.GestureRecognizers>
+                <Grid>
+                    <Label
+                    x:Name="NewAccountTxt"
+                    Text="Create a new account"
+                    TextColor="{AppThemeBinding Light=White, Dark=Black}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontSize="12"
+                    FontFamily="MartelSansBold"
+                    FontAttributes="Bold"/>
+                    <ActivityIndicator
+                        x:Name="NewAccountIndicator"
+                        Color="{AppThemeBinding Light=White, Dark=Black}"
+                        WidthRequest="18"
+                        HeightRequest="18"
+                        VerticalOptions="Center"
+                        IsVisible="False"
+                        IsRunning="False" />
+                </Grid>
+        </Border>
+            <Label
+                Grid.Row="2"
+                HorizontalOptions="Center"
+                FontFamily="MartelSansRegular"
+                FontSize="12">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span 
+                            Text=" Already registered your Pyrowo Account "  
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+                        <Span 
+                            Text="Login"  TextColor="#009933" 
+                            FontAttributes="Bold">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="NavToRegisterDeviceLogin"/>
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+        <local:LoadingOverlay
+            x:Name="Loading"/>
+    </Grid>
+</ContentPage>
+   

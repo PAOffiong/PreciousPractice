@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             Shell.NavBarIsVisible="False"
+             x:Class="PreciousPractice.PaymentsPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+             Title="PaymentsPage">
+    <Grid 
+        RowDefinitions="*,Auto">
+        <Grid
+            Grid.Row="0"
+            RowDefinitions="auto,*"
+            RowSpacing="20"
+            Padding="10,20,10,0">
+            <Grid
+                ColumnDefinitions="auto,*"
+                Padding="10,0">
+                <Image 
+                    Grid.Column="0"
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                    Grid.Column="1"  
+                    Text="Utilities"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="20"
+                    FontFamily="MartelSansSemiBold"
+                    HorizontalOptions="Center"/>
+            </Grid>
+            <ScrollView
+                VerticalScrollBarVisibility="Never"
+                Grid.Row="1">
+                <Border
+                    Stroke="#336699"
+                    StrokeShape="RoundRectangle 15,15,0,0"
+                    StrokeThickness="1"
+                    BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EBF0F5}"
+                    Margin="0,0,0,-2"
+                    Padding="15">
+                    <Grid
+                        RowDefinitions="auto,auto,auto,auto"
+                        RowSpacing="15">
+                        <Label
+                            Grid.Row="0"
+                            Text="Recently Used"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontSize="14"
+                            FontFamily="MartelSansSemiBold"/>
+                        <Grid
+                            ColumnDefinitions="*,*"
+                            Grid.Row="1">
+                            <Image
+                                Grid.Column="0"
+                                Source="electricity.png"
+                                WidthRequest="30"
+                                HeightRequest="30">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnElectricityTapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Image
+                                Grid.Column="1"
+                                Source="tv.png"
+                                WidthRequest="30"
+                                HeightRequest="30">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnTvTapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
+                        <Label
+                            Grid.Row="2"
+                            Text="Bill Payment"
+                            TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                            FontSize="14"
+                            FontFamily="MartelSansSemiBold"/>
+                        <Grid
+                            ColumnDefinitions="*,*,*"
+                            ColumnSpacing="10"
+                            Grid.Row="3">
+                            <Image
+                                Grid.Column="0"                               
+                                Source="waste.png"
+                                WidthRequest="30"
+                                HeightRequest="30"/>
+                            <Image
+                                Grid.Column="1"                               
+                                Source="electricity.png"
+                                WidthRequest="30"
+                                HeightRequest="30">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnElectricityTapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Image
+                                Grid.Column="2"
+                                Source="tv.png"
+                                WidthRequest="30"
+                                HeightRequest="30">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnTvTapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </ScrollView>
+        </Grid>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+        <!--Bottom Navigation Bar-->
+        <local:BottomStaticBorder 
+            ActiveTab="Payments"
+            Grid.Row="1"
+            ZIndex="1" />
+    </Grid>
+</ContentPage>

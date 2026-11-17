@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PreciousPractice.ThemePage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+             Title="ThemePage">
+    <Grid
+        RowDefinitions="auto,auto,auto,auto"
+        RowSpacing="20"
+        Padding="20">
+        <Grid 
+            ColumnDefinitions="auto,*"
+            Grid.Row="0">
+            <Image 
+                Grid.Column="0"
+                Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                HorizontalOptions="Start" 
+                VerticalOptions="Start">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label
+                Grid.Column="1"
+                Text="Themes"
+                FontSize="20"
+                FontFamily="MartelSansBold"
+                HorizontalOptions="Center"
+                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+        </Grid>
+        <Border
+            x:Name="LightModeBorder"
+            Grid.Row="1"
+            Stroke="Transparent"
+            StrokeShape="RoundRectangle 15"
+            BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EAEFF5}"
+            Padding="15,5">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnThemeBorderTapped" 
+                                      CommandParameter="Light"/>
+            </Border.GestureRecognizers>
+            <Grid
+                ColumnDefinitions="*,auto">
+                <Label
+                    Grid.Column="0"
+                    VerticalOptions="Center"
+                    Text="Light Mode"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="14"
+                    FontFamily="MartelSansRegular"/>
+                <RadioButton
+                    x:Name="LightModeButton"
+                    Grid.Column="1"
+                    GroupName="Theme"
+                    Style="{StaticResource RadioButtonOne}"
+                    VerticalOptions="Center"
+                    CheckedChanged="OnButtonCheckedChanged"
+                    HorizontalOptions="End"/>
+            </Grid>
+        </Border>
+        <Border
+            x:Name="DarkModeBorder"
+            Grid.Row="2"
+            Stroke="Transparent"
+            StrokeShape="RoundRectangle 15"
+            BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EAEFF5}"
+            Padding="15,5">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnThemeBorderTapped" 
+                           CommandParameter="Dark"/>
+            </Border.GestureRecognizers>
+            <Grid
+                ColumnDefinitions="*,auto">
+                <Label
+                    Grid.Column="0"
+                    VerticalOptions="Center"
+                    Text="Dark Mode"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                    FontSize="14"
+                    FontFamily="MartelSansRegular"/>
+                <RadioButton
+                    x:Name="DarkModeButton"
+                    Grid.Column="1"
+                    GroupName="Theme"
+                    Style="{ StaticResource RadioButtonOne}"
+                    VerticalOptions="Center"
+                    CheckedChanged="OnButtonCheckedChanged"
+                    HorizontalOptions="End"/>
+            </Grid>
+        </Border>
+        <Border
+            x:Name="DefaultBorder"
+            Grid.Row="3"
+            Stroke="Transparent"
+            StrokeShape="RoundRectangle 15"
+            BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EAEFF5}"
+            Padding="15,5">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnThemeBorderTapped" 
+                           CommandParameter="Default"/>
+            </Border.GestureRecognizers>
+            <Grid
+                ColumnDefinitions="*,auto">
+                <VerticalStackLayout
+                    Grid.Column="0">
+                    <Label
+                        VerticalOptions="Center"
+                        Text="System Default"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        FontSize="14"
+                        FontFamily="MartelSansRegular"/>
+                    <Label
+                        VerticalOptions="Center"
+                        Text="This will use your device settings"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        FontSize="10"
+                        FontFamily="MartelSansRegular"/>
+                </VerticalStackLayout>
+                <RadioButton
+                    x:Name="DefaultButton"
+                    GroupName="Theme"
+                    Grid.Column="1"
+                    Style="{StaticResource RadioButtonOne}"
+                    VerticalOptions="Center"
+                    CheckedChanged="OnButtonCheckedChanged"
+                    HorizontalOptions="End"/>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>

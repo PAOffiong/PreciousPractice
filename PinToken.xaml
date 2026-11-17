@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.PinToken"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+             Title="PinToken">
+    <Grid 
+        RowDefinitions="auto,*" >
+        <Grid
+            Padding="20"
+            Grid.Row="0"
+            RowDefinitions="auto,auto,auto"
+            RowSpacing="20">
+            <Grid
+                ColumnDefinitions="auto,*"
+                Grid.Row="0">
+                <Image 
+                    Grid.Column="0"
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                    Grid.Column="1"
+                    Text="Verify Transaction PIN Token"
+                    FontSize="20"
+                    FontFamily="MartelSansBold"
+                    HorizontalOptions="Center"
+                    TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"/>
+            </Grid>
+            <Label
+                Margin="0,20,0,0"
+                Grid.Row="1"
+                Text="A PIN verification token has been sent to your Email Please take a look."
+                HorizontalTextAlignment="Center"
+                FontSize="14"
+                FontFamily="MartelSansRegular"/>
+            <Grid
+                Grid.Row="2"
+                ColumnDefinitions="*,*,*,*,*,*"        
+                ColumnSpacing="6"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Margin="0,10,0,0">
+                <Grid 
+                    Grid.Column="0"
+                    HeightRequest="50"
+                    WidthRequest="50"
+                    Padding="0">
+                    <Image
+                        Source="blue_ellipse.png"/>
+                    <Entry 
+                        x:Name="Code1"
+                        Keyboard="Numeric"
+                        MaxLength="1"
+                        TextChanged="OnCodeTextChanged"
+                        Focused="OnCodeFocused"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        BackgroundColor="Transparent"
+                        Margin="0"/>
+                </Grid>
+                <Grid 
+                    Grid.Column="1"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    Padding="0">
+                    <Image 
+                        Source="blue_ellipse.png"/>
+                    <Entry 
+                        x:Name="Code2"
+                        Keyboard="Numeric"
+                        MaxLength="1"
+                        TextChanged="OnCodeTextChanged"
+                        Focused="OnCodeFocused"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        BackgroundColor="Transparent"/>
+                </Grid>
+
+                <Grid
+                    Grid.Column="2"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    Padding="0">
+                    <Image 
+                        Source="blue_ellipse.png"/>
+                    <Entry
+                        x:Name="Code3"
+                        Keyboard="Numeric"
+                        MaxLength="1"
+                        TextChanged="OnCodeTextChanged"
+                        Focused="OnCodeFocused"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        BackgroundColor="Transparent"/>
+                </Grid>
+                <Grid 
+                    Grid.Column="3"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    Padding="0">
+                    <Image 
+                        Source="blue_ellipse.png"/>
+                    <Entry 
+                        x:Name="Code4"
+                        Keyboard="Numeric"
+                        MaxLength="1"
+                        TextChanged="OnCodeTextChanged"
+                        Focused="OnCodeFocused"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        BackgroundColor="Transparent"/>
+                </Grid>
+
+                <Grid 
+                    Grid.Column="4"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    Padding="0">
+                    <Image 
+                        Source="blue_ellipse.png"/>
+                    <Entry
+                        x:Name="Code5"
+                        Keyboard="Numeric"
+                        MaxLength="1"
+                        TextChanged="OnCodeTextChanged"
+                        Focused="OnCodeFocused"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        BackgroundColor="Transparent"/>
+                </Grid>
+
+                <Grid 
+                    Grid.Column="5"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    Padding="0">
+                    <Image 
+                        Source="blue_ellipse.png"/>
+                    <Entry 
+                        x:Name="Code6"
+                        Keyboard="Numeric"
+                        MaxLength="1"
+                        TextChanged="OnCodeTextChanged"
+                        Focused="OnCodeFocused"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        BackgroundColor="Transparent"/>
+
+                </Grid>
+            </Grid>
+        </Grid>
+        <Border
+            x:Name="ProceedBorder"
+            Grid.Row="1"
+            IsEnabled="False"
+            Style="{StaticResource ButtonOne}"
+            HeightRequest="45"
+            Margin="20,0">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnProceedBorderTapped"/>
+            </Border.GestureRecognizers>
+            <Grid>
+                <Label
+                    x:Name="ProceedTxt"
+                    TextColor="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"
+                    Text="Confirm Password"
+                    HorizontalOptions="Center"
+                    FontFamily="MartelSansBold"
+                    FontSize="12"/>
+                <ActivityIndicator
+                    x:Name="ProceedIndicator"
+                    IsVisible="False"
+                    IsRunning="False"
+                    WidthRequest="18"
+                    HeightRequest="18"
+                    HorizontalOptions="Center"
+                    Color="{AppThemeBinding Dark=#141414, Light=#FFFFFF}"/>
+            </Grid>
+        </Border>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+    </Grid> 
+</ContentPage>

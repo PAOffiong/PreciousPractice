@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             Shell.NavBarIsVisible="false"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="PreciousPractice.TransactionFilter"
+             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}"
+             Title="TransactionFilter">
+   
+    <Grid 
+        RowDefinitions="*,Auto">
+        <Grid 
+            Padding="20"
+            Grid.Row="0"
+            RowDefinitions="auto,auto,auto,auto,auto">
+            <VerticalStackLayout>
+                <Image
+                    Grid.Row="0"
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                    Grid.Row="1"
+                    Text="Filter"
+                    FontFamily="MartelSansExtraBold"
+                    FontSize="20"
+                    Margin="0,15,0,0"/>
+                <ScrollView 
+                    Orientation="Horizontal"
+                    HorizontalScrollBarVisibility="Never">
+                    <Grid 
+                        Grid.Row="3"
+                        ColumnDefinitions="auto,auto,auto,auto,auto"
+                        ColumnSpacing="5">
+                        <Border 
+                            x:Name="CustomPeriodBorder"
+                            Grid.Column="0"
+                            WidthRequest="105" 
+                            HeightRequest="32"
+                            Stroke="#336699"
+                            StrokeShape="RoundRectangle 25">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTransactionDateRangeTapped"/>
+                            </Border.GestureRecognizers>
+                            <Label
+                                x:Name="CustomPeriodTxt"
+                                Text="Custom Period"
+                                FontSize="12"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                FontFamily="MartelSansSemiBold"
+                                TextColor="#336699"/>
+
+                        </Border>
+                        <Border 
+                            x:Name="CurrentWeekBorder"
+                            Grid.Column="1"
+                            WidthRequest="105" 
+                            HeightRequest="32"
+                            Stroke="#336699"
+                            StrokeShape="RoundRectangle 25">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTransactionDateRangeTapped"/>
+                            </Border.GestureRecognizers>
+                            <Label
+                                x:Name="CurrentWeekTxt"
+                                Text="Current Week"
+                                FontSize="12"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                FontFamily="MartelSansSemiBold"
+                                TextColor="#336699"/>
+
+                        </Border>
+                        <Border 
+                            x:Name="LastWeekBorder"
+                            Grid.Column="2"
+                            WidthRequest="105" 
+                            HeightRequest="32"
+                            Stroke="#336699"
+                            StrokeShape="RoundRectangle 25">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTransactionDateRangeTapped"/>
+                            </Border.GestureRecognizers>
+                            <Label
+                                x:Name="LastWeekTxt"
+                                Text="Last Week"
+                                FontSize="12"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                FontFamily="MartelSansSemiBold"
+                                TextColor="#336699"/>
+
+                        </Border>
+                        <Border 
+                            x:Name="CurrentMonthBorder"
+                            Grid.Column="3"
+                            WidthRequest="105" 
+                            HeightRequest="32"
+                            Stroke="#336699"
+                            StrokeShape="RoundRectangle 25">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTransactionDateRangeTapped"/>
+                            </Border.GestureRecognizers>
+                            <Label
+                                x:Name="CurrentMonthTxt"
+                                Text="Current Month"
+                                FontSize="12"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                FontFamily="MartelSansSemiBold"
+                                TextColor="#336699"/>
+
+                        </Border>
+                        <Border 
+                            x:Name="CurrentYearBorder"
+                            Grid.Column="4"
+                            WidthRequest="105" 
+                            HeightRequest="32"
+                            Stroke="#336699"
+                            StrokeShape="RoundRectangle 25">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTransactionDateRangeTapped"/>
+                            </Border.GestureRecognizers>
+                            <Label
+                                x:Name="CurrentYearTxt"
+                                Text="Current Year"
+                                FontSize="12"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                FontFamily="MartelSansSemiBold"
+                                TextColor="#336699"/>
+                        </Border>
+                    </Grid>
+                </ScrollView>    
+                <!--start date-->
+                <Border
+                    Grid.Row="4"
+                    Margin="0,20,0,0"
+                    WidthRequest="330"
+                    HeightRequest="50"
+                    StrokeShape="RoundRectangle 30"
+                    StrokeThickness="2"
+                    Stroke="#336699">
+                    <Grid 
+                        ColumnDefinitions="*,auto"
+                        VerticalOptions="Center"
+                        Grid.Column="0"
+                        Margin="20,0,0,0">
+                        <Grid 
+                            RowDefinitions=" auto,auto"
+                            VerticalOptions="Center">
+                            <Label 
+                                 Grid.Row="0"
+                                x:Name="StartDateTitleLabel"
+                                Text="Start Date"
+                                FontSize="14"
+                                FontFamily="MartelSandRegular"
+                                VerticalOptions="Center"/>
+                            <Label
+                                Grid.Row="1"
+                                x:Name="StartDateValueLabel"
+                                Text=""
+                                FontSize="14"
+                                FontFamily="MartelSansRegular"
+                                IsVisible="False"/>
+                        </Grid>
+                        <Image
+                            Grid.Column="1"
+                            Source="calendar_icon.png"
+                            HorizontalOptions="End"
+                            Margin="0,0,20,0"/>
+
+                        <DatePicker
+                            x:Name="StartDatePicker"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Opacity="0"
+                            Focused="OnStartDateFocused"
+                            DateSelected="OnStartDateSelected"/>
+                    </Grid>
+                </Border>
+                <!--end date-->
+                <Border
+                    Grid.Row="4"
+                    Margin="0,20,0,0"
+                    WidthRequest="330"
+                    HeightRequest="50"
+                    StrokeShape="RoundRectangle 30"
+                    StrokeThickness="2"
+                    Stroke="#336699">
+                    <Grid 
+                        ColumnDefinitions="*,auto"
+                        VerticalOptions="Center"
+                        Grid.Column="0"
+                        Margin="20,0,0,0">
+                        <Grid RowDefinitions="auto,auto"
+                              VerticalOptions="Center">
+                            <Label 
+                                 Grid.Row="0"
+                                x:Name="EndDateTitleLabel"
+                                Text="End Date"                                
+                                FontSize="14"
+                                FontFamily="MartelSandRegular"
+                                VerticalOptions="Center"/>
+                            <Label
+                                Grid.Row="1"
+                                x:Name="EndDateValueLabel"
+                                Text=""
+                                FontSize="14"
+                                FontFamily="MartelSansRegular"
+                                IsVisible="False"/>
+                        </Grid>
+                        <Image
+                            Grid.Column="1"
+                            Source="calendar_icon.png"
+                            HorizontalOptions="End"
+                            Margin="0,0,20,0"/>
+                        <DatePicker
+                            x:Name="EndDatePicker"
+                            Opacity="0"
+                            Grid.ColumnSpan="2"
+                            Grid.Column="0"
+                            Focused="OnEndDateFocused"
+                            DateSelected="OnEndDateSelected"/>
+                            
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+
+        </Grid>
+        <Grid 
+            Grid.Row="1"
+            ColumnDefinitions="auto,auto"
+            ColumnSpacing="10"
+            Padding="20,40">
+            <Border
+                x:Name="ClearAllBorder"
+                Grid.Column="0"
+                WidthRequest="150"
+                HeightRequest="42"
+                Stroke="{AppThemeBinding Light=#336699, Dark=#009933}"
+                StrokeShape="RoundRectangle 30">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnClearAllTapped"/>
+                </Border.GestureRecognizers>
+                <Label
+                    Text="Clear all"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    TextColor="{AppThemeBinding Light=#336699, Dark=#009933}"
+                    FontSize="12"
+                    FontFamily="MartelSansBold"/>
+
+            </Border>
+            
+            <Border
+                Grid.Column="1"
+                HorizontalOptions="End"
+                Style="{StaticResource ButtonOne}"
+                WidthRequest="150"
+                HeightRequest="42">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnApplyTapped"/>
+                </Border.GestureRecognizers>
+                <Label
+                    Text="Apply"
+                    TextColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    FontSize="12"
+                    FontFamily="MartelSansBold"/>
+
+            </Border>
+        </Grid>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.ShareReceipt"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Dark=Black,Light=White}"
+             Title="ShareReceipt">
+    <Grid
+        RowDefinitions="auto,*">
+        <Grid
+            Grid.Row="0"
+            ColumnDefinitions="auto,*,auto"
+             Padding="20,20,10,10">
+            <Image
+                Grid.Column="0"
+                Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                HorizontalOptions="Start" 
+                VerticalOptions="Start">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label
+                Grid.Column="1"
+                Text="Share Receipt"
+                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                HorizontalOptions="Center"
+                FontSize="20"
+                FontFamily="MartelSansExtraBold"/>
+            <Label
+                Grid.Column="2"
+                Text="Done"
+                TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                HorizontalOptions="End"
+                FontSize="14"
+                FontFamily="MartelSansBold">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnDoneTapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+        <Grid
+            Grid.Row="1"
+            RowDefinitions="auto,auto,auto,*">
+            <Image 
+                Grid.RowSpan="4"
+                Source="{AppThemeBinding Light=create_background.png, Dark=dark_background.png}"
+               Aspect="AspectFill"/>
+            <Grid
+                x:Name="ReceiptCard"
+                Grid.Row="0"
+                Padding="20">
+                <Image                  
+                    Source="{AppThemeBinding Light=light_plain_background, Dark=dark_plain_background}"
+                    Aspect="Fill"/>
+                <VerticalStackLayout
+                    Padding="10">
+                    <Label
+                        HorizontalOptions="End"
+                        Text="Transaction Receipt"
+                        FontSize="12"
+                        FontFamily="MartelSansRegular"/>
+                    <Label
+                        Margin="0,10,0,0"
+                        x:Name="TransferAmount"
+                        Text=""
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        FontFamily="MartelSansExtraBold"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"/>
+                    <Label
+                        Text="Successful"
+                        TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#141414}"
+                        FontFamily="MartelSansRegular"
+                        FontSize="12"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"/>
+                    <Label
+                        x:Name="DateLabel"
+                        Margin="0,5,0,0"
+                        Text=""
+                        FontFamily="MartelSansRegular"
+                        FontSize="12"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        TextColor="#878787"/>
+                    <Line
+                        X1="0" Y1="1"
+                        X2="320" Y2="1"
+                        HeightRequest="2"
+                        Stroke="{AppThemeBinding Dark=#878787, Light=#D9D9D9}"
+                        StrokeThickness="1"
+                        StrokeDashArray="4,4"
+                        Margin="0,10"/>
+                    <Grid
+                        ColumnDefinitions="auto,*"
+                        ColumnSpacing="15">
+                        <Label
+                            Grid.Column="0"
+                            Text="Recipient Details"
+                            TextColor="#878787"
+                            FontSize="13"
+                            FontFamily="MartelSansRegular"/>
+                        <VerticalStackLayout
+                            Grid.Column="1">
+                            <Label
+                                x:Name="RecipientName"
+                                Text=""
+                                FontFamily="MartelSansRegular"
+                                FontSize="13"
+                                HorizontalTextAlignment="End"
+                                TextColor="{AppThemeBinding Dark=#FFFFFF,Light=#141414}"/>
+                            <Label
+                                x:Name="RecipientAccount"
+                                Text=""
+                                FontFamily="MartelSansRegular"
+                                FontSize="13"
+                                HorizontalTextAlignment="End"
+                                TextColor="{AppThemeBinding Dark=#FFFFFF,Light=#141414}"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Grid
+                        ColumnDefinitions="auto,*"
+                        Margin="0,10,0,0"
+                        ColumnSpacing="15">
+                        <Label
+                            Grid.Column="0"
+                            Text="Sender Details"
+                            TextColor="#878787"
+                            FontSize="13"
+                            FontFamily="MartelSansRegular"/>
+                        <VerticalStackLayout
+                            Grid.Column="1">
+                            <Label
+                                x:Name="SenderName"
+                                Text=""
+                                FontFamily="MartelSansRegular"
+                                FontSize="13"
+                                HorizontalTextAlignment="End"
+                                TextColor="{AppThemeBinding Dark=#FFFFFF,Light=#141414}"/>
+                            <Label
+                                x:Name="SenderAccount"
+                                Text=""
+                                FontFamily="MartelSansRegular"
+                                FontSize="13"
+                                HorizontalTextAlignment="End"
+                                TextColor="{AppThemeBinding Dark=#FFFFFF,Light=#141414}"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Grid
+                       ColumnDefinitions="auto,*"
+                        Margin="0,10,0,0">
+                       <Label
+                            Grid.Column="0"
+                            Text="Transaction Type"
+                            TextColor="#878787"
+                            FontSize="13"
+                            FontFamily="MartelSansRegular"/>
+                       <Label
+                           x:Name="TransactionType"
+                            Grid.Column="1"
+                            Text=""
+                            TextColor="{AppThemeBinding Dark=#FFFFFF,Light=#141414}"
+                            FontSize="13"
+                            FontFamily="MartelSansRegular" 
+                            HorizontalTextAlignment="End"/>
+                    </Grid>
+                    <Grid
+                        ColumnDefinitions="auto,*"
+                         Margin="0,10,0,0">
+                        <Label
+                            Grid.Column="0"
+                            Text="Transaction No."
+                            TextColor="#878787"
+                            FontSize="13"
+                            FontFamily="MartelSansRegular"/>
+                        <Label
+                            x:Name="TransactionNumber"
+                            Grid.Column="1"
+                            Text=""
+                            TextColor="{AppThemeBinding Dark=#FFFFFF,Light=#141414}"
+                            FontSize="13"
+                            FontFamily="MartelSansRegular" 
+                            HorizontalTextAlignment="End"/>
+                    </Grid>
+                    <Grid
+                        ColumnDefinitions="auto,*"
+                         Margin="0,10,0,0">
+                        <Label
+                            Grid.Column="0"
+                            Text="Session ID"
+                            TextColor="#878787"
+                            FontSize="13"
+                            FontFamily="MartelSansRegular"/>
+                        <Label
+                            x:Name="SessionId"
+                            Grid.Column="1"
+                            Text=""
+                            TextColor="{AppThemeBinding Dark=#FFFFFF,Light=#141414}"
+                            FontSize="13"
+                            FontFamily="MartelSansRegular" 
+                            HorizontalTextAlignment="End"/>
+                    </Grid>
+                    <Line
+                        X1="0" Y1="1"
+                        X2="320" Y2="1"
+                        Stroke="{AppThemeBinding Dark=#878787, Light=#D9D9D9}"
+                        HeightRequest="2"
+                        StrokeDashArray="4,4"
+                        StrokeThickness="1"
+                        Margin="0,10,0,0"/>
+                    <Label
+                        HorizontalTextAlignment="Justify"
+                        Margin="10,10,10,0"
+                        FontSize="10"
+                        FontFamily="MartelSansRegular"
+                        Text="Enjoy a better life with Okpe. Get instant transfers, 
+                        withdrawals, bill payments. Okpe is licensed by the Central 
+                        Bank of Nigeria and insured by NDIC."/>
+                </VerticalStackLayout>
+            </Grid>
+            <Label
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Text="Report an issue"
+                FontSize="14"
+                FontFamily="MartelSansRegular"
+                TextColor="#FF0000"
+                TextDecorations="Underline" />
+            <Grid
+                Grid.Row="2"
+                ColumnDefinitions="*,*"
+                Margin="0,20,0,0"
+                Padding="10">
+                <Border
+                    Grid.Column="0"
+                   Stroke="{AppThemeBinding Light=#336699, Dark=#009933}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 30"
+                    Padding="10,6"
+                    WidthRequest="150">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnShareAsImageTapped"/>
+                    </Border.GestureRecognizers>
+                    <Grid
+                        ColumnDefinitions="auto,*"
+                        VerticalOptions="Center">
+                        <Image
+                            Source="{AppThemeBinding Light=images.png, Dark=dark_images.png}"
+                            Grid.Column="0"/>
+                        <Label
+                            Grid.Column="1"
+                            Text="Share as image"
+                            FontSize="14"
+                            FontFamily="MartelSansBold"
+                            TextColor="{AppThemeBinding Light=#336699, Dark=#009933}"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Margin="5,0,0,0"/>
+                    </Grid>
+                </Border>
+                <Border
+                    Grid.Column="1"
+                    Style="{StaticResource ButtonOne}"
+                    WidthRequest="150">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnShareAsPDFTapped"/>
+                    </Border.GestureRecognizers>
+                    <Grid
+                         ColumnDefinitions="auto,*"
+                         VerticalOptions="Center">
+                        <Image
+                            Source="{AppThemeBinding Light=white_pdf_scanner.png, Dark=dark_pdf_scanner.png}"
+                            Grid.Column="0"/>
+                        <Label
+                            Grid.Column="1"
+                            Text="Share as PDF"
+                            FontSize="14"
+                            FontFamily="MartelSansBold"
+                            TextColor="{AppThemeBinding Dark=#141414,Light=#FFFFFF}"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Margin="5,0,0,0"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+        <local:LoadingOverlay
+            x:Name="Loading"
+            Grid.RowSpan="2"/>
+    </Grid>
+</ContentPage>

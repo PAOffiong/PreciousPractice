@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PreciousPractice"
+             x:Class="PreciousPractice.AddMoney"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Light=white, Dark=black}"
+             Title="AddMoney">
+    <Grid>
+        <Grid RowDefinitions="auto,auto"
+              Padding="20">
+            <VerticalStackLayout
+                Grid.Row="0">
+                <Image
+                    Source="{AppThemeBinding Light=vector_left_black.png, Dark=vector_left_white.png}"
+                     HorizontalOptions="Start" 
+                     VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                    Text="Add Money"
+                    HorizontalOptions="Center"
+                    FontFamily="MartelSansExtraBold"
+                    FontSize="20"/>
+                </VerticalStackLayout>
+            <ScrollView 
+                VerticalScrollBarVisibility="Never"
+                Grid.Row="2">
+                <VerticalStackLayout>
+                    <Border
+                        Margin="0,30,0,0"
+                        Padding="0,0,0,20"
+                        WidthRequest="330"
+                        StrokeShape="RoundRectangle 15"
+                        BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EBF0F5}"
+                        Stroke="Transparent">
+                        <Grid RowDefinitions="auto,auto,auto,auto,auto">
+                            <Grid
+                                Grid.Row="0"
+                                ColumnDefinitions="auto,*,auto">
+                                <Image 
+                                    Grid.Column="0"
+                                    Source="bank_transfer_icon.png"
+                                    HorizontalOptions="Start"
+                                    Margin="20,0,0,0"
+                                    WidthRequest="33.42"
+                                    HeightRequest="35.52"/>
+                                <VerticalStackLayout
+                                    Grid.Column="1">
+                                    <Label
+                                        Text="Bank Transfer"
+                                        VerticalOptions="Center"
+                                        FontSize="14"
+                                        TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                        FontFamily="MartelSansRegular"
+                                        Margin="10,15,0,0"/>
+                                    <Label
+                                        Text="Add money via mobile or internet transfer"
+                                        FontSize="10"
+                                        TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                        FontFamily="MartelSansRegular"
+                                        Margin="10,0,0,0"/>
+
+                                </VerticalStackLayout>
+                                <Image
+                                    x:Name="BankArrow"
+                                    Grid.Column="2"
+                                    Source="{AppThemeBinding Light=black_downward_angle.png,Dark=white_downward_angle.png}"
+                                    HorizontalOptions="Center"
+                                    Margin="0,0,10,0"
+                                    WidthRequest="15"
+                                    HeightRequest="10">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnBankArrowTapped" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
+                            <!--hidden label-->
+                            <Grid Grid.Row="1"
+                                  ColumnDefinitions="auto,*" IsVisible="False"
+                                  x:Name="BankName">
+                                <Image
+                                    Grid.Column="0"
+                                    Source="flower_green.png"
+                                    WidthRequest="30"
+                                    HeightRequest="30"
+                                    HorizontalOptions="Start"
+                                    Margin="20,0,0,0"/>
+                                <VerticalStackLayout
+                                      Grid.Column="1">
+                                    <Label
+                                        Text="Bank Name"
+                                        VerticalOptions="Center"
+                                        FontSize="12"
+                                        TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                        FontFamily="MartelSansRegular"
+                                        Margin="15,10,0,0"/>
+                                    <Label
+                                        x:Name="BankNameLabel"
+                                        Text="Pyrowo Microfinance Bank (Pyrowo)"
+                                        FontSize="14"
+                                        TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                        FontFamily="MartelSansBold"
+                                        Margin="15,0,0,0"/>
+
+                                </VerticalStackLayout>
+                            </Grid>
+                            <Grid 
+                                Grid.Row="2"
+                                ColumnDefinitions="auto,*" IsVisible="False"
+                                x:Name="AccountNumber">
+                                <Image
+                                    Grid.Column="0"
+                                    Source="{AppThemeBinding Light=account_number_icon.png, Dark=black_account_number.png}"
+                                    WidthRequest="30"
+                                    HeightRequest="30"
+                                    HorizontalOptions="Start"
+                                    Margin="20,0,0,0"/>
+                                <VerticalStackLayout
+                                      Grid.Column="1">
+                                    <Label
+                                        Text="Account Number"
+                                        VerticalOptions="Center"
+                                        FontSize="12"
+                                        TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                        FontFamily="MartelSansRegular"
+                                        Margin="15,10,0,0"/>
+                                    <Label
+                                        x:Name="AccountNumberLabel"
+                                        Text=""
+                                        FontSize="14"
+                                        TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                        FontFamily="MartelSansBold"
+                                        Margin="15,0,0,0"/>
+
+                                </VerticalStackLayout>
+                            </Grid>
+                            <Grid Grid.Row="3"
+                                  ColumnDefinitions="auto,*"  IsVisible="False"
+                                  x:Name="UserName">
+                                <Image
+                                    Grid.Column="0"
+                                    Source="contact_icon.png"
+                                    WidthRequest="30"
+                                    HeightRequest="30"
+                                    HorizontalOptions="Start"
+                                    Margin="20,0,0,0"/>
+                                <VerticalStackLayout
+                                      Grid.Column="1">
+                                    <Label
+                                        Text="Name"
+                                        VerticalOptions="Center"
+                                        FontSize="12"
+                                        TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                        FontFamily="MartelSansRegular"
+                                        Margin="15,10,0,0"/>
+                                    <Label
+                                        x:Name="UserNameLabel"
+                                        Text="John Doe"
+                                        FontSize="14"
+                                        TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                        FontFamily="MartelSansBold"
+                                        Margin="15,0,0,0"/>
+
+                                </VerticalStackLayout>
+                            </Grid>
+                            <Grid Grid.Row="4"
+                                  ColumnDefinitions="auto,auto" IsVisible="False"
+                                  x:Name="Details"
+                                  Margin="25,20,25,0"
+                                  ColumnSpacing="10">
+                                <Border           
+                                    Grid.Column="0"
+                                    WidthRequest="140"
+                                    HeightRequest="40"
+                                    Stroke="{AppThemeBinding Light=#336699, Dark=#009933}"
+                                    StrokeShape="RoundRectangle 30">
+
+                                    <Label
+                                        x:Name="CopyAccountNumber"
+                                        Text="Copy Number"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        TextColor="{AppThemeBinding Light=#336699, Dark=#009933}"
+                                        FontSize="13"
+                                        FontFamily="MartelSansRegular"/>
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnCopyAccountNumberTapped"/>
+                                    </Border.GestureRecognizers>
+                                </Border>
+
+                                <Border
+                                    Grid.Column="1"
+                                    Style="{StaticResource ButtonOne}"
+                                    WidthRequest="140"
+                                    HeightRequest="40">
+                                    <Label
+                                        Text="Share Details"
+                                        TextColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        FontSize="13"
+                                        FontFamily="MartelSansRegular"/>
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnShareDetailsTapped"/>
+                                    </Border.GestureRecognizers>
+                                </Border>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <Border
+                        Margin="0,20,0,0"
+                        Padding="0,0,0,20"
+                        WidthRequest="330"
+                        Stroke="Transparent"
+                        StrokeShape="RoundRectangle 15"
+                        BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EBF0F5}">
+                        <Grid RowDefinitions="auto,auto,auto">
+                            <Grid
+                                Grid.Row="0"
+                                ColumnDefinitions="auto,*,auto">
+                                <Image 
+                                     Grid.Column="0"
+                                     Source="cash_deposit.png"
+                                     HorizontalOptions="Start"
+                                     Margin="20,0,0,0"
+                                     WidthRequest="30"
+                                     HeightRequest="30"/>
+                                <VerticalStackLayout
+                                      Grid.Column="1">
+                                    <Label
+                                         Text="Cash Deposit" 
+                                         VerticalOptions="Center"
+                                         FontSize="14"
+                                         TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                         FontFamily="MartelSansRegular"
+                                         Margin="10,15,0,0"/>
+                                    <Label
+                                         Text="Fund your account with nearby merchant"
+                                         FontSize="10"
+                                         TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                         FontFamily="MartelSansRegular"
+                                         Margin="10,0,0,0"/>
+
+                                </VerticalStackLayout>
+                                <Image
+                                    x:Name="CashArrow"
+                                     Grid.Column="2"
+                                     Source="{AppThemeBinding Light=black_downward_angle.png,Dark=white_downward_angle.png}"
+                                     HorizontalOptions="Center"
+                                     Margin="0,0,10,0"
+                                     WidthRequest="15"
+                                     HeightRequest="10">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnCashArrowTapped" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
+                            <!--hidden details-->
+                            <Grid Grid.Row="1"
+                                  RowDefinitions="auto,auto" IsVisible="False"
+                                  x:Name="AccountDetails">
+                                <Label                               
+                                    Grid.Row="0"
+                                    Text="Pyrowo Account Number"
+                                    FontSize="12"
+                                    FontFamily="MartelSansRegular"
+                                    Margin="20,20,0,0"/>
+                                <Label                               
+                                    Grid.Row="1"
+                                    Text="8123456789"
+                                    Margin="20,0,0,0"
+                                    FontSize="20"
+                                    FontFamily="MartelSansSemiBold"/>
+                                <Border
+                                
+                                    Grid.RowSpan="2"
+                                    Style="{StaticResource ButtonOne}"
+                                    WidthRequest="86"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="End"
+                                    Margin="0,0,10,0">
+                                    <Label
+                                        Text="Copy"
+                                        TextColor="{AppThemeBinding Light=#FFFFFF, Dark=#141414}"
+                                        FontFamily="MartelSansRegular"
+                                        FontSize="13"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"/>
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnCopyAccountNumberTapped"/>
+                                    </Border.GestureRecognizers>
+                                </Border>
+                                </Grid>
+                            <Label
+                                x:Name="Services" IsVisible="False"
+                                Grid.Row="2"
+                                Text="Fund Pyrowo Account at any POS terminal near you."
+                                Margin="20"
+                                FontSize="12"
+                                FontFamily="MartelSansRegular"/>
+                        </Grid>
+                    </Border>
+                    <Border
+                        Margin="0,20,0,0"
+                        WidthRequest="330"
+                        HeightRequest="77"
+                        Stroke="Transparent"
+                        StrokeShape="RoundRectangle 15"
+                        BackgroundColor="{AppThemeBinding Dark=#171C21, Light=#EBF0F5}">
+                        <Grid RowDefinitions="auto,auto,auto">
+                            <Grid
+                                Grid.Row="0"
+                                ColumnDefinitions="auto,*,auto">
+                                <Image 
+                                     Grid.Column="0"
+                                     Source="account_balance_wallet.png"
+                                     HorizontalOptions="Start"
+                                     Margin="20,0,0,0"
+                                     WidthRequest="30"
+                                     HeightRequest="30"/>
+                                <VerticalStackLayout
+                                     Grid.Column="1">
+                                    <Label
+                                         Text="Top-up with Bank Account"
+                                         VerticalOptions="Center"
+                                         FontSize="14"
+                                         TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                         FontFamily="MartelSansRegular"
+                                         Margin="10,15,0,0"/>
+                                    <Label
+                                         Text="Add money directly from your bank account"
+                                         FontSize="10"
+                                         TextColor="{AppThemeBinding Light=#141414, Dark=#FFFFFF}"
+                                         FontFamily="MartelSansRegular"
+                                         Margin="10,0,0,0"/>
+                                </VerticalStackLayout>
+                                <Image
+                                    x:Name="TopUpAccountIcon"
+                                     Grid.Column="2"
+                                     Source="{AppThemeBinding Light=black_downward_angle.png,Dark=white_downward_angle.png}"
+                                     HorizontalOptions="Center"
+                                     Margin="0,0,10,0"
+                                     WidthRequest="15"
+                                     HeightRequest="10">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="NavToTopUpAccountIcon"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+        <local:LoadingOverlay x:Name="Loading"/>
+    </Grid>
+</ContentPage>
