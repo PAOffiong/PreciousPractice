@@ -105,7 +105,7 @@
                             FontFamily="MartelSansRegular"
                             FontSize="12"/>
                         <Label
-                            x:Name="TotalDebit"
+                            x:Name="TotalDebit" 
                             Grid.Row="2"
                             Grid.Column="2"
                             Text=""
