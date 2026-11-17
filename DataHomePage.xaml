@@ -13,7 +13,7 @@
         <Grid
              Padding="20"
              Grid.Row="0"
-             RowDefinitions="auto,auto,auto,auto" 
+             RowDefinitions="auto,auto,auto,auto"  
              RowSpacing="15">
             <Grid
                 ColumnDefinitions="auto,*,auto">
